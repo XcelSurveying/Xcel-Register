@@ -5,6 +5,12 @@
     'Dim sortColumns As sortColumnsDGVData
 
     Private Sub formMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'Hide Print command button, until get working code for this
+        cmdPrintDGVData.Visible = False
+
+        'Open main window Maximised
+        Me.WindowState = FormWindowState.Maximized
+
         If SQL.HasConnection = True Then 'has connected
             initilizeDataGridView() 'Set visual params for data grid view
             setSearchStringAreaCalcChecklist()
@@ -57,7 +63,7 @@
                 Case rbSurveyReportRegister.Checked
                     formModifySurveyReportRegister.Show()
                 Case rbFieldDataRegister.Checked
-
+                    formModifyFieldDataRegister.Show()
                 Case rbTqRfiRegister.Checked
 
             End Select
@@ -227,7 +233,7 @@
                             "Surveyor LIKE '" & txtSearch.Text & "%' OR " & vbCrLf & _
                             "Area LIKE '" & txtSearch.Text & "%' OR " & vbCrLf & _
                             "[Job Type] LIKE '" & txtSearch.Text & "%' OR " & vbCrLf & _
-                            "[job Description] LIKE '" & txtSearch.Text & "%' OR " & vbCrLf & _
+                            "[Job Description] LIKE '" & txtSearch.Text & "%' OR " & vbCrLf & _
                             "[FLD-BK/PG] LIKE '" & txtSearch.Text & "%' OR " & vbCrLf & _
                             "[Instrument A] LIKE '" & txtSearch.Text & "%' OR " & vbCrLf & _
                             "Comments LIKE '" & txtSearch.Text & "%' OR " & vbCrLf & _
@@ -329,5 +335,14 @@
 
     Private Sub MoveDatabaseFileToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MoveDatabaseFileToolStripMenuItem.Click
         formRestoreTables.Show()
+    End Sub
+
+    Private Sub AboutToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AboutToolStripMenuItem.Click
+        MessageBox.Show("Xcel Database Register: Version ##.##", "About", MessageBoxButtons.OK, MessageBoxIcon.None)
+    End Sub
+
+    '--PRINT DataGridView 
+    Private Sub cmdPrintDGVData_Click(sender As Object, e As EventArgs) Handles cmdPrintDGVData.Click
+
     End Sub
 End Class

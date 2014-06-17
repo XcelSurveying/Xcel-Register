@@ -25,6 +25,12 @@
     'FORM LOAD
     Private Sub formNewEntrySurveyReportRegister_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
+        'Form Settings
+        Me.ShowIcon = False
+        Me.MinimizeBox = False
+        Me.MaximizeBox = False
+        Me.FormBorderStyle = Windows.Forms.FormBorderStyle.FixedToolWindow
+
         'POPULATE THE COMBOBOX'S WITH VALUES FROM LISTBOX IN SETTINGS
         'Uses saved listbox settings, converts them to an array then uses the data to fill the combobox
         cmboArea.Items.Clear()
@@ -37,6 +43,7 @@
         'LOAD TEXTBOX'S WITH FIELDS FROM DATABASE
         row = formMain.DGVData.Rows(formMain.DGVData.CurrentRow.Index) 'Returns integer value of the select row index from the datagrid
 
+        'stores a copy of the Original Values so can be used to restore if the user cancels
         Rev_orig = (row.Cells("Rev").Value.ToString).Trim
         ID_orig = (row.Cells("ID").Value.ToString)
         Area_orig = (row.Cells("Area").Value.ToString).Trim

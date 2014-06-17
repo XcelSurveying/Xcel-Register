@@ -76,6 +76,12 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="formModifyFieldDataRegister.Designer.vb">
+      <DependentUpon>formModifyFieldDataRegister.vb</DependentUpon>
+    </Compile>
+    <Compile Include="formModifyFieldDataRegister.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="formNewEntryFieldDataRegister.Designer.vb">
       <DependentUpon>formNewEntryFieldDataRegister.vb</DependentUpon>
     </Compile>
@@ -165,6 +171,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="formModifySurveyReportRegister.resx">
       <DependentUpon>formModifySurveyReportRegister.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formModifyFieldDataRegister.resx">
+      <DependentUpon>formModifyFieldDataRegister.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="formNewEntryFieldDataRegister.resx">
       <DependentUpon>formNewEntryFieldDataRegister.vb</DependentUpon>

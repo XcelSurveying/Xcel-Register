@@ -2,6 +2,13 @@
     Dim sql As New SQLControl
 
     Private Sub formRestoreTables_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+        'Form Settings
+        Me.ShowIcon = False
+        Me.MinimizeBox = False
+        Me.MaximizeBox = False
+        Me.FormBorderStyle = Windows.Forms.FormBorderStyle.FixedToolWindow
+
         txtInstructions.Clear()
         txtInstructions.BorderStyle = BorderStyle.None
         txtInstructions.SelectionFont = New Font("Tahoma", 8.25)

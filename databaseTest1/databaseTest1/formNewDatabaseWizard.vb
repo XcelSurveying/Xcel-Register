@@ -103,7 +103,7 @@ Public Class formNewDatabaseWizard
                         ",[Surveyor] nvarchar(50) " & vbCrLf & _
                         ",[Area] nvarchar(30) " & vbCrLf & _
                         ",[Job Type] nvarchar(20) " & vbCrLf & _
-                        ",[job Description] nvarchar(150) " & vbCrLf & _
+                        ",[Job Description] nvarchar(150) " & vbCrLf & _
                         ",[FLD-BK/PG] nvarchar(10) " & vbCrLf & _
                         ",[Instrument A] nvarchar(20) " & vbCrLf & _
                         ",Comments nvarchar(255) " & vbCrLf & _
@@ -189,6 +189,13 @@ Public Class formNewDatabaseWizard
     End Sub
 
     Private Sub formNewDatabaseWizard_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+        'Form Settings
+        Me.ShowIcon = False
+        Me.MinimizeBox = False
+        Me.MaximizeBox = False
+        Me.FormBorderStyle = Windows.Forms.FormBorderStyle.FixedToolWindow
+
         txtServer.Text = My.Settings.settingsDbServerName
         txtUid.Text = My.Settings.settingDbUserId
         txtPassword.Text = My.Settings.settingsDbPassword

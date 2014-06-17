@@ -1,4 +1,4 @@
-﻿Public Class formNewEntryFieldDataRegister
+﻿Public Class formModifyFieldDataRegister
     Dim sql As New SQLControl
     Dim export As New exportTables
 
@@ -8,12 +8,14 @@
     Dim NumericCharacters As New System.Text.RegularExpressions.Regex("\d")
     Dim foundMatch As Boolean = False
 
+    Dim ID As String = ""
+
     Dim tickCount As Integer = 0
     Dim tickCountTitle As Integer = 0
 
 
     'FORM LOAD
-    Private Sub formNewEntryFieldDataRegister_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub formModifyFieldDataRegister_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         'Form Settings
         Me.ShowIcon = False
@@ -32,19 +34,37 @@
         cmboInstrumentA.Items.Clear()
         cmboInstrumentA.Items.AddRange(My.Settings.settingsFDRInstrumentA.ToArray())
 
-        'CREATE'S A PROMPT TO COMBOBOX TO SELECT VALUE
-        Me.cmboSurveyor.DropDownStyle = ComboBoxStyle.DropDownList
-        Me.cmboSurveyor.Items.Insert(0, "Please select ...")
-        Me.cmboSurveyor.SelectedItem = "Please select ..."
-        Me.cmboArea.DropDownStyle = ComboBoxStyle.DropDownList
-        Me.cmboArea.Items.Insert(0, "Please select ...")
-        Me.cmboArea.SelectedItem = "Please select ..."
-        Me.cmboJobType.DropDownStyle = ComboBoxStyle.DropDownList
-        Me.cmboJobType.Items.Insert(0, "Please select ...")
-        Me.cmboJobType.SelectedItem = "Please select ..."
-        Me.cmboInstrumentA.DropDownStyle = ComboBoxStyle.DropDownList
-        Me.cmboInstrumentA.Items.Insert(0, "Please select ...")
-        Me.cmboInstrumentA.SelectedItem = "Please select ..."
+        ' 'CREATE'S A PROMPT TO COMBOBOX TO SELECT VALUE
+        ' Me.cmboSurveyor.DropDownStyle = ComboBoxStyle.DropDownList
+        ' Me.cmboSurveyor.Items.Insert(0, "Please select ...")
+        ' Me.cmboSurveyor.SelectedItem = "Please select ..."
+        ' Me.cmboArea.DropDownStyle = ComboBoxStyle.DropDownList
+        ' Me.cmboArea.Items.Insert(0, "Please select ...")
+        ' Me.cmboArea.SelectedItem = "Please select ..."
+        ' Me.cmboJobType.DropDownStyle = ComboBoxStyle.DropDownList
+        ' Me.cmboJobType.Items.Insert(0, "Please select ...")
+        ' Me.cmboJobType.SelectedItem = "Please select ..."
+        ' Me.cmboInstrumentA.DropDownStyle = ComboBoxStyle.DropDownList
+        ' Me.cmboInstrumentA.Items.Insert(0, "Please select ...")
+        ' Me.cmboInstrumentA.SelectedItem = "Please select ..."
+
+
+        'FILL ALL TEXT BOXES FROM LINE SELECTED IN DATAGRID VIE FROM DATABASE
+
+        Dim row As New DataGridViewRow
+        row = formMain.DGVData.Rows(formMain.DGVData.CurrentRow.Index)
+
+        ID = (row.Cells("ID").Value.ToString).Trim
+        txtJobRefNum.Text = (row.Cells("Job Ref Number").Value.ToString).Trim
+        dtpDate.Text = (row.Cells("Date").Value.ToString).Trim
+        cmboSurveyor.Text = (row.Cells("Surveyor").Value.ToString).Trim
+        cmboArea.Text = (row.Cells("Area").Value.ToString).Trim
+        cmboJobType.Text = (row.Cells("Job Type").Value.ToString).Trim
+        txtJobDescription.Text = (row.Cells("Job description").Value.ToString).Trim
+        txtFieldBook.Text = (row.Cells("FLD-BK/PG").Value.ToString).Trim
+        txtFieldPage.Text = (row.Cells("FLD-BK/PG").Value.ToString).Trim
+        cmboInstrumentA.Text = (row.Cells("Instrument A").Value.ToString).Trim
+        txtComments.Text = (row.Cells("Comments").Value.ToString).Trim
 
 
         'VALIDATING CONTROL FOR ALL TEXTBOX AND COMBOBOX IN FORM
@@ -54,8 +74,6 @@
             End If
         Next
 
-        'SET DATE TO TODAY
-        dtpDate.Value = Today
 
     End Sub
 
@@ -170,31 +188,30 @@
             End If
 
 
-    'CHECK IF AREA AND DESCRIPTION FIELDS ARE SELECTED IF NOT THEN QUITS THE SAVE SUB
+            'CHECK IF AREA AND DESCRIPTION FIELDS ARE SELECTED IF NOT THEN QUITS THE SAVE SUB
             If cmboArea.Text = ("Please select ...") Then Exit Sub
             If cmboSurveyor.Text = ("Please select ...") Then Exit Sub
             If cmboJobType.Text = ("Please select ...") Then Exit Sub
             If cmboInstrumentA.Text = ("Please select ...") Then Exit Sub
 
-    '-- SQL INSERT QUERY IN TO THE DATABASE --
-            sql.DataUpdate("SET DATEFORMAT dmy; INSERT INTO FieldDataRegister ([Job Ref Number], Date, Surveyor, Area, " & _
-                                                          "[Job Type], [job Description], [FLD-BK/PG], [Instrument A], Comments, " & _
-                                                          "Created) " & _
-                            "VALUES (" & _
-                            "'" & (txtJobRefNum.Text).ToUpper & "', " & _
-                            "'" & dtpDate.Value & "', " & _
-                            "'" & cmboSurveyor.Text & "', " & _
-                            "'" & cmboArea.Text & "', " & _
-                            "'" & cmboJobType.Text & "', " & _
-                            "'" & txtJobDescription.Text & "', " & _
-                            "'" & txtFieldBook.Text & "/" & txtFieldPage.Text & "', " & _
-                            "'" & cmboInstrumentA.Text & "', " & _
-                            "'" & txtComments.Text & "', " & _
-                            "GETDATE())")
+            '-- SQL UPDATE QUERY IN TO THE DATABASE -- 'variable ID Set on formLoad
+            sql.DataUpdate("SET DATEFORMAT dmy; UPDATE FieldDataRegister " & _
+                            "SET " & _
+                            "[Job Ref Number]='" & (txtJobRefNum.Text).ToUpper & "', " & _
+                            "Date='" & dtpDate.Value & "', " & _
+                            "Surveyor='" & cmboSurveyor.Text & "', " & _
+                            "Area='" & cmboArea.Text & "', " & _
+                            "[Job Type]='" & cmboJobType.Text & "', " & _
+                            "[Job Description]='" & txtJobDescription.Text & "', " & _
+                            "[FLD-BK/PG]='" & txtFieldBook.Text & "/" & txtFieldPage.Text & "', " & _
+                            "[Instrument A]='" & cmboInstrumentA.Text & "', " & _
+                            "Comments='" & txtComments.Text & "', " & _
+                            "Modified = GETDATE() " & _
+                            "WHERE ID='" & ID & "'")
 
 
-    'UPDATE THE BACKUP CSV FILE USING BCP UTILITY
-    '(extension), (tablename), (destination)
+            'UPDATE THE BACKUP CSV FILE USING BCP UTILITY
+            '(extension), (tablename), (destination)
             export.exportTable_Single("csv", "FieldDataRegister", "C:\XCELRegister")
 
             Me.Close()
@@ -278,7 +295,7 @@
         End If
     End Sub
 
-    Private Sub formNewEntryFieldDataRegister_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
+    Private Sub formModifyFieldDataRegister_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
         formMain.Enabled() = True
     End Sub
 End Class

@@ -17,6 +17,13 @@
 
     'FORM LOAD
     Private Sub formNewEntrySurveyReportRegister_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+        'Form Settings
+        Me.ShowIcon = False
+        Me.MinimizeBox = False
+        Me.MaximizeBox = False
+        Me.FormBorderStyle = Windows.Forms.FormBorderStyle.FixedToolWindow
+
         'POPULATE THE COMBOBOX'S WITH VALUES FROM LISTBOX IN SETTINGS
         'Uses saved listbox settings, converts them to an array then uses the data to fill the combobox
         cmboArea.Items.Clear()

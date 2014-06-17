@@ -27,7 +27,6 @@ Partial Class formMain
         Me.DGVData = New System.Windows.Forms.DataGridView()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.txtSearch = New System.Windows.Forms.TextBox()
-        Me.cmdNewEntry = New System.Windows.Forms.Button()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SettingsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -42,7 +41,12 @@ Partial Class formMain
         Me.rbFieldDataRegister = New System.Windows.Forms.RadioButton()
         Me.rbAreaCalcChecklist = New System.Windows.Forms.RadioButton()
         Me.lblRegisterSelected = New System.Windows.Forms.Label()
+        Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.printSelectedDGVDataRow = New System.Windows.Forms.PrintPreviewDialog()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.cmdNewEntry = New System.Windows.Forms.Button()
+        Me.cmdPrintDGVData = New System.Windows.Forms.Button()
         CType(Me.DGVData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox2.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
@@ -62,12 +66,15 @@ Partial Class formMain
         'DGVData
         '
         Me.DGVData.AllowUserToOrderColumns = True
+        Me.DGVData.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.DGVData.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells
         Me.DGVData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DGVData.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnF2
         Me.DGVData.Location = New System.Drawing.Point(12, 186)
         Me.DGVData.Name = "DGVData"
-        Me.DGVData.Size = New System.Drawing.Size(1276, 435)
+        Me.DGVData.Size = New System.Drawing.Size(1318, 490)
         Me.DGVData.TabIndex = 2
         '
         'GroupBox2
@@ -88,24 +95,12 @@ Partial Class formMain
         Me.txtSearch.Size = New System.Drawing.Size(311, 31)
         Me.txtSearch.TabIndex = 4
         '
-        'cmdNewEntry
-        '
-        Me.cmdNewEntry.Image = CType(resources.GetObject("cmdNewEntry.Image"), System.Drawing.Image)
-        Me.cmdNewEntry.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.cmdNewEntry.Location = New System.Drawing.Point(341, 36)
-        Me.cmdNewEntry.Name = "cmdNewEntry"
-        Me.cmdNewEntry.Size = New System.Drawing.Size(93, 30)
-        Me.cmdNewEntry.TabIndex = 12
-        Me.cmdNewEntry.Text = "New Entry"
-        Me.cmdNewEntry.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.cmdNewEntry.UseVisualStyleBackColor = True
-        '
         'MenuStrip1
         '
-        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.DatabaseToolStripMenuItem})
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.DatabaseToolStripMenuItem, Me.HelpToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(1300, 24)
+        Me.MenuStrip1.Size = New System.Drawing.Size(1342, 24)
         Me.MenuStrip1.TabIndex = 13
         Me.MenuStrip1.Text = "MenuStrip1"
         '
@@ -219,24 +214,71 @@ Partial Class formMain
         Me.lblRegisterSelected.Text = "Area Calc Checklist"
         Me.lblRegisterSelected.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
+        'HelpToolStripMenuItem
+        '
+        Me.HelpToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AboutToolStripMenuItem})
+        Me.HelpToolStripMenuItem.Name = "HelpToolStripMenuItem"
+        Me.HelpToolStripMenuItem.Size = New System.Drawing.Size(44, 20)
+        Me.HelpToolStripMenuItem.Text = "&Help"
+        '
+        'AboutToolStripMenuItem
+        '
+        Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
+        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(107, 22)
+        Me.AboutToolStripMenuItem.Text = "&About"
+        '
+        'printSelectedDGVDataRow
+        '
+        Me.printSelectedDGVDataRow.AutoScrollMargin = New System.Drawing.Size(0, 0)
+        Me.printSelectedDGVDataRow.AutoScrollMinSize = New System.Drawing.Size(0, 0)
+        Me.printSelectedDGVDataRow.ClientSize = New System.Drawing.Size(400, 300)
+        Me.printSelectedDGVDataRow.Enabled = True
+        Me.printSelectedDGVDataRow.Icon = CType(resources.GetObject("printSelectedDGVDataRow.Icon"), System.Drawing.Icon)
+        Me.printSelectedDGVDataRow.Name = "PrintPreviewDialog1"
+        Me.printSelectedDGVDataRow.Visible = False
+        '
         'PictureBox1
         '
+        Me.PictureBox1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.PictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.PictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.PictureBox1.Image = Global.databaseTest1.My.Resources.Resources.Xcel_Surveying_Cropped
         Me.PictureBox1.InitialImage = Global.databaseTest1.My.Resources.Resources.Xcel_Surveying_Cropped
-        Me.PictureBox1.Location = New System.Drawing.Point(1109, 36)
+        Me.PictureBox1.Location = New System.Drawing.Point(1151, 36)
         Me.PictureBox1.Name = "PictureBox1"
         Me.PictureBox1.Size = New System.Drawing.Size(179, 98)
         Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.PictureBox1.TabIndex = 16
         Me.PictureBox1.TabStop = False
         '
+        'cmdNewEntry
+        '
+        Me.cmdNewEntry.Image = CType(resources.GetObject("cmdNewEntry.Image"), System.Drawing.Image)
+        Me.cmdNewEntry.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.cmdNewEntry.Location = New System.Drawing.Point(341, 36)
+        Me.cmdNewEntry.Name = "cmdNewEntry"
+        Me.cmdNewEntry.Size = New System.Drawing.Size(93, 30)
+        Me.cmdNewEntry.TabIndex = 12
+        Me.cmdNewEntry.Text = "New Entry"
+        Me.cmdNewEntry.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.cmdNewEntry.UseVisualStyleBackColor = True
+        '
+        'cmdPrintDGVData
+        '
+        Me.cmdPrintDGVData.Image = CType(resources.GetObject("cmdPrintDGVData.Image"), System.Drawing.Image)
+        Me.cmdPrintDGVData.Location = New System.Drawing.Point(1255, 157)
+        Me.cmdPrintDGVData.Name = "cmdPrintDGVData"
+        Me.cmdPrintDGVData.Size = New System.Drawing.Size(33, 23)
+        Me.cmdPrintDGVData.TabIndex = 17
+        Me.cmdPrintDGVData.UseVisualStyleBackColor = True
+        '
         'formMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1300, 633)
+        Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.ClientSize = New System.Drawing.Size(1342, 688)
+        Me.Controls.Add(Me.cmdPrintDGVData)
         Me.Controls.Add(Me.PictureBox1)
         Me.Controls.Add(Me.lblRegisterSelected)
         Me.Controls.Add(Me.GroupBox1)
@@ -247,6 +289,7 @@ Partial Class formMain
         Me.Controls.Add(Me.MenuStrip1)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MainMenuStrip = Me.MenuStrip1
+        Me.MinimumSize = New System.Drawing.Size(1100, 600)
         Me.Name = "formMain"
         Me.Text = "Xcel Database Register"
         CType(Me.DGVData, System.ComponentModel.ISupportInitialize).EndInit()
@@ -281,5 +324,9 @@ Partial Class formMain
     Friend WithEvents lblRegisterSelected As System.Windows.Forms.Label
     Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
     Friend WithEvents SettingsToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents HelpToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents AboutToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents printSelectedDGVDataRow As System.Windows.Forms.PrintPreviewDialog
+    Friend WithEvents cmdPrintDGVData As System.Windows.Forms.Button
 
 End Class

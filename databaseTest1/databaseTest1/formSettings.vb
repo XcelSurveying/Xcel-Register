@@ -102,6 +102,13 @@
 
     'LOAD SETTINGS
     Private Sub formSettings_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+        'Form Settings
+        Me.ShowIcon = False
+        Me.MinimizeBox = False
+        Me.MaximizeBox = False
+        Me.FormBorderStyle = Windows.Forms.FormBorderStyle.FixedToolWindow
+
         ' Load ListBox with the settings from "Area", "Description", "Surveyors"
         Me.lbSRRArea.Items.AddRange(My.Settings.settingsSRRArea.ToArray())
         Me.lbSRRDescription.Items.AddRange(My.Settings.settingsSRRDescription.ToArray())

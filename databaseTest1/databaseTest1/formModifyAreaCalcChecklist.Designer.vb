@@ -230,9 +230,11 @@ Partial Class formModifyAreaCalcChecklist
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(467, 296)
         Me.Controls.Add(Me.GroupBox1)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "formModifyAreaCalcChecklist"
+        Me.ShowIcon = False
         Me.Text = "Modify Entry for Area Calc Checklist"
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()

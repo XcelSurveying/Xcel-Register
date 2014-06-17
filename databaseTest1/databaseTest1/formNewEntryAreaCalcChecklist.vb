@@ -26,4 +26,25 @@
         Me.Close()
 
     End Sub
+
+    Private Sub formNewEntryAreaCalcChecklist_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'Form Settings
+        Me.ShowIcon = False
+        Me.MinimizeBox = False
+        Me.MaximizeBox = False
+        Me.FormBorderStyle = Windows.Forms.FormBorderStyle.FixedToolWindow
+    End Sub
+
+    'LIMIT CHARACTERS THAT CAN BE ENTERED IN TO THE TEXT BOXES
+    Private Sub txtNewEntryModelLayer_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtNewEntryModelLayer.KeyPress
+        '    Dim AllowedCharacters As String = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-"
+        '    If AllowedCharacters.IndexOf(e.KeyChar) <= 0 Then
+        '        'Invalid Character
+        '        e.Handled = True
+        '    End If
+       // cont from here
+        If Asc(e.KeyChar) = 8 OrElse e.KeyChar = " " OrElse e.KeyChar < "A" OrElse e.KeyChar > "z" Then
+            e.Handled = True
+        End If
+    End Sub
 End Class

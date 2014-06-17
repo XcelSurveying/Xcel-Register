@@ -5,6 +5,13 @@
     'LOAD TEXTBOX'S WITH FIELDS FROM DATABASE
     Private Sub formModifyAreaCalcChecklist_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
+        'Form Settings
+        Me.ShowIcon = False
+        Me.MinimizeBox = False
+        Me.MaximizeBox = False
+        Me.FormBorderStyle = Windows.Forms.FormBorderStyle.FixedToolWindow
+
+
         Dim row As DataGridViewRow
         row = formMain.DGVData.Rows(formMain.DGVData.CurrentRow.Index) 'Returns integer value of the select row index from the datagrid
 

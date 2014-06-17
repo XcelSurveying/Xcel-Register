@@ -17,3 +17,4 @@ C:\Users\Xcel 07\Documents\Visual Studio 2013\Projects\databaseTest1\databaseTes
 C:\Users\Xcel 07\Documents\Visual Studio 2013\Projects\databaseTest1\databaseTest1\obj\Debug\databaseTest1.formRestoreTables.resources
 C:\Users\Xcel 07\Documents\Visual Studio 2013\Projects\databaseTest1\databaseTest1\obj\Debug\databaseTest1.formModifySurveyReportRegister.resources
 C:\Users\Xcel 07\documents\visual studio 2013\Projects\databaseTest1\databaseTest1\obj\Debug\databaseTest1.formNewEntryFieldDataRegister.resources
+C:\Users\Xcel 07\Documents\Visual Studio 2013\Projects\databaseTest1\databaseTest1\obj\Debug\databaseTest1.formModifyFieldDataRegister.resources
