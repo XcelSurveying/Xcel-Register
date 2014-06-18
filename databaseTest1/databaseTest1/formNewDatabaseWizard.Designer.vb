@@ -39,11 +39,13 @@ Partial Class formNewDatabaseWizard
         Me.txtServer = New System.Windows.Forms.TextBox()
         Me.cmdSetupDatabase = New System.Windows.Forms.Button()
         Me.cmd_CreateTables = New System.Windows.Forms.Button()
+        Me.cmboSQLServers = New System.Windows.Forms.ComboBox()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.cmboSQLServers)
         Me.GroupBox1.Controls.Add(Me.lblWarning)
         Me.GroupBox1.Controls.Add(Me.cmdModify)
         Me.GroupBox1.Controls.Add(Me.lblMessage)
@@ -62,7 +64,7 @@ Partial Class formNewDatabaseWizard
         Me.GroupBox1.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox1.Location = New System.Drawing.Point(12, 12)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(347, 245)
+        Me.GroupBox1.Size = New System.Drawing.Size(347, 279)
         Me.GroupBox1.TabIndex = 0
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Database connection"
@@ -222,6 +224,14 @@ Partial Class formNewDatabaseWizard
         Me.cmd_CreateTables.Text = "Create Tables"
         Me.cmd_CreateTables.UseVisualStyleBackColor = True
         '
+        'cmboSQLServers
+        '
+        Me.cmboSQLServers.FormattingEnabled = True
+        Me.cmboSQLServers.Location = New System.Drawing.Point(139, 242)
+        Me.cmboSQLServers.Name = "cmboSQLServers"
+        Me.cmboSQLServers.Size = New System.Drawing.Size(121, 21)
+        Me.cmboSQLServers.TabIndex = 18
+        '
         'formNewDatabaseWizard
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -253,4 +263,5 @@ Partial Class formNewDatabaseWizard
     Friend WithEvents lblMessage As System.Windows.Forms.Label
     Friend WithEvents cmdModify As System.Windows.Forms.Button
     Friend WithEvents lblWarning As System.Windows.Forms.Label
+    Friend WithEvents cmboSQLServers As System.Windows.Forms.ComboBox
 End Class

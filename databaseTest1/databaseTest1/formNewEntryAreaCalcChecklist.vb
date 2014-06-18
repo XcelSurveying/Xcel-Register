@@ -42,7 +42,7 @@
         '        'Invalid Character
         '        e.Handled = True
         '    End If
-       // cont from here
+
         If Asc(e.KeyChar) = 8 OrElse e.KeyChar = " " OrElse e.KeyChar < "A" OrElse e.KeyChar > "z" Then
             e.Handled = True
         End If

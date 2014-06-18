@@ -17,6 +17,8 @@
             '-- Updates/Refreshes the data grid --
             SQL.RunQuery("SELECT * FROM AreaCalcChecklist ORDER BY Created DESC")
             refreshDataGridView()
+        Else
+            formNewDatabaseWizard.Show()
         End If
     End Sub
 

@@ -9,9 +9,14 @@ Public Class SQLControl
 
     Public Function HasConnection() As Boolean
         Try
-            SQLCon.Open()
-            SQLCon.Close()
-            Return True
+            If My.Settings.settingsIsActiveMessage = True Then
+                SQLCon.Open()
+                SQLCon.Close()
+                Return True
+            Else
+                Return False
+            End If
+            
         Catch ex As Exception
             MessageBox.Show(ex.Message, "SQL Server Connection", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return False

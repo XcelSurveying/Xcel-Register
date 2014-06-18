@@ -1,4 +1,5 @@
 ﻿Imports System.Data.SqlClient
+
 Public Class formNewDatabaseWizard
     Dim SQL As New SQLControl
 
@@ -209,4 +210,5 @@ Public Class formNewDatabaseWizard
         lblMessage.Visible = My.Settings.settingsIsActiveMessage
 
     End Sub
+
 End Class
