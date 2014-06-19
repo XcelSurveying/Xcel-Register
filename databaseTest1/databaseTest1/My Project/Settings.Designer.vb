@@ -259,6 +259,17 @@ Namespace My
                 Me("settingsFDRInstrumentA") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property settingsTQRArea() As Global.System.Collections.ArrayList
+            Get
+                Return CType(Me("settingsTQRArea"),Global.System.Collections.ArrayList)
+            End Get
+            Set
+                Me("settingsTQRArea") = value
+            End Set
+        End Property
     End Class
 End Namespace
 

@@ -1,5 +1,6 @@
 ﻿Public Class formNewEntryAreaCalcChecklist
     Dim SQL As New SQLControl
+    Dim EscapeChars As New EscapeChars
 
     Private Sub formModifyAreaCalcChecklist_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
         formMain.Enabled = True 'Enables the main form when this form is closed
@@ -35,16 +36,10 @@
         Me.FormBorderStyle = Windows.Forms.FormBorderStyle.FixedToolWindow
     End Sub
 
-    'LIMIT CHARACTERS THAT CAN BE ENTERED IN TO THE TEXT BOXES
-    Private Sub txtNewEntryModelLayer_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtNewEntryModelLayer.KeyPress
-        '    Dim AllowedCharacters As String = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-"
-        '    If AllowedCharacters.IndexOf(e.KeyChar) <= 0 Then
-        '        'Invalid Character
-        '        e.Handled = True
-        '    End If
-
-        If Asc(e.KeyChar) = 8 OrElse e.KeyChar = " " OrElse e.KeyChar < "A" OrElse e.KeyChar > "z" Then
-            e.Handled = True
-        End If
+    'ESCAPE CHARACTERS ENTERED IN TO THE TEXT BOXES
+    Private Sub escapeCharacters_KeyPress(sender As Object, e As KeyPressEventArgs) _
+        Handles txtNewEntryModelLayer.KeyPress, txtNewEntryComments.KeyPress, txtNewEntryDrawingNumber.KeyPress, txtNewEntryTqRfi.KeyPress
+        'Escape Characters Class (e as keyPress, allow numbers, allow letters)
+        EscapeChars.Include(e, True, True)
     End Sub
 End Class

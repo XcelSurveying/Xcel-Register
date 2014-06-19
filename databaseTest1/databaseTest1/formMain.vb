@@ -48,7 +48,7 @@
                 Case rbFieldDataRegister.Checked
                     formNewEntryFieldDataRegister.Show()
                 Case rbTqRfiRegister.Checked
-                    'formNewEntryTqRfiRegister.Show()
+                    formNewEntryTqRfiRegister.Show()
             End Select
             Me.Enabled = False
             'End If
@@ -67,6 +67,7 @@
                 Case rbFieldDataRegister.Checked
                     formModifyFieldDataRegister.Show()
                 Case rbTqRfiRegister.Checked
+                    formModifyTqRfiRegister.Show()
 
             End Select
             Me.Enabled = False

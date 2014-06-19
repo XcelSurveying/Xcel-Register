@@ -1,6 +1,6 @@
 ﻿Public Class formModifyAreaCalcChecklist
     Dim SQL As New SQLControl
-
+    Dim EscapeChars As New EscapeChars
 
     'LOAD TEXTBOX'S WITH FIELDS FROM DATABASE
     Private Sub formModifyAreaCalcChecklist_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -56,4 +56,12 @@
         Me.Close()
 
     End Sub
+
+    'ESCAPE CHARACTERS ENTERED IN TO THE TEXT BOXES
+    Private Sub escapeCharacters_KeyPress(sender As Object, e As KeyPressEventArgs) _
+        Handles txtModifyModelLayer.KeyPress, txtModifyComments.KeyPress, txtModifyDrawingNumber.KeyPress, txtModifyTqRfi.KeyPress
+        'Escape Characters Class (e as keyPress, allow numbers, allow letters)
+        EscapeChars.Include(e, True, True)
+    End Sub
+
 End Class

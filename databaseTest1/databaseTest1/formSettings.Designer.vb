@@ -23,10 +23,6 @@ Partial Class formSettings
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.cmdSRRRSurveyorsRemove = New System.Windows.Forms.Button()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.cmdSRRSurveyorsAdd = New System.Windows.Forms.Button()
-        Me.lbSRRSurveyors = New System.Windows.Forms.ListBox()
         Me.cmdSRRDescriptionAdd = New System.Windows.Forms.Button()
         Me.cmdSRRDescriptionRemove = New System.Windows.Forms.Button()
         Me.cmdSRRAreaAdd = New System.Windows.Forms.Button()
@@ -35,6 +31,10 @@ Partial Class formSettings
         Me.lbSRRArea = New System.Windows.Forms.ListBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
+        Me.cmdSRRRSurveyorsRemove = New System.Windows.Forms.Button()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.cmdSRRSurveyorsAdd = New System.Windows.Forms.Button()
+        Me.lbSRRSurveyors = New System.Windows.Forms.ListBox()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.txtProjectFolderPath = New System.Windows.Forms.TextBox()
@@ -42,6 +42,10 @@ Partial Class formSettings
         Me.cmdBrowse = New System.Windows.Forms.Button()
         Me.projectFolderBrowser = New System.Windows.Forms.FolderBrowserDialog()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
+        Me.cmdFDRAreaAdd = New System.Windows.Forms.Button()
+        Me.cmdFDRAreaRemove = New System.Windows.Forms.Button()
+        Me.lbFDRArea = New System.Windows.Forms.ListBox()
+        Me.Label7 = New System.Windows.Forms.Label()
         Me.cmdInstrumentAAdd = New System.Windows.Forms.Button()
         Me.cmdInstrumentARemove = New System.Windows.Forms.Button()
         Me.lbFDRInstrumentA = New System.Windows.Forms.ListBox()
@@ -50,13 +54,17 @@ Partial Class formSettings
         Me.cmdJobTypeRemove = New System.Windows.Forms.Button()
         Me.lbFDRJobType = New System.Windows.Forms.ListBox()
         Me.Label5 = New System.Windows.Forms.Label()
-        Me.cmdFDRAreaAdd = New System.Windows.Forms.Button()
-        Me.cmdFDRAreaRemove = New System.Windows.Forms.Button()
-        Me.lbFDRArea = New System.Windows.Forms.ListBox()
-        Me.Label7 = New System.Windows.Forms.Label()
+        Me.GroupBox4 = New System.Windows.Forms.GroupBox()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.cmdTQRAreaRemove = New System.Windows.Forms.Button()
+        Me.lbTQRArea = New System.Windows.Forms.ListBox()
+        Me.cmdTQRAreaAdd = New System.Windows.Forms.Button()
+        Me.GroupBox5 = New System.Windows.Forms.GroupBox()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
+        Me.GroupBox4.SuspendLayout()
+        Me.GroupBox5.SuspendLayout()
         Me.SuspendLayout()
         '
         'GroupBox1
@@ -75,41 +83,6 @@ Partial Class formSettings
         Me.GroupBox1.TabIndex = 0
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Survey Report Register"
-        '
-        'cmdSRRRSurveyorsRemove
-        '
-        Me.cmdSRRRSurveyorsRemove.Location = New System.Drawing.Point(615, 286)
-        Me.cmdSRRRSurveyorsRemove.Name = "cmdSRRRSurveyorsRemove"
-        Me.cmdSRRRSurveyorsRemove.Size = New System.Drawing.Size(60, 21)
-        Me.cmdSRRRSurveyorsRemove.TabIndex = 11
-        Me.cmdSRRRSurveyorsRemove.Text = "Remove"
-        Me.cmdSRRRSurveyorsRemove.UseVisualStyleBackColor = True
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(558, 195)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(56, 13)
-        Me.Label3.TabIndex = 9
-        Me.Label3.Text = "Surveyors"
-        '
-        'cmdSRRSurveyorsAdd
-        '
-        Me.cmdSRRSurveyorsAdd.Location = New System.Drawing.Point(681, 286)
-        Me.cmdSRRSurveyorsAdd.Name = "cmdSRRSurveyorsAdd"
-        Me.cmdSRRSurveyorsAdd.Size = New System.Drawing.Size(61, 21)
-        Me.cmdSRRSurveyorsAdd.TabIndex = 10
-        Me.cmdSRRSurveyorsAdd.Text = "Add"
-        Me.cmdSRRSurveyorsAdd.UseVisualStyleBackColor = True
-        '
-        'lbSRRSurveyors
-        '
-        Me.lbSRRSurveyors.FormattingEnabled = True
-        Me.lbSRRSurveyors.Location = New System.Drawing.Point(574, 211)
-        Me.lbSRRSurveyors.Name = "lbSRRSurveyors"
-        Me.lbSRRSurveyors.Size = New System.Drawing.Size(168, 69)
-        Me.lbSRRSurveyors.TabIndex = 8
         '
         'cmdSRRDescriptionAdd
         '
@@ -180,6 +153,41 @@ Partial Class formSettings
         Me.Label1.Size = New System.Drawing.Size(30, 13)
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "Area"
+        '
+        'cmdSRRRSurveyorsRemove
+        '
+        Me.cmdSRRRSurveyorsRemove.Location = New System.Drawing.Point(69, 116)
+        Me.cmdSRRRSurveyorsRemove.Name = "cmdSRRRSurveyorsRemove"
+        Me.cmdSRRRSurveyorsRemove.Size = New System.Drawing.Size(60, 21)
+        Me.cmdSRRRSurveyorsRemove.TabIndex = 11
+        Me.cmdSRRRSurveyorsRemove.Text = "Remove"
+        Me.cmdSRRRSurveyorsRemove.UseVisualStyleBackColor = True
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(12, 25)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(56, 13)
+        Me.Label3.TabIndex = 9
+        Me.Label3.Text = "Surveyors"
+        '
+        'cmdSRRSurveyorsAdd
+        '
+        Me.cmdSRRSurveyorsAdd.Location = New System.Drawing.Point(135, 116)
+        Me.cmdSRRSurveyorsAdd.Name = "cmdSRRSurveyorsAdd"
+        Me.cmdSRRSurveyorsAdd.Size = New System.Drawing.Size(61, 21)
+        Me.cmdSRRSurveyorsAdd.TabIndex = 10
+        Me.cmdSRRSurveyorsAdd.Text = "Add"
+        Me.cmdSRRSurveyorsAdd.UseVisualStyleBackColor = True
+        '
+        'lbSRRSurveyors
+        '
+        Me.lbSRRSurveyors.FormattingEnabled = True
+        Me.lbSRRSurveyors.Location = New System.Drawing.Point(22, 41)
+        Me.lbSRRSurveyors.Name = "lbSRRSurveyors"
+        Me.lbSRRSurveyors.Size = New System.Drawing.Size(168, 69)
+        Me.lbSRRSurveyors.TabIndex = 8
         '
         'Button1
         '
@@ -255,6 +263,41 @@ Partial Class formSettings
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "Field Data Register"
         '
+        'cmdFDRAreaAdd
+        '
+        Me.cmdFDRAreaAdd.Location = New System.Drawing.Point(129, 123)
+        Me.cmdFDRAreaAdd.Name = "cmdFDRAreaAdd"
+        Me.cmdFDRAreaAdd.Size = New System.Drawing.Size(61, 21)
+        Me.cmdFDRAreaAdd.TabIndex = 19
+        Me.cmdFDRAreaAdd.Text = "Add"
+        Me.cmdFDRAreaAdd.UseVisualStyleBackColor = True
+        '
+        'cmdFDRAreaRemove
+        '
+        Me.cmdFDRAreaRemove.Location = New System.Drawing.Point(63, 123)
+        Me.cmdFDRAreaRemove.Name = "cmdFDRAreaRemove"
+        Me.cmdFDRAreaRemove.Size = New System.Drawing.Size(60, 21)
+        Me.cmdFDRAreaRemove.TabIndex = 18
+        Me.cmdFDRAreaRemove.Text = "Remove"
+        Me.cmdFDRAreaRemove.UseVisualStyleBackColor = True
+        '
+        'lbFDRArea
+        '
+        Me.lbFDRArea.FormattingEnabled = True
+        Me.lbFDRArea.Location = New System.Drawing.Point(22, 48)
+        Me.lbFDRArea.Name = "lbFDRArea"
+        Me.lbFDRArea.Size = New System.Drawing.Size(168, 69)
+        Me.lbFDRArea.TabIndex = 17
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Location = New System.Drawing.Point(6, 32)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(30, 13)
+        Me.Label7.TabIndex = 16
+        Me.Label7.Text = "Area"
+        '
         'cmdInstrumentAAdd
         '
         Me.cmdInstrumentAAdd.Location = New System.Drawing.Point(129, 406)
@@ -325,52 +368,76 @@ Partial Class formSettings
         Me.Label5.TabIndex = 8
         Me.Label5.Text = "Job Type"
         '
-        'cmdFDRAreaAdd
+        'GroupBox4
         '
-        Me.cmdFDRAreaAdd.Location = New System.Drawing.Point(129, 123)
-        Me.cmdFDRAreaAdd.Name = "cmdFDRAreaAdd"
-        Me.cmdFDRAreaAdd.Size = New System.Drawing.Size(61, 21)
-        Me.cmdFDRAreaAdd.TabIndex = 19
-        Me.cmdFDRAreaAdd.Text = "Add"
-        Me.cmdFDRAreaAdd.UseVisualStyleBackColor = True
+        Me.GroupBox4.Controls.Add(Me.Label8)
+        Me.GroupBox4.Controls.Add(Me.cmdTQRAreaRemove)
+        Me.GroupBox4.Controls.Add(Me.lbTQRArea)
+        Me.GroupBox4.Controls.Add(Me.cmdTQRAreaAdd)
+        Me.GroupBox4.Location = New System.Drawing.Point(552, 161)
+        Me.GroupBox4.Name = "GroupBox4"
+        Me.GroupBox4.Size = New System.Drawing.Size(243, 143)
+        Me.GroupBox4.TabIndex = 12
+        Me.GroupBox4.TabStop = False
+        Me.GroupBox4.Text = "TQ / RFI Register"
         '
-        'cmdFDRAreaRemove
+        'Label8
         '
-        Me.cmdFDRAreaRemove.Location = New System.Drawing.Point(63, 123)
-        Me.cmdFDRAreaRemove.Name = "cmdFDRAreaRemove"
-        Me.cmdFDRAreaRemove.Size = New System.Drawing.Size(60, 21)
-        Me.cmdFDRAreaRemove.TabIndex = 18
-        Me.cmdFDRAreaRemove.Text = "Remove"
-        Me.cmdFDRAreaRemove.UseVisualStyleBackColor = True
+        Me.Label8.AutoSize = True
+        Me.Label8.Location = New System.Drawing.Point(6, 17)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(30, 13)
+        Me.Label8.TabIndex = 13
+        Me.Label8.Text = "Area"
         '
-        'lbFDRArea
+        'cmdTQRAreaRemove
         '
-        Me.lbFDRArea.FormattingEnabled = True
-        Me.lbFDRArea.Location = New System.Drawing.Point(22, 48)
-        Me.lbFDRArea.Name = "lbFDRArea"
-        Me.lbFDRArea.Size = New System.Drawing.Size(168, 69)
-        Me.lbFDRArea.TabIndex = 17
+        Me.cmdTQRAreaRemove.Location = New System.Drawing.Point(63, 108)
+        Me.cmdTQRAreaRemove.Name = "cmdTQRAreaRemove"
+        Me.cmdTQRAreaRemove.Size = New System.Drawing.Size(60, 21)
+        Me.cmdTQRAreaRemove.TabIndex = 15
+        Me.cmdTQRAreaRemove.Text = "Remove"
+        Me.cmdTQRAreaRemove.UseVisualStyleBackColor = True
         '
-        'Label7
+        'lbTQRArea
         '
-        Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(6, 32)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(30, 13)
-        Me.Label7.TabIndex = 16
-        Me.Label7.Text = "Area"
+        Me.lbTQRArea.FormattingEnabled = True
+        Me.lbTQRArea.Location = New System.Drawing.Point(22, 33)
+        Me.lbTQRArea.Name = "lbTQRArea"
+        Me.lbTQRArea.Size = New System.Drawing.Size(168, 69)
+        Me.lbTQRArea.TabIndex = 12
+        '
+        'cmdTQRAreaAdd
+        '
+        Me.cmdTQRAreaAdd.Location = New System.Drawing.Point(129, 108)
+        Me.cmdTQRAreaAdd.Name = "cmdTQRAreaAdd"
+        Me.cmdTQRAreaAdd.Size = New System.Drawing.Size(61, 21)
+        Me.cmdTQRAreaAdd.TabIndex = 14
+        Me.cmdTQRAreaAdd.Text = "Add"
+        Me.cmdTQRAreaAdd.UseVisualStyleBackColor = True
+        '
+        'GroupBox5
+        '
+        Me.GroupBox5.Controls.Add(Me.Label3)
+        Me.GroupBox5.Controls.Add(Me.cmdSRRRSurveyorsRemove)
+        Me.GroupBox5.Controls.Add(Me.lbSRRSurveyors)
+        Me.GroupBox5.Controls.Add(Me.cmdSRRSurveyorsAdd)
+        Me.GroupBox5.Location = New System.Drawing.Point(552, 310)
+        Me.GroupBox5.Name = "GroupBox5"
+        Me.GroupBox5.Size = New System.Drawing.Size(243, 154)
+        Me.GroupBox5.TabIndex = 13
+        Me.GroupBox5.TabStop = False
+        Me.GroupBox5.Text = "Common"
         '
         'formSettings
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1090, 524)
-        Me.Controls.Add(Me.cmdSRRRSurveyorsRemove)
+        Me.Controls.Add(Me.GroupBox5)
+        Me.Controls.Add(Me.GroupBox4)
         Me.Controls.Add(Me.GroupBox3)
-        Me.Controls.Add(Me.Label3)
-        Me.Controls.Add(Me.cmdSRRSurveyorsAdd)
         Me.Controls.Add(Me.GroupBox2)
-        Me.Controls.Add(Me.lbSRRSurveyors)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.GroupBox1)
         Me.Font = New System.Drawing.Font("Tahoma", 8.25!)
@@ -382,8 +449,11 @@ Partial Class formSettings
         Me.GroupBox2.PerformLayout()
         Me.GroupBox3.ResumeLayout(False)
         Me.GroupBox3.PerformLayout()
+        Me.GroupBox4.ResumeLayout(False)
+        Me.GroupBox4.PerformLayout()
+        Me.GroupBox5.ResumeLayout(False)
+        Me.GroupBox5.PerformLayout()
         Me.ResumeLayout(False)
-        Me.PerformLayout()
 
     End Sub
     Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
@@ -418,4 +488,10 @@ Partial Class formSettings
     Friend WithEvents cmdFDRAreaRemove As System.Windows.Forms.Button
     Friend WithEvents lbFDRArea As System.Windows.Forms.ListBox
     Friend WithEvents Label7 As System.Windows.Forms.Label
+    Friend WithEvents GroupBox4 As System.Windows.Forms.GroupBox
+    Friend WithEvents Label8 As System.Windows.Forms.Label
+    Friend WithEvents cmdTQRAreaRemove As System.Windows.Forms.Button
+    Friend WithEvents lbTQRArea As System.Windows.Forms.ListBox
+    Friend WithEvents cmdTQRAreaAdd As System.Windows.Forms.Button
+    Friend WithEvents GroupBox5 As System.Windows.Forms.GroupBox
 End Class

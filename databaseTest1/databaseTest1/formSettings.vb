@@ -84,6 +84,20 @@
         lbFDRInstrumentA.Items.Remove(lbFDRInstrumentA.SelectedItem)
     End Sub
 
+    ' TQR Area - ADD
+    Private Sub cmdTQRAreaAdd_Click(sender As Object, e As EventArgs) Handles cmdTQRAreaAdd.Click
+        Dim add As String
+        add = InputBox("Enter Area to Add", "")
+        If add <> "" Then
+            lbTQRArea.Items.Add(add.ToUpper) 'Converts all to uppercase
+        End If
+    End Sub
+
+    ' TQR Area - REMOVE
+    Private Sub cmdTQRAreaRemove_Click(sender As Object, e As EventArgs) Handles cmdTQRAreaRemove.Click
+        lbTQRArea.Items.Remove(lbTQRArea.SelectedItem)
+    End Sub
+
 
     'SAVE SETTINGS
     Private Sub formSettings_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
@@ -97,6 +111,7 @@
         My.Settings.settingsFDRArea = New ArrayList(lbFDRArea.Items)
         My.Settings.settingsFDRInstrumentA = New ArrayList(lbFDRInstrumentA.Items)
         My.Settings.settingsFDRJobType = New ArrayList(lbFDRJobType.Items)
+        My.Settings.settingsTQRArea = New ArrayList(lbTQRArea.Items)
         My.Settings.Save()
     End Sub
 
@@ -117,6 +132,7 @@
         Me.lbFDRArea.Items.AddRange(My.Settings.settingsFDRArea.ToArray())
         Me.lbFDRInstrumentA.Items.AddRange(My.Settings.settingsFDRInstrumentA.ToArray())
         Me.lbFDRJobType.Items.AddRange(My.Settings.settingsFDRJobType.ToArray())
+        Me.lbTQRArea.Items.AddRange(My.Settings.settingsTQRArea.ToArray())
     End Sub
 
     
@@ -145,5 +161,5 @@
     End Sub
 
    
-    
+
 End Class

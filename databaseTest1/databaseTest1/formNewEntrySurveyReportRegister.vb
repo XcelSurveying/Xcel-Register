@@ -380,4 +380,12 @@
         End If
 
     End Sub
+
+    'ESCAPE CHARACTERS ENTERED IN TO THE TEXT BOXES
+    Private Sub escapeCharacters_KeyPress(sender As Object, e As KeyPressEventArgs) _
+        Handles txtModifyModelLayer.KeyPress, txtModifyComments.KeyPress, txtModifyDrawingNumber.KeyPress, txtModifyTqRfi.KeyPress
+        'Escape Characters Class (e as keyPress, allow numbers, allow letters)
+        EscapeChars.Include(e, True, True)
+    End Sub
+
 End Class

@@ -76,6 +76,7 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EscapeChars.vb" />
     <Compile Include="formModifyFieldDataRegister.Designer.vb">
       <DependentUpon>formModifyFieldDataRegister.vb</DependentUpon>
     </Compile>
@@ -86,6 +87,18 @@
       <DependentUpon>formNewEntryFieldDataRegister.vb</DependentUpon>
     </Compile>
     <Compile Include="formNewEntryFieldDataRegister.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formModifyTqRfiRegister.Designer.vb">
+      <DependentUpon>formModifyTqRfiRegister.vb</DependentUpon>
+    </Compile>
+    <Compile Include="formModifyTqRfiRegister.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formNewEntryTqRfiRegister.Designer.vb">
+      <DependentUpon>formNewEntryTqRfiRegister.vb</DependentUpon>
+    </Compile>
+    <Compile Include="formNewEntryTqRfiRegister.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="sortColumnsDGVData.vb" />
@@ -180,6 +193,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="formNewEntrySurveyReportRegister.resx">
       <DependentUpon>formNewEntrySurveyReportRegister.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formModifyTqRfiRegister.resx">
+      <DependentUpon>formModifyTqRfiRegister.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formNewEntryTqRfiRegister.resx">
+      <DependentUpon>formNewEntryTqRfiRegister.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="formRestoreTables.resx">
       <DependentUpon>formRestoreTables.vb</DependentUpon>

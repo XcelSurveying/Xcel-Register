@@ -1,6 +1,7 @@
 ﻿Public Class formNewEntryFieldDataRegister
     Dim sql As New SQLControl
     Dim export As New exportTables
+    Dim EscapeChars As New EscapeChars
 
     Dim nonNumericOnlyString As String
     Dim matchString As String
@@ -281,4 +282,20 @@
     Private Sub formNewEntryFieldDataRegister_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
         formMain.Enabled() = True
     End Sub
+
+    'ESCAPE CHARACTERS ENTERED IN TO THE TEXT BOXES
+    ' ALLOW NUMBERS AND LETTERS
+    Private Sub escapeCharacters_KeyPress(sender As Object, e As KeyPressEventArgs) _
+        Handles txtComments.KeyPress, txtJobDescription.KeyPress, txtJobRefNum.KeyPress
+        'Escape Characters Class (e as keyPress, allow numbers, allow letters)
+        EscapeChars.Include(e, True, True)
+    End Sub
+    'ESCAPE CHARACTERS ENTERED IN TO THE TEXT BOXES
+    ' ALLOW NUMBERS ONLY
+    Private Sub includeNumbersOnly_KeyPress(sender As Object, e As KeyPressEventArgs) _
+        Handles txtFieldBook.KeyPress, txtFieldPage.KeyPress,
+        'Escape Characters Class (e as keyPress, allow numbers, allow letters)
+        EscapeChars.Include(e, True, False)
+    End Sub
+
 End Class
