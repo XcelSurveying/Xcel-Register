@@ -1,7 +1,9 @@
-﻿Public Class formModifySurveyReportRegister
+﻿Public Class formSurveyReportRegister_Modify
     Dim sql As New SQLControl
     Dim export As New exportTables
     Dim row As DataGridViewRow
+    Dim EscapeChars As New EscapeChars
+
     Dim fullpath As String = "1"
 
     Dim nonNumericOnlyString As String
@@ -212,7 +214,7 @@
                 'if folder hasnt changed dont delete file
                 'My.Computer.FileSystem.DeleteFile(fullpathOrig)
             End If
-            
+
 
 
             'UPDATE THE BACKUP CSV FILE USING BCP UTILITY
@@ -397,7 +399,7 @@
 
     'ESCAPE CHARACTERS ENTERED IN TO THE TEXT BOXES
     Private Sub escapeCharacters_KeyPress(sender As Object, e As KeyPressEventArgs) _
-        Handles txtModifyModelLayer.KeyPress, txtModifyComments.KeyPress, txtModifyDrawingNumber.KeyPress, txtModifyTqRfi.KeyPress
+        Handles txtTitle.KeyPress, txtComments.KeyPress, txtDocumentName.KeyPress
         'Escape Characters Class (e as keyPress, allow numbers, allow letters)
         EscapeChars.Include(e, True, True)
     End Sub

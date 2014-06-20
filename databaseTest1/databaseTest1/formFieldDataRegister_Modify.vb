@@ -1,6 +1,7 @@
-﻿Public Class formModifyFieldDataRegister
+﻿Public Class formFieldDataRegister_Modify
     Dim sql As New SQLControl
     Dim export As New exportTables
+    Dim EscapeChars As New EscapeChars
 
     Dim nonNumericOnlyString As String
     Dim matchString As String
@@ -34,25 +35,22 @@
         cmboInstrumentA.Items.Clear()
         cmboInstrumentA.Items.AddRange(My.Settings.settingsFDRInstrumentA.ToArray())
 
-        ' 'CREATE'S A PROMPT TO COMBOBOX TO SELECT VALUE
-        ' Me.cmboSurveyor.DropDownStyle = ComboBoxStyle.DropDownList
-        ' Me.cmboSurveyor.Items.Insert(0, "Please select ...")
-        ' Me.cmboSurveyor.SelectedItem = "Please select ..."
-        ' Me.cmboArea.DropDownStyle = ComboBoxStyle.DropDownList
-        ' Me.cmboArea.Items.Insert(0, "Please select ...")
-        ' Me.cmboArea.SelectedItem = "Please select ..."
-        ' Me.cmboJobType.DropDownStyle = ComboBoxStyle.DropDownList
-        ' Me.cmboJobType.Items.Insert(0, "Please select ...")
-        ' Me.cmboJobType.SelectedItem = "Please select ..."
-        ' Me.cmboInstrumentA.DropDownStyle = ComboBoxStyle.DropDownList
-        ' Me.cmboInstrumentA.Items.Insert(0, "Please select ...")
-        ' Me.cmboInstrumentA.SelectedItem = "Please select ..."
-
 
         'FILL ALL TEXT BOXES FROM LINE SELECTED IN DATAGRID VIE FROM DATABASE
 
         Dim row As New DataGridViewRow
         row = formMain.DGVData.Rows(formMain.DGVData.CurrentRow.Index)
+        Try
+            Dim separator() As String = {"/"} 'sets the separator string
+            Dim fieldBkPg As String = (row.Cells("FLD-BK/PG").Value.ToString).Trim 'set FD-Bk/Pg from database to single string
+            Dim fieldBkPgSeparated() As String = fieldBkPg.Split(separator, StringSplitOptions.RemoveEmptyEntries) 'splits string to multiple strings separated at the separator
+            Select Case fieldBkPgSeparated.Count 'Counts separations
+                Case 2 'Only fill textbox's if separated in to two parts
+                    txtFieldBook.Text = fieldBkPgSeparated(0) 'book number
+                    txtFieldPage.Text = fieldBkPgSeparated(1) 'page number
+            End Select
+        Catch ex As Exception
+        End Try
 
         ID = (row.Cells("ID").Value.ToString).Trim
         txtJobRefNum.Text = (row.Cells("Job Ref Number").Value.ToString).Trim
@@ -61,8 +59,6 @@
         cmboArea.Text = (row.Cells("Area").Value.ToString).Trim
         cmboJobType.Text = (row.Cells("Job Type").Value.ToString).Trim
         txtJobDescription.Text = (row.Cells("Job description").Value.ToString).Trim
-        txtFieldBook.Text = (row.Cells("FLD-BK/PG").Value.ToString).Trim
-        txtFieldPage.Text = (row.Cells("FLD-BK/PG").Value.ToString).Trim
         cmboInstrumentA.Text = (row.Cells("Instrument A").Value.ToString).Trim
         txtComments.Text = (row.Cells("Comments").Value.ToString).Trim
 
@@ -108,20 +104,6 @@
         If Me.cmboInstrumentA.SelectedItem = ("") Then Me.cmboInstrumentA.SelectedIndex = 0
     End Sub
 
-    'ONLY ALLOW NUMERIC VALUES TO BE ENTERED IN TO REV TEXTBOX
-    Private Sub txtFieldBook_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtFieldBook.KeyPress, txtFieldPage.KeyPress
-        If (Microsoft.VisualBasic.Asc(e.KeyChar) < 48) _
-              Or (Microsoft.VisualBasic.Asc(e.KeyChar) > 57) Then
-            e.Handled = True
-        End If
-        If (Microsoft.VisualBasic.Asc(e.KeyChar) = 8) Then
-            e.Handled = False
-        End If
-
-        Timer1.Stop()
-        lblDocumentNameWarning.Visible = False
-
-    End Sub
 
     '--------====== SAVE ENTRY =======-------
     Private Sub cmdSave_Click(sender As Object, e As EventArgs) Handles cmdSave.Click
@@ -180,8 +162,14 @@
             End If
 
             'CHECK TO SEE IF FIELD BOOK FIELDS ARE NOT BLANK
-            If txtJobDescription.Text = ("") Then
-                lblDescriptionWarning.Text = ("Please enter a title for the report")
+            If txtFieldBook.Text = ("") Then
+                lblDescriptionWarning.Text = ("Please enter fieldbook number")
+                tickCount = 0
+                flashLabelDescription()
+                Exit Sub
+            End If
+            If txtFieldPage.Text = ("") Then
+                lblDescriptionWarning.Text = ("Please enter fieldbook page numbers")
                 tickCount = 0
                 flashLabelDescription()
                 Exit Sub
@@ -299,12 +287,32 @@
         formMain.Enabled() = True
     End Sub
 
-    'ESCAPE CHARACTERS ENTERED IN TO THE TEXT BOXES
+    '----ESCAPE CHARACTERS ENTERED IN TO THE TEXT BOXES----
+    ' ALLOW NUMBERS AND LETTERS
     Private Sub escapeCharacters_KeyPress(sender As Object, e As KeyPressEventArgs) _
-        Handles txtModifyModelLayer.KeyPress, txtModifyComments.KeyPress, txtModifyDrawingNumber.KeyPress, txtModifyTqRfi.KeyPress
+        Handles txtComments.KeyPress, txtJobDescription.KeyPress, txtJobRefNum.KeyPress
         'Escape Characters Class (e as keyPress, allow numbers, allow letters)
         EscapeChars.Include(e, True, True)
     End Sub
 
+    ' ALLOW NUMBERS ONLY, NO SPACES
+    Private Sub txtFieldBook_KeyPress(sender As Object, e As KeyPressEventArgs) _
+        Handles txtFieldBook.KeyPress
+        'Escape Characters Class (e as keyPress, allow numbers, remove letters, remove spaces)
+        EscapeChars.Include(e, True, False, True)
+        'Stop flashing warning on keypress 
+        Timer1.Stop()
+        lblDocumentNameWarning.Visible = False
+    End Sub
+
+    ' ALLOW NUMBERS ONLY, NO SPACES, ADD HYPHENS
+    Private Sub txtFieldPage_KeyPress(sender As Object, e As KeyPressEventArgs) _
+        Handles txtFieldPage.KeyPress
+        'Escape Characters Class (e as keyPress, allow numbers, remove letters, remove spaces, add hyphens)
+        EscapeChars.Include(e, True, False, True, True)
+        'Stop flashing warning on keypress 
+        Timer1.Stop()
+        lblDocumentNameWarning.Visible = False
+    End Sub
 
 End Class

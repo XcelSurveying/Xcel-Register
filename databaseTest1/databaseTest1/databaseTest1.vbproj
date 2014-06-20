@@ -77,28 +77,28 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EscapeChars.vb" />
-    <Compile Include="formModifyFieldDataRegister.Designer.vb">
-      <DependentUpon>formModifyFieldDataRegister.vb</DependentUpon>
+    <Compile Include="formFieldDataRegister_Modify.Designer.vb">
+      <DependentUpon>formFieldDataRegister_Modify.vb</DependentUpon>
     </Compile>
-    <Compile Include="formModifyFieldDataRegister.vb">
+    <Compile Include="formFieldDataRegister_Modify.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="formNewEntryFieldDataRegister.Designer.vb">
-      <DependentUpon>formNewEntryFieldDataRegister.vb</DependentUpon>
+    <Compile Include="formFieldDataRegister_New.Designer.vb">
+      <DependentUpon>formFieldDataRegister_New.vb</DependentUpon>
     </Compile>
-    <Compile Include="formNewEntryFieldDataRegister.vb">
+    <Compile Include="formFieldDataRegister_New.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="formModifyTqRfiRegister.Designer.vb">
-      <DependentUpon>formModifyTqRfiRegister.vb</DependentUpon>
+    <Compile Include="formTqRfiRegister_Modify.Designer.vb">
+      <DependentUpon>formTqRfiRegister_Modify.vb</DependentUpon>
     </Compile>
-    <Compile Include="formModifyTqRfiRegister.vb">
+    <Compile Include="formTqRfiRegister_Modify.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="formNewEntryTqRfiRegister.Designer.vb">
-      <DependentUpon>formNewEntryTqRfiRegister.vb</DependentUpon>
+    <Compile Include="formTqRfiRegister_New.Designer.vb">
+      <DependentUpon>formTqRfiRegister_New.vb</DependentUpon>
     </Compile>
-    <Compile Include="formNewEntryTqRfiRegister.vb">
+    <Compile Include="formTqRfiRegister_New.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="sortColumnsDGVData.vb" />
@@ -110,10 +110,10 @@
       <DependentUpon>formMain.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="formModifyAreaCalcChecklist.Designer.vb">
-      <DependentUpon>formModifyAreaCalcChecklist.vb</DependentUpon>
+    <Compile Include="formAreaCalcChecklist_Modify.Designer.vb">
+      <DependentUpon>formAreaCalcChecklist_Modify.vb</DependentUpon>
     </Compile>
-    <Compile Include="formModifyAreaCalcChecklist.vb">
+    <Compile Include="formAreaCalcChecklist_Modify.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="formNewDatabaseWizard.Designer.vb">
@@ -122,22 +122,22 @@
     <Compile Include="formNewDatabaseWizard.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="formNewEntryAreaCalcChecklist.Designer.vb">
-      <DependentUpon>formNewEntryAreaCalcChecklist.vb</DependentUpon>
+    <Compile Include="formAreaCalcChecklist_New.Designer.vb">
+      <DependentUpon>formAreaCalcChecklist_New.vb</DependentUpon>
     </Compile>
-    <Compile Include="formNewEntryAreaCalcChecklist.vb">
+    <Compile Include="formAreaCalcChecklist_New.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="formModifySurveyReportRegister.Designer.vb">
-      <DependentUpon>formModifySurveyReportRegister.vb</DependentUpon>
+    <Compile Include="formSurveyReportRegister_Modify.Designer.vb">
+      <DependentUpon>formSurveyReportRegister_Modify.vb</DependentUpon>
     </Compile>
-    <Compile Include="formModifySurveyReportRegister.vb">
+    <Compile Include="formSurveyReportRegister_Modify.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="formNewEntrySurveyReportRegister.Designer.vb">
-      <DependentUpon>formNewEntrySurveyReportRegister.vb</DependentUpon>
+    <Compile Include="formSurveyReportRegister_New.Designer.vb">
+      <DependentUpon>formSurveyReportRegister_New.vb</DependentUpon>
     </Compile>
-    <Compile Include="formNewEntrySurveyReportRegister.vb">
+    <Compile Include="formSurveyReportRegister_New.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="formRestoreTables.Designer.vb">
@@ -173,32 +173,32 @@
     <EmbeddedResource Include="formMain.resx">
       <DependentUpon>formMain.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="formModifyAreaCalcChecklist.resx">
-      <DependentUpon>formModifyAreaCalcChecklist.vb</DependentUpon>
+    <EmbeddedResource Include="formAreaCalcChecklist_Modify.resx">
+      <DependentUpon>formAreaCalcChecklist_Modify.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="formNewDatabaseWizard.resx">
       <DependentUpon>formNewDatabaseWizard.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="formNewEntryAreaCalcChecklist.resx">
-      <DependentUpon>formNewEntryAreaCalcChecklist.vb</DependentUpon>
+    <EmbeddedResource Include="formAreaCalcChecklist_New.resx">
+      <DependentUpon>formAreaCalcChecklist_New.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="formModifySurveyReportRegister.resx">
-      <DependentUpon>formModifySurveyReportRegister.vb</DependentUpon>
+    <EmbeddedResource Include="formSurveyReportRegister_Modify.resx">
+      <DependentUpon>formSurveyReportRegister_Modify.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="formModifyFieldDataRegister.resx">
-      <DependentUpon>formModifyFieldDataRegister.vb</DependentUpon>
+    <EmbeddedResource Include="formFieldDataRegister_Modify.resx">
+      <DependentUpon>formFieldDataRegister_Modify.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="formNewEntryFieldDataRegister.resx">
-      <DependentUpon>formNewEntryFieldDataRegister.vb</DependentUpon>
+    <EmbeddedResource Include="formFieldDataRegister_New.resx">
+      <DependentUpon>formFieldDataRegister_New.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="formNewEntrySurveyReportRegister.resx">
-      <DependentUpon>formNewEntrySurveyReportRegister.vb</DependentUpon>
+    <EmbeddedResource Include="formSurveyReportRegister_New.resx">
+      <DependentUpon>formSurveyReportRegister_New.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="formModifyTqRfiRegister.resx">
-      <DependentUpon>formModifyTqRfiRegister.vb</DependentUpon>
+    <EmbeddedResource Include="formTqRfiRegister_Modify.resx">
+      <DependentUpon>formTqRfiRegister_Modify.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="formNewEntryTqRfiRegister.resx">
-      <DependentUpon>formNewEntryTqRfiRegister.vb</DependentUpon>
+    <EmbeddedResource Include="formTqRfiRegister_New.resx">
+      <DependentUpon>formTqRfiRegister_New.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="formRestoreTables.resx">
       <DependentUpon>formRestoreTables.vb</DependentUpon>

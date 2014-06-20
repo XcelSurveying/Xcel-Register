@@ -53,7 +53,10 @@
                     selectedTable = "TQRFIRegister"
             End Select
 
-            sql.DataUpdate("DELETE FROM " & selectedTable & " WHERE 1=1" & vbCrLf & _
+            'CHECK TO SEE IF THE FILE EXISTS BEFORE RUNNING THE SQL RESTORE COMMANDS
+            If System.IO.File.Exists(restoreFolder & fileToRestore) Then
+                'File exists
+                sql.DataUpdate("DELETE FROM " & selectedTable & " WHERE 1=1" & vbCrLf & _
                             "USE register " & vbCrLf & _
                             "BULK" & vbCrLf & _
                             "INSERT " & selectedTable & vbCrLf & _
@@ -61,12 +64,20 @@
                             "WITH " & vbCrLf & _
                             "( FIELDTERMINATOR = ',', ROWTERMINATOR = '\n')")
 
-            'Renames the backup file so that it cannot be accidentally used again for restore in the future.
-            Dim myDateTime As DateTime = DateTime.Now    'Sets the date for the filename to now
-            Dim myDateOnly As String = myDateTime.ToString("yyyyMMdd")
-            Shell("cmd.exe /c REN " & restoreFolder & fileToRestore & " " & selectedTable & "_RestoreCompleted_" & myDateOnly & ".bak  ")
-            'sets the new backup restore file to "table_RestoreCompleted_yyyyMMdd.bak"
-            MessageBox.Show("Backup file Renamed to " & selectedTable & "_RestoreCompleted_" & myDateOnly & ".bak  ")
+                'Renames the backup file so that it cannot be accidentally used again for restore in the future.
+                Dim myDateTime As DateTime = DateTime.Now    'Sets the date for the filename to now
+                Dim myDateOnly As String = myDateTime.ToString("yyyyMMdd")
+                Shell("cmd.exe /c REN " & restoreFolder & fileToRestore & " " & selectedTable & "_RestoreCompleted_" & myDateOnly & ".bak  ")
+                'sets the new backup restore file to "table_RestoreCompleted_yyyyMMdd.bak"
+                MessageBox.Show("Backup file Renamed to " & selectedTable & "_RestoreCompleted_" & myDateOnly & ".bak  ")
+
+                'REFRESHES THE DATA GRID IN THE MAIN FORM AFTER THE TABLES HAVE BEEN RESTORED
+                formMain.txtSearch_KeyUp(AcceptButton, AcceptButton) 'Queries the search box
+
+            Else
+                'File doesn't exist
+                MessageBox.Show("The restore file: C:\XCELregister\Restore\" & fileToRestore & " does not exist.", "")
+            End If
 
         Catch ex As Exception
             MessageBox.Show(ex.Message)

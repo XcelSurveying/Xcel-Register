@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class formModifyAreaCalcChecklist
+Partial Class formAreaCalcChecklist_Modify
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -22,48 +22,48 @@ Partial Class formModifyAreaCalcChecklist
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(formModifyAreaCalcChecklist))
-        Me.dtpModifyCheckedDate = New System.Windows.Forms.DateTimePicker()
-        Me.dtpModifyCalcdDate = New System.Windows.Forms.DateTimePicker()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(formAreaCalcChecklist_Modify))
+        Me.dtpCheckedDate = New System.Windows.Forms.DateTimePicker()
+        Me.dtpCalcdDate = New System.Windows.Forms.DateTimePicker()
         Me.cmdModifySave = New System.Windows.Forms.Button()
-        Me.txtModifyComments = New System.Windows.Forms.TextBox()
+        Me.txtComments = New System.Windows.Forms.TextBox()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
-        Me.txtModifyCheckedBy = New System.Windows.Forms.TextBox()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
-        Me.txtModifyCalcdBy = New System.Windows.Forms.TextBox()
         Me.Label4 = New System.Windows.Forms.Label()
-        Me.txtModifyTqRfi = New System.Windows.Forms.TextBox()
+        Me.txtTqRfi = New System.Windows.Forms.TextBox()
         Me.Label3 = New System.Windows.Forms.Label()
-        Me.txtModifyDrawingNumber = New System.Windows.Forms.TextBox()
+        Me.txtDrawingNumber = New System.Windows.Forms.TextBox()
         Me.Label2 = New System.Windows.Forms.Label()
-        Me.txtModifyModelLayer = New System.Windows.Forms.TextBox()
+        Me.txtModelLayer = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.cmboCalcdBy = New System.Windows.Forms.ComboBox()
+        Me.cmboCheckedBy = New System.Windows.Forms.ComboBox()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
         'dtpModifyCheckedDate
         '
-        Me.dtpModifyCheckedDate.CustomFormat = "dd/MM/yyyy"
-        Me.dtpModifyCheckedDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.dtpModifyCheckedDate.Location = New System.Drawing.Point(152, 156)
-        Me.dtpModifyCheckedDate.Name = "dtpModifyCheckedDate"
-        Me.dtpModifyCheckedDate.Size = New System.Drawing.Size(132, 20)
-        Me.dtpModifyCheckedDate.TabIndex = 35
-        Me.dtpModifyCheckedDate.Value = New Date(2014, 5, 16, 0, 0, 0, 0)
+        Me.dtpCheckedDate.CustomFormat = "dd/MM/yyyy"
+        Me.dtpCheckedDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom
+        Me.dtpCheckedDate.Location = New System.Drawing.Point(152, 156)
+        Me.dtpCheckedDate.Name = "dtpModifyCheckedDate"
+        Me.dtpCheckedDate.Size = New System.Drawing.Size(132, 20)
+        Me.dtpCheckedDate.TabIndex = 35
+        Me.dtpCheckedDate.Value = New Date(2014, 5, 16, 0, 0, 0, 0)
         '
         'dtpModifyCalcdDate
         '
-        Me.dtpModifyCalcdDate.CustomFormat = "dd/MM/yyyy"
-        Me.dtpModifyCalcdDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.dtpModifyCalcdDate.ImeMode = System.Windows.Forms.ImeMode.[On]
-        Me.dtpModifyCalcdDate.Location = New System.Drawing.Point(152, 99)
-        Me.dtpModifyCalcdDate.Name = "dtpModifyCalcdDate"
-        Me.dtpModifyCalcdDate.Size = New System.Drawing.Size(132, 20)
-        Me.dtpModifyCalcdDate.TabIndex = 34
-        Me.dtpModifyCalcdDate.Value = New Date(2014, 5, 15, 0, 0, 0, 0)
+        Me.dtpCalcdDate.CustomFormat = "dd/MM/yyyy"
+        Me.dtpCalcdDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom
+        Me.dtpCalcdDate.ImeMode = System.Windows.Forms.ImeMode.[On]
+        Me.dtpCalcdDate.Location = New System.Drawing.Point(152, 99)
+        Me.dtpCalcdDate.Name = "dtpModifyCalcdDate"
+        Me.dtpCalcdDate.Size = New System.Drawing.Size(132, 20)
+        Me.dtpCalcdDate.TabIndex = 34
+        Me.dtpCalcdDate.Value = New Date(2014, 5, 15, 0, 0, 0, 0)
         '
         'cmdModifySave
         '
@@ -79,12 +79,12 @@ Partial Class formModifyAreaCalcChecklist
         '
         'txtModifyComments
         '
-        Me.txtModifyComments.Location = New System.Drawing.Point(32, 205)
-        Me.txtModifyComments.MaxLength = 255
-        Me.txtModifyComments.Multiline = True
-        Me.txtModifyComments.Name = "txtModifyComments"
-        Me.txtModifyComments.Size = New System.Drawing.Size(375, 52)
-        Me.txtModifyComments.TabIndex = 32
+        Me.txtComments.Location = New System.Drawing.Point(32, 205)
+        Me.txtComments.MaxLength = 255
+        Me.txtComments.Multiline = True
+        Me.txtComments.Name = "txtModifyComments"
+        Me.txtComments.Size = New System.Drawing.Size(375, 52)
+        Me.txtComments.TabIndex = 32
         '
         'Label8
         '
@@ -104,14 +104,6 @@ Partial Class formModifyAreaCalcChecklist
         Me.Label7.TabIndex = 30
         Me.Label7.Text = "Checked date"
         '
-        'txtModifyCheckedBy
-        '
-        Me.txtModifyCheckedBy.Location = New System.Drawing.Point(32, 156)
-        Me.txtModifyCheckedBy.MaxLength = 5
-        Me.txtModifyCheckedBy.Name = "txtModifyCheckedBy"
-        Me.txtModifyCheckedBy.Size = New System.Drawing.Size(100, 20)
-        Me.txtModifyCheckedBy.TabIndex = 29
-        '
         'Label6
         '
         Me.Label6.AutoSize = True
@@ -130,14 +122,6 @@ Partial Class formModifyAreaCalcChecklist
         Me.Label5.TabIndex = 27
         Me.Label5.Text = "Calc'd date"
         '
-        'txtModifyCalcdBy
-        '
-        Me.txtModifyCalcdBy.Location = New System.Drawing.Point(32, 99)
-        Me.txtModifyCalcdBy.MaxLength = 5
-        Me.txtModifyCalcdBy.Name = "txtModifyCalcdBy"
-        Me.txtModifyCalcdBy.Size = New System.Drawing.Size(100, 20)
-        Me.txtModifyCalcdBy.TabIndex = 26
-        '
         'Label4
         '
         Me.Label4.AutoSize = True
@@ -149,11 +133,11 @@ Partial Class formModifyAreaCalcChecklist
         '
         'txtModifyTqRfi
         '
-        Me.txtModifyTqRfi.Location = New System.Drawing.Point(307, 43)
-        Me.txtModifyTqRfi.MaxLength = 10
-        Me.txtModifyTqRfi.Name = "txtModifyTqRfi"
-        Me.txtModifyTqRfi.Size = New System.Drawing.Size(100, 20)
-        Me.txtModifyTqRfi.TabIndex = 24
+        Me.txtTqRfi.Location = New System.Drawing.Point(307, 43)
+        Me.txtTqRfi.MaxLength = 10
+        Me.txtTqRfi.Name = "txtModifyTqRfi"
+        Me.txtTqRfi.Size = New System.Drawing.Size(100, 20)
+        Me.txtTqRfi.TabIndex = 24
         '
         'Label3
         '
@@ -166,11 +150,11 @@ Partial Class formModifyAreaCalcChecklist
         '
         'txtModifyDrawingNumber
         '
-        Me.txtModifyDrawingNumber.Location = New System.Drawing.Point(152, 43)
-        Me.txtModifyDrawingNumber.MaxLength = 30
-        Me.txtModifyDrawingNumber.Name = "txtModifyDrawingNumber"
-        Me.txtModifyDrawingNumber.Size = New System.Drawing.Size(132, 20)
-        Me.txtModifyDrawingNumber.TabIndex = 22
+        Me.txtDrawingNumber.Location = New System.Drawing.Point(152, 43)
+        Me.txtDrawingNumber.MaxLength = 30
+        Me.txtDrawingNumber.Name = "txtModifyDrawingNumber"
+        Me.txtDrawingNumber.Size = New System.Drawing.Size(132, 20)
+        Me.txtDrawingNumber.TabIndex = 22
         '
         'Label2
         '
@@ -183,11 +167,11 @@ Partial Class formModifyAreaCalcChecklist
         '
         'txtModifyModelLayer
         '
-        Me.txtModifyModelLayer.Location = New System.Drawing.Point(32, 43)
-        Me.txtModifyModelLayer.MaxLength = 30
-        Me.txtModifyModelLayer.Name = "txtModifyModelLayer"
-        Me.txtModifyModelLayer.Size = New System.Drawing.Size(100, 20)
-        Me.txtModifyModelLayer.TabIndex = 20
+        Me.txtModelLayer.Location = New System.Drawing.Point(32, 43)
+        Me.txtModelLayer.MaxLength = 30
+        Me.txtModelLayer.Name = "txtModifyModelLayer"
+        Me.txtModelLayer.Size = New System.Drawing.Size(100, 20)
+        Me.txtModelLayer.TabIndex = 20
         '
         'Label1
         '
@@ -200,22 +184,22 @@ Partial Class formModifyAreaCalcChecklist
         '
         'GroupBox1
         '
-        Me.GroupBox1.Controls.Add(Me.txtModifyComments)
-        Me.GroupBox1.Controls.Add(Me.dtpModifyCheckedDate)
-        Me.GroupBox1.Controls.Add(Me.dtpModifyCalcdDate)
+        Me.GroupBox1.Controls.Add(Me.cmboCheckedBy)
+        Me.GroupBox1.Controls.Add(Me.cmboCalcdBy)
+        Me.GroupBox1.Controls.Add(Me.txtComments)
+        Me.GroupBox1.Controls.Add(Me.dtpCheckedDate)
+        Me.GroupBox1.Controls.Add(Me.dtpCalcdDate)
         Me.GroupBox1.Controls.Add(Me.cmdModifySave)
         Me.GroupBox1.Controls.Add(Me.Label8)
         Me.GroupBox1.Controls.Add(Me.Label7)
-        Me.GroupBox1.Controls.Add(Me.txtModifyCheckedBy)
         Me.GroupBox1.Controls.Add(Me.Label6)
         Me.GroupBox1.Controls.Add(Me.Label5)
-        Me.GroupBox1.Controls.Add(Me.txtModifyCalcdBy)
         Me.GroupBox1.Controls.Add(Me.Label4)
-        Me.GroupBox1.Controls.Add(Me.txtModifyTqRfi)
+        Me.GroupBox1.Controls.Add(Me.txtTqRfi)
         Me.GroupBox1.Controls.Add(Me.Label3)
-        Me.GroupBox1.Controls.Add(Me.txtModifyDrawingNumber)
+        Me.GroupBox1.Controls.Add(Me.txtDrawingNumber)
         Me.GroupBox1.Controls.Add(Me.Label2)
-        Me.GroupBox1.Controls.Add(Me.txtModifyModelLayer)
+        Me.GroupBox1.Controls.Add(Me.txtModelLayer)
         Me.GroupBox1.Controls.Add(Me.Label1)
         Me.GroupBox1.Location = New System.Drawing.Point(12, 11)
         Me.GroupBox1.Name = "GroupBox1"
@@ -223,6 +207,24 @@ Partial Class formModifyAreaCalcChecklist
         Me.GroupBox1.TabIndex = 36
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Modify Entries"
+        '
+        'cmboCalcdBy
+        '
+        Me.cmboCalcdBy.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmboCalcdBy.FormattingEnabled = True
+        Me.cmboCalcdBy.Location = New System.Drawing.Point(32, 98)
+        Me.cmboCalcdBy.Name = "cmboCalcdBy"
+        Me.cmboCalcdBy.Size = New System.Drawing.Size(100, 21)
+        Me.cmboCalcdBy.TabIndex = 36
+        '
+        'cmboCheckedBy
+        '
+        Me.cmboCheckedBy.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmboCheckedBy.FormattingEnabled = True
+        Me.cmboCheckedBy.Location = New System.Drawing.Point(32, 155)
+        Me.cmboCheckedBy.Name = "cmboCheckedBy"
+        Me.cmboCheckedBy.Size = New System.Drawing.Size(100, 21)
+        Me.cmboCheckedBy.TabIndex = 37
         '
         'formModifyAreaCalcChecklist
         '
@@ -241,22 +243,22 @@ Partial Class formModifyAreaCalcChecklist
         Me.ResumeLayout(False)
 
     End Sub
-    Friend WithEvents dtpModifyCheckedDate As System.Windows.Forms.DateTimePicker
-    Friend WithEvents dtpModifyCalcdDate As System.Windows.Forms.DateTimePicker
+    Friend WithEvents dtpCheckedDate As System.Windows.Forms.DateTimePicker
+    Friend WithEvents dtpCalcdDate As System.Windows.Forms.DateTimePicker
     Friend WithEvents cmdModifySave As System.Windows.Forms.Button
-    Friend WithEvents txtModifyComments As System.Windows.Forms.TextBox
+    Friend WithEvents txtComments As System.Windows.Forms.TextBox
     Friend WithEvents Label8 As System.Windows.Forms.Label
     Friend WithEvents Label7 As System.Windows.Forms.Label
-    Friend WithEvents txtModifyCheckedBy As System.Windows.Forms.TextBox
     Friend WithEvents Label6 As System.Windows.Forms.Label
     Friend WithEvents Label5 As System.Windows.Forms.Label
-    Friend WithEvents txtModifyCalcdBy As System.Windows.Forms.TextBox
     Friend WithEvents Label4 As System.Windows.Forms.Label
-    Friend WithEvents txtModifyTqRfi As System.Windows.Forms.TextBox
+    Friend WithEvents txtTqRfi As System.Windows.Forms.TextBox
     Friend WithEvents Label3 As System.Windows.Forms.Label
-    Friend WithEvents txtModifyDrawingNumber As System.Windows.Forms.TextBox
+    Friend WithEvents txtDrawingNumber As System.Windows.Forms.TextBox
     Friend WithEvents Label2 As System.Windows.Forms.Label
-    Friend WithEvents txtModifyModelLayer As System.Windows.Forms.TextBox
+    Friend WithEvents txtModelLayer As System.Windows.Forms.TextBox
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
+    Friend WithEvents cmboCheckedBy As System.Windows.Forms.ComboBox
+    Friend WithEvents cmboCalcdBy As System.Windows.Forms.ComboBox
 End Class

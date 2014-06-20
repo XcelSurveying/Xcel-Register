@@ -1,8 +1,10 @@
 ﻿Public Class formSettings
+    Dim EscapeChars As New EscapeChars
+
     'AREA -- ADD
     Private Sub cmdSRRAreaAdd_Click(sender As Object, e As EventArgs) Handles cmdSRRAreaAdd.Click
         Dim add As String
-        add = InputBox("Enter Area to Add", "")
+        add = EscapeChars.cleanString(InputBox("Enter Area to Add", ""))
         If add <> "" Then
             lbSRRArea.Items.Add(add.ToUpper) 'Converts all to uppercase
         End If
@@ -16,7 +18,7 @@
     'DESCRIPTION -- ADD 
     Private Sub cmdSRRDescriptionAdd_Click(sender As Object, e As EventArgs) Handles cmdSRRDescriptionAdd.Click
         Dim add As String
-        add = InputBox("Enter Description to Add", "")
+        add = EscapeChars.cleanString(InputBox("Enter Description to Add", ""))
         If add <> "" Then
             lbSRRDescription.Items.Add(add.ToUpper) 'Converts all to uppercase
         End If
@@ -31,10 +33,14 @@
     Private Sub cmdSRRSurveyorsAdd_Click(sender As Object, e As EventArgs) Handles cmdSRRSurveyorsAdd.Click
         Dim addInitials As String
         Dim addFullName As String
-        addInitials = InputBox("Enter Surveyors Initials :", "")
-        addFullName = InputBox("Enter Surveyors Full Name :", "")
+        addInitials = EscapeChars.cleanString_NoHyphen_NoSpace(InputBox("Enter Surveyors Initials :", "")) 'Hyphens not allowed, as this is character is used for a split
+        addFullName = EscapeChars.cleanString_NoHyphen(InputBox("Enter Surveyors Full Name :", "")) 'Hyphens not allowed, as this is character is used for a split
         If addInitials <> "" And addFullName <> "" Then
-            lbSRRSurveyors.Items.Add(addInitials.ToUpper & "  -  " & addFullName) 'Converts all to uppercase
+            If addInitials.Length <= 3 Then
+                lbSRRSurveyors.Items.Add(addInitials.ToUpper & "  -  " & addFullName) 'Converts all to uppercase, adds Hyphen later used to separate Initials
+            Else
+                MessageBox.Show("Initials have a maximum of three characters")
+            End If
         End If
     End Sub
 
@@ -46,7 +52,7 @@
     ' FDR AREA -- ADD
     Private Sub cmdFDRAreaAdd_Click(sender As Object, e As EventArgs) Handles cmdFDRAreaAdd.Click
         Dim add As String
-        add = InputBox("Enter Area to Add", "")
+        add = EscapeChars.cleanString(InputBox("Enter Area to Add", ""))
         If add <> "" Then
             lbFDRArea.Items.Add(add.ToUpper) 'Converts all to uppercase
         End If
@@ -59,7 +65,7 @@
     ' JOB TYPE -- ADD
     Private Sub cmdJobTypeAdd_Click(sender As Object, e As EventArgs) Handles cmdJobTypeAdd.Click
         Dim add As String
-        add = InputBox("Enter Job Type to Add", "")
+        add = EscapeChars.cleanString(InputBox("Enter Job Type to Add", ""))
         If add <> "" Then
             lbFDRJobType.Items.Add(add.ToUpper) 'Converts all to uppercase
         End If
@@ -73,7 +79,7 @@
     ' INSTRUMENT A ADD
     Private Sub cmdInstrumentAAdd_Click(sender As Object, e As EventArgs) Handles cmdInstrumentAAdd.Click
         Dim add As String
-        add = InputBox("Enter Instrument to Add", "")
+        add = EscapeChars.cleanString(InputBox("Enter Instrument to Add", ""))
         If add <> "" Then
             lbFDRInstrumentA.Items.Add(add.ToUpper) 'Converts all to uppercase
         End If
@@ -87,7 +93,7 @@
     ' TQR Area - ADD
     Private Sub cmdTQRAreaAdd_Click(sender As Object, e As EventArgs) Handles cmdTQRAreaAdd.Click
         Dim add As String
-        add = InputBox("Enter Area to Add", "")
+        add = EscapeChars.cleanString(InputBox("Enter Area to Add", ""))
         If add <> "" Then
             lbTQRArea.Items.Add(add.ToUpper) 'Converts all to uppercase
         End If
@@ -135,7 +141,7 @@
         Me.lbTQRArea.Items.AddRange(My.Settings.settingsTQRArea.ToArray())
     End Sub
 
-    
+
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Me.Close()
@@ -160,6 +166,6 @@
         End If
     End Sub
 
-   
+
 
 End Class

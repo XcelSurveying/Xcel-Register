@@ -25,7 +25,7 @@
     Private Sub initilizeDataGridView()
         ' Set the background color for all rows and for alternating rows.  
         ' The value for alternating rows overrides the value for all rows. 
-        DGVData.AlternatingRowsDefaultCellStyle.BackColor = Color.LightGray
+        DGVData.AlternatingRowsDefaultCellStyle.BackColor = Color.WhiteSmoke
 
     End Sub
 
@@ -42,13 +42,13 @@
             'If DGVData.CurrentRow.Index >= 0 Then
             Select Case True
                 Case rbAreaCalcChecklist.Checked
-                    formNewEntryAreaCalcChecklist.Show() 'Loads New Entry window
+                    formAreaCalcChecklist_New.Show() 'Loads New Entry window
                 Case rbSurveyReportRegister.Checked
-                    formNewEntrySurveyReportRegister.Show()
+                    formSurveyReportRegister_New.Show()
                 Case rbFieldDataRegister.Checked
-                    formNewEntryFieldDataRegister.Show()
+                    formFieldDataRegister_New.Show()
                 Case rbTqRfiRegister.Checked
-                    formNewEntryTqRfiRegister.Show()
+                    formTqRfiRegister_New.Show()
             End Select
             Me.Enabled = False
             'End If
@@ -61,13 +61,13 @@
         Try
             Select Case True
                 Case rbAreaCalcChecklist.Checked
-                    formModifyAreaCalcChecklist.Show() 'Loads Modify Entry window
+                    formAreaCalcChecklist_Modify.Show() 'Loads Modify Entry window
                 Case rbSurveyReportRegister.Checked
-                    formModifySurveyReportRegister.Show()
+                    formSurveyReportRegister_Modify.Show()
                 Case rbFieldDataRegister.Checked
-                    formModifyFieldDataRegister.Show()
+                    formFieldDataRegister_Modify.Show()
                 Case rbTqRfiRegister.Checked
-                    formModifyTqRfiRegister.Show()
+                    formTqRfiRegister_Modify.Show()
 
             End Select
             Me.Enabled = False
@@ -104,7 +104,7 @@
         End If
     End Sub
 
-    Private Sub txtSearch_KeyUp(sender As Object, e As KeyEventArgs) Handles txtSearch.KeyUp
+    Public Sub txtSearch_KeyUp(sender As Object, e As KeyEventArgs) Handles txtSearch.KeyUp
         If SQL.HasConnection = True Then
             Select Case True
                 Case rbAreaCalcChecklist.Checked
@@ -347,5 +347,37 @@
     '--PRINT DataGridView 
     Private Sub cmdPrintDGVData_Click(sender As Object, e As EventArgs) Handles cmdPrintDGVData.Click
 
+    End Sub
+
+    
+    Private Sub cmdDeleteRow_Click(sender As Object, e As EventArgs) Handles cmdDeleteRow.Click
+        Dim row As DataGridViewRow
+        Dim selectedRegister As String = ""
+        row = DGVData.Rows(DGVData.CurrentRow.Index) 'Returns integer value of the select row index from the datagrid
+        Dim rowID As String = (row.Cells("ID").Value.ToString)
+
+        Try
+            Select Case True
+                Case rbAreaCalcChecklist.Checked
+                    selectedRegister = "AreaCalcChecklist"
+                Case rbSurveyReportRegister.Checked
+                    selectedRegister = "SurveyReportRegister"
+                Case rbFieldDataRegister.Checked
+                    selectedRegister = "FieldDataRegister"
+                Case rbTqRfiRegister.Checked
+                    selectedRegister = "TqRfiRegister"
+
+            End Select
+        Catch ex As Exception
+            MessageBox.Show(ex.Message, "Delete Entry", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+
+
+        queryString = ("DELETE FROM " & selectedRegister & " WHERE " & vbCrLf & _
+                            "ID=" & rowID)
+
+        txtSearch_KeyUp(AcceptButton, AcceptButton)
+        SQL.RunQuery(queryString)
+        refreshDataGridView()
     End Sub
 End Class

@@ -1,6 +1,7 @@
-﻿Public Class formModifyTqRfiRegister
+﻿Public Class formTqRfiRegister_Modify
     Dim sql As New SQLControl
     Dim export As New exportTables
+    Dim EscapeChars As New EscapeChars
 
 
     Private Sub formModifyTqRfiRegister_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -108,7 +109,7 @@
 
     'ESCAPE CHARACTERS ENTERED IN TO THE TEXT BOXES
     Private Sub escapeCharacters_KeyPress(sender As Object, e As KeyPressEventArgs) _
-        Handles txtModifyModelLayer.KeyPress, txtModifyComments.KeyPress, txtModifyDrawingNumber.KeyPress, txtModifyTqRfi.KeyPress
+        Handles txtDrawingNumber.KeyPress, txtTqRfi.KeyPress, txtDescription.KeyPress
         'Escape Characters Class (e as keyPress, allow numbers, allow letters)
         EscapeChars.Include(e, True, True)
     End Sub

@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class formNewEntryFieldDataRegister
+Partial Class formFieldDataRegister_Modify
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -342,15 +342,15 @@ Partial Class formNewEntryFieldDataRegister
         'Timer3
         '
         '
-        'formNewEntryFieldDataRegister
+        'formModifyFieldDataRegister
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(543, 462)
         Me.Controls.Add(Me.GroupBox1)
         Me.Font = New System.Drawing.Font("Tahoma", 8.25!)
-        Me.Name = "formNewEntryFieldDataRegister"
-        Me.Text = "New Entry to Field Data Register"
+        Me.Name = "formModifyFieldDataRegister"
+        Me.Text = "Modify Entry to Field Data Register"
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).EndInit()

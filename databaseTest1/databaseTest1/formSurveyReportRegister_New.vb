@@ -1,6 +1,8 @@
-﻿Public Class formNewEntrySurveyReportRegister
+﻿Public Class formSurveyReportRegister_New
     Dim sql As New SQLControl
     Dim export As New exportTables
+    Dim EscapeChars As New EscapeChars
+
     Dim fullpath As String = String.Empty
     Dim filename As String = String.Empty
 
@@ -383,7 +385,7 @@
 
     'ESCAPE CHARACTERS ENTERED IN TO THE TEXT BOXES
     Private Sub escapeCharacters_KeyPress(sender As Object, e As KeyPressEventArgs) _
-        Handles txtModifyModelLayer.KeyPress, txtModifyComments.KeyPress, txtModifyDrawingNumber.KeyPress, txtModifyTqRfi.KeyPress
+        Handles txtComments.KeyPress, txtTitle.KeyPress, txtDocumentName.KeyPress
         'Escape Characters Class (e as keyPress, allow numbers, allow letters)
         EscapeChars.Include(e, True, True)
     End Sub

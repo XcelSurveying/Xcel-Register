@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class formModifySurveyReportRegister
+Partial Class formSurveyReportRegister_New
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -25,10 +25,10 @@ Partial Class formModifySurveyReportRegister
         Me.components = New System.ComponentModel.Container()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
-        Me.lblModDestFolder = New System.Windows.Forms.Label()
+        Me.lblDestFolder = New System.Windows.Forms.Label()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Label10 = New System.Windows.Forms.Label()
-        Me.lblModDestination = New System.Windows.Forms.Label()
+        Me.lblDestination = New System.Windows.Forms.Label()
         Me.cmdNewEntryBrowse = New System.Windows.Forms.Button()
         Me.linkSource = New System.Windows.Forms.LinkLabel()
         Me.lblDocumentNameWarning = New System.Windows.Forms.Label()
@@ -92,10 +92,10 @@ Partial Class formModifySurveyReportRegister
         '
         'GroupBox2
         '
-        Me.GroupBox2.Controls.Add(Me.lblModDestFolder)
+        Me.GroupBox2.Controls.Add(Me.lblDestFolder)
         Me.GroupBox2.Controls.Add(Me.Label9)
         Me.GroupBox2.Controls.Add(Me.Label10)
-        Me.GroupBox2.Controls.Add(Me.lblModDestination)
+        Me.GroupBox2.Controls.Add(Me.lblDestination)
         Me.GroupBox2.Controls.Add(Me.cmdNewEntryBrowse)
         Me.GroupBox2.Controls.Add(Me.linkSource)
         Me.GroupBox2.Location = New System.Drawing.Point(208, 0)
@@ -105,14 +105,14 @@ Partial Class formModifySurveyReportRegister
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Select PDF"
         '
-        'lblModDestFolder
+        'lblDestFolder
         '
-        Me.lblModDestFolder.AutoSize = True
-        Me.lblModDestFolder.Location = New System.Drawing.Point(90, 112)
-        Me.lblModDestFolder.Name = "lblModDestFolder"
-        Me.lblModDestFolder.Size = New System.Drawing.Size(89, 13)
-        Me.lblModDestFolder.TabIndex = 52
-        Me.lblModDestFolder.Text = "lblModDestFolder"
+        Me.lblDestFolder.AutoSize = True
+        Me.lblDestFolder.Location = New System.Drawing.Point(90, 112)
+        Me.lblDestFolder.Name = "lblDestFolder"
+        Me.lblDestFolder.Size = New System.Drawing.Size(69, 13)
+        Me.lblDestFolder.TabIndex = 52
+        Me.lblDestFolder.Text = "lblDestFolder"
         '
         'Label9
         '
@@ -132,22 +132,22 @@ Partial Class formModifySurveyReportRegister
         Me.Label10.TabIndex = 50
         Me.Label10.Text = "Destination :"
         '
-        'lblModDestination
+        'lblDestination
         '
-        Me.lblModDestination.AutoSize = True
-        Me.lblModDestination.Location = New System.Drawing.Point(90, 80)
-        Me.lblModDestination.Name = "lblModDestination"
-        Me.lblModDestination.Size = New System.Drawing.Size(91, 13)
-        Me.lblModDestination.TabIndex = 49
-        Me.lblModDestination.Text = "lblModDestination"
-        Me.lblModDestination.Visible = False
+        Me.lblDestination.AutoSize = True
+        Me.lblDestination.Location = New System.Drawing.Point(90, 80)
+        Me.lblDestination.Name = "lblDestination"
+        Me.lblDestination.Size = New System.Drawing.Size(71, 13)
+        Me.lblDestination.TabIndex = 49
+        Me.lblDestination.Text = "lblDestination"
+        Me.lblDestination.Visible = False
         '
         'cmdNewEntryBrowse
         '
         Me.cmdNewEntryBrowse.Location = New System.Drawing.Point(9, 41)
         Me.cmdNewEntryBrowse.Name = "cmdNewEntryBrowse"
         Me.cmdNewEntryBrowse.Size = New System.Drawing.Size(65, 20)
-        Me.cmdNewEntryBrowse.TabIndex = 41
+        Me.cmdNewEntryBrowse.TabIndex = 8
         Me.cmdNewEntryBrowse.Text = "Browse"
         Me.cmdNewEntryBrowse.UseVisualStyleBackColor = True
         '
@@ -160,7 +160,6 @@ Partial Class formModifySurveyReportRegister
         Me.linkSource.Name = "linkSource"
         Me.linkSource.Size = New System.Drawing.Size(142, 13)
         Me.linkSource.TabIndex = 42
-        Me.linkSource.TabStop = True
         Me.linkSource.Text = "Browse to create link to PDF"
         Me.linkSource.TextAlign = System.Drawing.ContentAlignment.TopRight
         '
@@ -195,7 +194,7 @@ Partial Class formModifySurveyReportRegister
         Me.cmboSurveyor.Location = New System.Drawing.Point(217, 203)
         Me.cmboSurveyor.Name = "cmboSurveyor"
         Me.cmboSurveyor.Size = New System.Drawing.Size(223, 21)
-        Me.cmboSurveyor.TabIndex = 46
+        Me.cmboSurveyor.TabIndex = 3
         '
         'Label4
         '
@@ -214,7 +213,7 @@ Partial Class formModifySurveyReportRegister
         Me.txtDocumentName.MaxLength = 10
         Me.txtDocumentName.Name = "txtDocumentName"
         Me.txtDocumentName.Size = New System.Drawing.Size(176, 33)
-        Me.txtDocumentName.TabIndex = 44
+        Me.txtDocumentName.TabIndex = 0
         '
         'cmboArea
         '
@@ -223,7 +222,7 @@ Partial Class formModifySurveyReportRegister
         Me.cmboArea.Location = New System.Drawing.Point(9, 324)
         Me.cmboArea.Name = "cmboArea"
         Me.cmboArea.Size = New System.Drawing.Size(176, 21)
-        Me.cmboArea.TabIndex = 38
+        Me.cmboArea.TabIndex = 5
         '
         'cmboDescription
         '
@@ -232,7 +231,7 @@ Partial Class formModifySurveyReportRegister
         Me.cmboDescription.Location = New System.Drawing.Point(217, 324)
         Me.cmboDescription.Name = "cmboDescription"
         Me.cmboDescription.Size = New System.Drawing.Size(346, 21)
-        Me.cmboDescription.TabIndex = 37
+        Me.cmboDescription.TabIndex = 6
         '
         'txtRev
         '
@@ -240,7 +239,7 @@ Partial Class formModifySurveyReportRegister
         Me.txtRev.MaxLength = 2
         Me.txtRev.Name = "txtRev"
         Me.txtRev.Size = New System.Drawing.Size(46, 21)
-        Me.txtRev.TabIndex = 36
+        Me.txtRev.TabIndex = 2
         Me.txtRev.Text = "1"
         '
         'txtTitle
@@ -248,7 +247,7 @@ Partial Class formModifySurveyReportRegister
         Me.txtTitle.Location = New System.Drawing.Point(9, 253)
         Me.txtTitle.Name = "txtTitle"
         Me.txtTitle.Size = New System.Drawing.Size(554, 21)
-        Me.txtTitle.TabIndex = 35
+        Me.txtTitle.TabIndex = 4
         '
         'txtComments
         '
@@ -257,7 +256,7 @@ Partial Class formModifySurveyReportRegister
         Me.txtComments.Multiline = True
         Me.txtComments.Name = "txtComments"
         Me.txtComments.Size = New System.Drawing.Size(451, 58)
-        Me.txtComments.TabIndex = 32
+        Me.txtComments.TabIndex = 7
         '
         'dtpDate
         '
@@ -267,7 +266,7 @@ Partial Class formModifySurveyReportRegister
         Me.dtpDate.Location = New System.Drawing.Point(9, 204)
         Me.dtpDate.Name = "dtpDate"
         Me.dtpDate.Size = New System.Drawing.Size(99, 21)
-        Me.dtpDate.TabIndex = 34
+        Me.dtpDate.TabIndex = 1
         Me.dtpDate.Value = New Date(2014, 5, 15, 0, 0, 0, 0)
         '
         'cmdNewEntrySave
@@ -275,8 +274,8 @@ Partial Class formModifySurveyReportRegister
         Me.cmdNewEntrySave.Location = New System.Drawing.Point(496, 377)
         Me.cmdNewEntrySave.Name = "cmdNewEntrySave"
         Me.cmdNewEntrySave.Size = New System.Drawing.Size(100, 62)
-        Me.cmdNewEntrySave.TabIndex = 33
-        Me.cmdNewEntrySave.Text = "Save Modification"
+        Me.cmdNewEntrySave.TabIndex = 9
+        Me.cmdNewEntrySave.Text = "Save New Entry"
         Me.cmdNewEntrySave.UseVisualStyleBackColor = True
         '
         'Label8
@@ -363,7 +362,7 @@ Partial Class formModifySurveyReportRegister
         'timerDestFolder
         '
         '
-        'formModifySurveyReportRegister
+        'formNewEntrySurveyReportRegister
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -371,8 +370,8 @@ Partial Class formModifySurveyReportRegister
         Me.Controls.Add(Me.GroupBox1)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
-        Me.Name = "formModifySurveyReportRegister"
-        Me.Text = "Modify Entry to Survey Report Register"
+        Me.Name = "formNewEntrySurveyReportRegister"
+        Me.Text = "New Entry to Survey Report Register"
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         Me.GroupBox2.ResumeLayout(False)
@@ -408,8 +407,8 @@ Partial Class formModifySurveyReportRegister
     Friend WithEvents Timer1 As System.Windows.Forms.Timer
     Friend WithEvents Timer2 As System.Windows.Forms.Timer
     Friend WithEvents Label10 As System.Windows.Forms.Label
-    Friend WithEvents lblModDestination As System.Windows.Forms.Label
-    Friend WithEvents lblModDestFolder As System.Windows.Forms.Label
+    Friend WithEvents lblDestination As System.Windows.Forms.Label
+    Friend WithEvents lblDestFolder As System.Windows.Forms.Label
     Friend WithEvents Label9 As System.Windows.Forms.Label
     Friend WithEvents GroupBox2 As System.Windows.Forms.GroupBox
     Friend WithEvents timerDestFolder As System.Windows.Forms.Timer

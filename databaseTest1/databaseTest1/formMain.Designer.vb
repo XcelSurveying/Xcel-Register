@@ -35,18 +35,19 @@ Partial Class formMain
         Me.DatabaseSetupWizardToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExportTablesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MoveDatabaseFileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.rbTqRfiRegister = New System.Windows.Forms.RadioButton()
         Me.rbSurveyReportRegister = New System.Windows.Forms.RadioButton()
         Me.rbFieldDataRegister = New System.Windows.Forms.RadioButton()
         Me.rbAreaCalcChecklist = New System.Windows.Forms.RadioButton()
         Me.lblRegisterSelected = New System.Windows.Forms.Label()
-        Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.printSelectedDGVDataRow = New System.Windows.Forms.PrintPreviewDialog()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.cmdNewEntry = New System.Windows.Forms.Button()
         Me.cmdPrintDGVData = New System.Windows.Forms.Button()
+        Me.cmdDeleteRow = New System.Windows.Forms.Button()
         CType(Me.DGVData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox2.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
@@ -58,7 +59,7 @@ Partial Class formMain
         '
         Me.cmdModifySelectedRow.Location = New System.Drawing.Point(341, 81)
         Me.cmdModifySelectedRow.Name = "cmdModifySelectedRow"
-        Me.cmdModifySelectedRow.Size = New System.Drawing.Size(135, 30)
+        Me.cmdModifySelectedRow.Size = New System.Drawing.Size(187, 30)
         Me.cmdModifySelectedRow.TabIndex = 11
         Me.cmdModifySelectedRow.Text = "Modify Selected Row"
         Me.cmdModifySelectedRow.UseVisualStyleBackColor = True
@@ -148,6 +149,19 @@ Partial Class formMain
         Me.MoveDatabaseFileToolStripMenuItem.Size = New System.Drawing.Size(206, 22)
         Me.MoveDatabaseFileToolStripMenuItem.Text = "Restore Tables from .CSV"
         '
+        'HelpToolStripMenuItem
+        '
+        Me.HelpToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AboutToolStripMenuItem})
+        Me.HelpToolStripMenuItem.Name = "HelpToolStripMenuItem"
+        Me.HelpToolStripMenuItem.Size = New System.Drawing.Size(44, 20)
+        Me.HelpToolStripMenuItem.Text = "&Help"
+        '
+        'AboutToolStripMenuItem
+        '
+        Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
+        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(107, 22)
+        Me.AboutToolStripMenuItem.Text = "&About"
+        '
         'GroupBox1
         '
         Me.GroupBox1.Controls.Add(Me.rbTqRfiRegister)
@@ -214,19 +228,6 @@ Partial Class formMain
         Me.lblRegisterSelected.Text = "Area Calc Checklist"
         Me.lblRegisterSelected.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'HelpToolStripMenuItem
-        '
-        Me.HelpToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AboutToolStripMenuItem})
-        Me.HelpToolStripMenuItem.Name = "HelpToolStripMenuItem"
-        Me.HelpToolStripMenuItem.Size = New System.Drawing.Size(44, 20)
-        Me.HelpToolStripMenuItem.Text = "&Help"
-        '
-        'AboutToolStripMenuItem
-        '
-        Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
-        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(107, 22)
-        Me.AboutToolStripMenuItem.Text = "&About"
-        '
         'printSelectedDGVDataRow
         '
         Me.printSelectedDGVDataRow.AutoScrollMargin = New System.Drawing.Size(0, 0)
@@ -257,7 +258,7 @@ Partial Class formMain
         Me.cmdNewEntry.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.cmdNewEntry.Location = New System.Drawing.Point(341, 36)
         Me.cmdNewEntry.Name = "cmdNewEntry"
-        Me.cmdNewEntry.Size = New System.Drawing.Size(93, 30)
+        Me.cmdNewEntry.Size = New System.Drawing.Size(88, 30)
         Me.cmdNewEntry.TabIndex = 12
         Me.cmdNewEntry.Text = "New Entry"
         Me.cmdNewEntry.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -272,12 +273,22 @@ Partial Class formMain
         Me.cmdPrintDGVData.TabIndex = 17
         Me.cmdPrintDGVData.UseVisualStyleBackColor = True
         '
+        'cmdDeleteRow
+        '
+        Me.cmdDeleteRow.Location = New System.Drawing.Point(440, 36)
+        Me.cmdDeleteRow.Name = "cmdDeleteRow"
+        Me.cmdDeleteRow.Size = New System.Drawing.Size(88, 30)
+        Me.cmdDeleteRow.TabIndex = 18
+        Me.cmdDeleteRow.Text = "Delete Row"
+        Me.cmdDeleteRow.UseVisualStyleBackColor = True
+        '
         'formMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.ClientSize = New System.Drawing.Size(1342, 688)
+        Me.Controls.Add(Me.cmdDeleteRow)
         Me.Controls.Add(Me.cmdPrintDGVData)
         Me.Controls.Add(Me.PictureBox1)
         Me.Controls.Add(Me.lblRegisterSelected)
@@ -328,5 +339,6 @@ Partial Class formMain
     Friend WithEvents AboutToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents printSelectedDGVDataRow As System.Windows.Forms.PrintPreviewDialog
     Friend WithEvents cmdPrintDGVData As System.Windows.Forms.Button
+    Friend WithEvents cmdDeleteRow As System.Windows.Forms.Button
 
 End Class

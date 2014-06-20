@@ -1,6 +1,7 @@
-﻿Public Class formNewEntryTqRfiRegister
+﻿Public Class formTqRfiRegister_New
     Dim sql As New SQLControl
     Dim export As New exportTables
+    Dim EscapeChars As New EscapeChars
 
 
     Private Sub formNewEntryTqRfiRegister_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -38,7 +39,7 @@
         Me.cmboArea.Items.Remove("Please select ...")
         If Me.cmboArea.SelectedItem = ("") Then Me.cmboArea.SelectedIndex = 0
     End Sub
-  
+
     Private Sub cmdSave_Click(sender As Object, e As EventArgs) Handles cmdSave.Click
 
         'CHECK TO SEE IF TITLE FIELD IS NOT BLANK
@@ -91,9 +92,13 @@
 
     'ESCAPE CHARACTERS ENTERED IN TO THE TEXT BOXES
     Private Sub escapeCharacters_KeyPress(sender As Object, e As KeyPressEventArgs) _
-        Handles txtModifyModelLayer.KeyPress, txtModifyComments.KeyPress, txtModifyDrawingNumber.KeyPress, txtModifyTqRfi.KeyPress
-        'Escape Characters Class (e as keyPress, allow numbers, allow letters)
-        EscapeChars.Include(e, True, True)
+        Handles txtDrawingNumber.KeyPress, txtTqRfi.KeyPress, txtDescription.KeyPress
+        Try
+            'Escape Characters Class (e as keyPress, allow numbers, allow letters)
+            EscapeChars.Include(e, True, True)
+        Catch ex As Exception
+            MessageBox.Show(ex.Message)
+        End Try
     End Sub
 
 End Class
