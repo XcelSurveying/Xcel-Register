@@ -23,7 +23,6 @@ Partial Class formMain
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(formMain))
-        Me.cmdModifySelectedRow = New System.Windows.Forms.Button()
         Me.DGVData = New System.Windows.Forms.DataGridView()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.txtSearch = New System.Windows.Forms.TextBox()
@@ -43,26 +42,21 @@ Partial Class formMain
         Me.rbFieldDataRegister = New System.Windows.Forms.RadioButton()
         Me.rbAreaCalcChecklist = New System.Windows.Forms.RadioButton()
         Me.lblRegisterSelected = New System.Windows.Forms.Label()
-        Me.printSelectedDGVDataRow = New System.Windows.Forms.PrintPreviewDialog()
+        Me.printPreview = New System.Windows.Forms.PrintPreviewDialog()
+        Me.PrintDocument = New System.Drawing.Printing.PrintDocument()
+        Me.PrintDialog = New System.Windows.Forms.PrintDialog()
+        Me.cmdExportXLXS = New System.Windows.Forms.Button()
+        Me.cmdDeleteRow = New System.Windows.Forms.Button()
+        Me.cmdPrintDGVData = New System.Windows.Forms.Button()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.cmdNewEntry = New System.Windows.Forms.Button()
-        Me.cmdPrintDGVData = New System.Windows.Forms.Button()
-        Me.cmdDeleteRow = New System.Windows.Forms.Button()
+        Me.cmdModifySelectedRow = New System.Windows.Forms.Button()
         CType(Me.DGVData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox2.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
-        '
-        'cmdModifySelectedRow
-        '
-        Me.cmdModifySelectedRow.Location = New System.Drawing.Point(341, 81)
-        Me.cmdModifySelectedRow.Name = "cmdModifySelectedRow"
-        Me.cmdModifySelectedRow.Size = New System.Drawing.Size(187, 30)
-        Me.cmdModifySelectedRow.TabIndex = 11
-        Me.cmdModifySelectedRow.Text = "Modify Selected Row"
-        Me.cmdModifySelectedRow.UseVisualStyleBackColor = True
         '
         'DGVData
         '
@@ -135,7 +129,7 @@ Partial Class formMain
         '
         Me.DatabaseSetupWizardToolStripMenuItem.Name = "DatabaseSetupWizardToolStripMenuItem"
         Me.DatabaseSetupWizardToolStripMenuItem.Size = New System.Drawing.Size(206, 22)
-        Me.DatabaseSetupWizardToolStripMenuItem.Text = "&Database Setup Wizard"
+        Me.DatabaseSetupWizardToolStripMenuItem.Text = "&Database Setup"
         '
         'ExportTablesToolStripMenuItem
         '
@@ -221,33 +215,70 @@ Partial Class formMain
         '
         Me.lblRegisterSelected.AutoSize = True
         Me.lblRegisterSelected.Font = New System.Drawing.Font("Microsoft Sans Serif", 21.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblRegisterSelected.Location = New System.Drawing.Point(577, 135)
+        Me.lblRegisterSelected.Location = New System.Drawing.Point(350, 137)
         Me.lblRegisterSelected.Name = "lblRegisterSelected"
         Me.lblRegisterSelected.Size = New System.Drawing.Size(290, 33)
         Me.lblRegisterSelected.TabIndex = 15
         Me.lblRegisterSelected.Text = "Area Calc Checklist"
         Me.lblRegisterSelected.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'printSelectedDGVDataRow
+        'printPreview
         '
-        Me.printSelectedDGVDataRow.AutoScrollMargin = New System.Drawing.Size(0, 0)
-        Me.printSelectedDGVDataRow.AutoScrollMinSize = New System.Drawing.Size(0, 0)
-        Me.printSelectedDGVDataRow.ClientSize = New System.Drawing.Size(400, 300)
-        Me.printSelectedDGVDataRow.Enabled = True
-        Me.printSelectedDGVDataRow.Icon = CType(resources.GetObject("printSelectedDGVDataRow.Icon"), System.Drawing.Icon)
-        Me.printSelectedDGVDataRow.Name = "PrintPreviewDialog1"
-        Me.printSelectedDGVDataRow.Visible = False
+        Me.printPreview.AutoScrollMargin = New System.Drawing.Size(0, 0)
+        Me.printPreview.AutoScrollMinSize = New System.Drawing.Size(0, 0)
+        Me.printPreview.ClientSize = New System.Drawing.Size(400, 300)
+        Me.printPreview.Document = Me.PrintDocument
+        Me.printPreview.Enabled = True
+        Me.printPreview.Icon = CType(resources.GetObject("printPreview.Icon"), System.Drawing.Icon)
+        Me.printPreview.Name = "PrintPreviewDialog1"
+        Me.printPreview.Visible = False
+        '
+        'PrintDialog
+        '
+        Me.PrintDialog.Document = Me.PrintDocument
+        Me.PrintDialog.UseEXDialog = True
+        '
+        'cmdExportXLXS
+        '
+        Me.cmdExportXLXS.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.cmdExportXLXS.Image = CType(resources.GetObject("cmdExportXLXS.Image"), System.Drawing.Image)
+        Me.cmdExportXLXS.Location = New System.Drawing.Point(1300, 150)
+        Me.cmdExportXLXS.Name = "cmdExportXLXS"
+        Me.cmdExportXLXS.Size = New System.Drawing.Size(30, 30)
+        Me.cmdExportXLXS.TabIndex = 19
+        Me.cmdExportXLXS.UseVisualStyleBackColor = True
+        '
+        'cmdDeleteRow
+        '
+        Me.cmdDeleteRow.Image = CType(resources.GetObject("cmdDeleteRow.Image"), System.Drawing.Image)
+        Me.cmdDeleteRow.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.cmdDeleteRow.Location = New System.Drawing.Point(450, 36)
+        Me.cmdDeleteRow.Name = "cmdDeleteRow"
+        Me.cmdDeleteRow.Size = New System.Drawing.Size(88, 30)
+        Me.cmdDeleteRow.TabIndex = 18
+        Me.cmdDeleteRow.Text = "Delete Row"
+        Me.cmdDeleteRow.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.cmdDeleteRow.UseVisualStyleBackColor = True
+        '
+        'cmdPrintDGVData
+        '
+        Me.cmdPrintDGVData.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.cmdPrintDGVData.Image = CType(resources.GetObject("cmdPrintDGVData.Image"), System.Drawing.Image)
+        Me.cmdPrintDGVData.Location = New System.Drawing.Point(1264, 150)
+        Me.cmdPrintDGVData.Name = "cmdPrintDGVData"
+        Me.cmdPrintDGVData.Size = New System.Drawing.Size(30, 30)
+        Me.cmdPrintDGVData.TabIndex = 17
+        Me.cmdPrintDGVData.UseVisualStyleBackColor = True
         '
         'PictureBox1
         '
         Me.PictureBox1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.PictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.PictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.PictureBox1.Image = Global.databaseTest1.My.Resources.Resources.Xcel_Surveying_Cropped
         Me.PictureBox1.InitialImage = Global.databaseTest1.My.Resources.Resources.Xcel_Surveying_Cropped
-        Me.PictureBox1.Location = New System.Drawing.Point(1151, 36)
+        Me.PictureBox1.Location = New System.Drawing.Point(1084, 36)
         Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(179, 98)
+        Me.PictureBox1.Size = New System.Drawing.Size(246, 98)
         Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.PictureBox1.TabIndex = 16
         Me.PictureBox1.TabStop = False
@@ -256,7 +287,7 @@ Partial Class formMain
         '
         Me.cmdNewEntry.Image = CType(resources.GetObject("cmdNewEntry.Image"), System.Drawing.Image)
         Me.cmdNewEntry.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.cmdNewEntry.Location = New System.Drawing.Point(341, 36)
+        Me.cmdNewEntry.Location = New System.Drawing.Point(356, 36)
         Me.cmdNewEntry.Name = "cmdNewEntry"
         Me.cmdNewEntry.Size = New System.Drawing.Size(88, 30)
         Me.cmdNewEntry.TabIndex = 12
@@ -264,23 +295,16 @@ Partial Class formMain
         Me.cmdNewEntry.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.cmdNewEntry.UseVisualStyleBackColor = True
         '
-        'cmdPrintDGVData
+        'cmdModifySelectedRow
         '
-        Me.cmdPrintDGVData.Image = CType(resources.GetObject("cmdPrintDGVData.Image"), System.Drawing.Image)
-        Me.cmdPrintDGVData.Location = New System.Drawing.Point(1255, 157)
-        Me.cmdPrintDGVData.Name = "cmdPrintDGVData"
-        Me.cmdPrintDGVData.Size = New System.Drawing.Size(33, 23)
-        Me.cmdPrintDGVData.TabIndex = 17
-        Me.cmdPrintDGVData.UseVisualStyleBackColor = True
-        '
-        'cmdDeleteRow
-        '
-        Me.cmdDeleteRow.Location = New System.Drawing.Point(440, 36)
-        Me.cmdDeleteRow.Name = "cmdDeleteRow"
-        Me.cmdDeleteRow.Size = New System.Drawing.Size(88, 30)
-        Me.cmdDeleteRow.TabIndex = 18
-        Me.cmdDeleteRow.Text = "Delete Row"
-        Me.cmdDeleteRow.UseVisualStyleBackColor = True
+        Me.cmdModifySelectedRow.Image = CType(resources.GetObject("cmdModifySelectedRow.Image"), System.Drawing.Image)
+        Me.cmdModifySelectedRow.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.cmdModifySelectedRow.Location = New System.Drawing.Point(356, 81)
+        Me.cmdModifySelectedRow.Name = "cmdModifySelectedRow"
+        Me.cmdModifySelectedRow.Size = New System.Drawing.Size(182, 30)
+        Me.cmdModifySelectedRow.TabIndex = 11
+        Me.cmdModifySelectedRow.Text = "Modify Selected Row"
+        Me.cmdModifySelectedRow.UseVisualStyleBackColor = True
         '
         'formMain
         '
@@ -288,6 +312,7 @@ Partial Class formMain
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.ClientSize = New System.Drawing.Size(1342, 688)
+        Me.Controls.Add(Me.cmdExportXLXS)
         Me.Controls.Add(Me.cmdDeleteRow)
         Me.Controls.Add(Me.cmdPrintDGVData)
         Me.Controls.Add(Me.PictureBox1)
@@ -337,8 +362,11 @@ Partial Class formMain
     Friend WithEvents SettingsToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents HelpToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents AboutToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents printSelectedDGVDataRow As System.Windows.Forms.PrintPreviewDialog
+    Friend WithEvents printPreview As System.Windows.Forms.PrintPreviewDialog
     Friend WithEvents cmdPrintDGVData As System.Windows.Forms.Button
     Friend WithEvents cmdDeleteRow As System.Windows.Forms.Button
+    Friend WithEvents PrintDialog As System.Windows.Forms.PrintDialog
+    Friend WithEvents PrintDocument As System.Drawing.Printing.PrintDocument
+    Friend WithEvents cmdExportXLXS As System.Windows.Forms.Button
 
 End Class

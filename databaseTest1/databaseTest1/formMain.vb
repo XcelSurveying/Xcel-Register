@@ -1,15 +1,28 @@
-﻿Public Class formMain
+﻿Option Explicit On
+
+Public Class formMain
     Dim SQL As New SQLControl
     Dim export As New exportTables
+    Dim activation As New Activation
     Dim queryString As String
     'Dim sortColumns As sortColumnsDGVData
 
     Private Sub formMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        'Hide Print command button, until get working code for this
+
+        'Print command button
         cmdPrintDGVData.Visible = False
 
         'Open main window Maximised
         Me.WindowState = FormWindowState.Maximized
+
+        'PERFORM KEY CHECK BEFORE ANY ANYTHING ELSE
+        If activation.WaitForActivation() = True Then
+            Me.Enabled = True
+        Else
+            MessageBox.Show("Activation failed")
+            End
+        End If
+
 
         If SQL.HasConnection = True Then 'has connected
             initilizeDataGridView() 'Set visual params for data grid view
@@ -344,19 +357,15 @@
         MessageBox.Show("Xcel Database Register: Version ##.##", "About", MessageBoxButtons.OK, MessageBoxIcon.None)
     End Sub
 
-    '--PRINT DataGridView 
-    Private Sub cmdPrintDGVData_Click(sender As Object, e As EventArgs) Handles cmdPrintDGVData.Click
-
-    End Sub
-
-    
+    '--DELETE SELECTED ROW
     Private Sub cmdDeleteRow_Click(sender As Object, e As EventArgs) Handles cmdDeleteRow.Click
-        Dim row As DataGridViewRow
-        Dim selectedRegister As String = ""
-        row = DGVData.Rows(DGVData.CurrentRow.Index) 'Returns integer value of the select row index from the datagrid
-        Dim rowID As String = (row.Cells("ID").Value.ToString)
-
         Try
+            Dim row As DataGridViewRow
+            Dim selectedRegister As String = ""
+            row = DGVData.Rows(DGVData.CurrentRow.Index) 'Returns integer value of the select row index from the datagrid
+            Dim rowID As String = (row.Cells("ID").Value.ToString)
+
+
             Select Case True
                 Case rbAreaCalcChecklist.Checked
                     selectedRegister = "AreaCalcChecklist"
@@ -368,16 +377,96 @@
                     selectedRegister = "TqRfiRegister"
 
             End Select
+
+            If MessageBox.Show("Are you sure you want to delete the row?" & vbCrLf & vbCrLf & vbTab & "ID: " & rowID & vbCrLf & vbCrLf & _
+                               "Once deleted this can't be undone", "Confirmation", MessageBoxButtons.YesNo, _
+                               MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) = Windows.Forms.DialogResult.Yes Then
+
+                queryString = ("DELETE FROM " & selectedRegister & " WHERE " & _
+                            "ID=" & rowID)
+
+                SQL.RunQuery(queryString)
+                txtSearch_KeyUp(AcceptButton, AcceptButton)
+              
+            End If
         Catch ex As Exception
             MessageBox.Show(ex.Message, "Delete Entry", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
-
-
-        queryString = ("DELETE FROM " & selectedRegister & " WHERE " & vbCrLf & _
-                            "ID=" & rowID)
-
-        txtSearch_KeyUp(AcceptButton, AcceptButton)
-        SQL.RunQuery(queryString)
-        refreshDataGridView()
     End Sub
+
+
+    '--PRINT DataGridView 
+    Private Sub cmdPrintDGVData_Click(sender As Object, e As EventArgs) Handles cmdPrintDGVData.Click
+        printPreview.ShowDialog()
+    End Sub
+
+
+    '  Private Sub PrintDocument_PrintPage(sender As Object, e As Printing.PrintPageEventArgs) Handles PrintDocument.PrintPage
+    '      Dim font As New Font("Arial", 16, FontStyle.Regular)
+    '      e.Graphics.DrawString(DGVData.Rows, font, Brushes.Black, 100, 100)
+    '  End Sub
+
+
+    'EXPORT TO MS EXCEL
+    Private Sub cmdExportXLXS_Click(sender As Object, e As EventArgs) Handles cmdExportXLXS.Click
+        Try
+            Dim xlApp As Microsoft.Office.Interop.Excel.Application
+            Dim xlWorkBook As Microsoft.Office.Interop.Excel.Workbook
+            Dim xlWorkSheet As Microsoft.Office.Interop.Excel.Worksheet
+            Dim misValue As Object = System.Reflection.Missing.Value
+            Dim i As Integer
+            Dim j As Integer
+
+            xlApp = New Microsoft.Office.Interop.Excel.Application
+            xlWorkBook = xlApp.Workbooks.Add(misValue)
+            xlWorkSheet = xlWorkBook.Sheets("sheet1")
+
+
+            For i = 0 To DGVData.RowCount - 1
+                For j = 0 To DGVData.ColumnCount - 1
+                    For k As Integer = 1 To DGVData.Columns.Count
+                        xlWorkSheet.Cells(1, k) = DGVData.Columns(k - 1).HeaderText
+                        xlWorkSheet.Cells(i + 2, j + 1) = DGVData(j, i).Value
+                    Next
+                Next
+            Next
+
+            Dim exportXLSXFile As New SaveFileDialog()
+            exportXLSXFile.Filter = "Excel file|*.xlsx"
+            exportXLSXFile.Title = "Export an Excel File"
+            exportXLSXFile.ShowDialog()
+
+            If exportXLSXFile.FileName <> "" Then
+
+                xlWorkSheet.SaveAs(exportXLSXFile.FileName)
+                xlWorkBook.Close()
+                xlApp.Quit()
+
+                releaseObject(xlApp)
+                releaseObject(xlWorkBook)
+                releaseObject(xlWorkSheet)
+
+                If MessageBox.Show("Export of the Excel file is complete, Would you like to open file?", "Export Complete", MessageBoxButtons.YesNo) = Windows.Forms.DialogResult.Yes Then
+                    Process.Start(exportXLSXFile.FileName)
+                End If
+
+            End If
+        Catch ex As Exception
+            MessageBox.Show(ex.Message)
+        End Try
+        
+
+    End Sub
+    'Release the Excel application
+    Private Sub releaseObject(ByVal obj As Object)
+        Try
+            System.Runtime.InteropServices.Marshal.ReleaseComObject(obj)
+            obj = Nothing
+        Catch ex As Exception
+            obj = Nothing
+        Finally
+            GC.Collect()
+        End Try
+    End Sub
+
 End Class

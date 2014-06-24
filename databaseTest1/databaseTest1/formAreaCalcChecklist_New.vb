@@ -20,11 +20,11 @@
             Exit Sub
         End If
 
-        If cmboCalcdBy.Text = "Please Select..." OrElse cmboCalcdBy.Text = "" Then
+        If cmboCalcdBy.Text = "Please select ..." OrElse cmboCalcdBy.Text = "" Then
             Exit Sub
         End If
 
-        If cmboCheckedBy.Text = "Please Select..." OrElse cmboCheckedBy.Text = "" Then
+        If cmboCheckedBy.Text = "Please select ..." OrElse cmboCheckedBy.Text = "" Then
             Exit Sub
         End If
 
@@ -98,5 +98,9 @@
         Handles txtModelLayer.KeyPress, txtComments.KeyPress, txtDrawingNumber.KeyPress, txtTqRfi.KeyPress
         'Escape Characters Class (e as keyPress, allow numbers, allow letters)
         EscapeChars.Include(e, True, True)
+    End Sub
+
+    Private Sub cmdCancel_Click(sender As Object, e As EventArgs) Handles cmdCancel.Click
+        Me.Close()
     End Sub
 End Class

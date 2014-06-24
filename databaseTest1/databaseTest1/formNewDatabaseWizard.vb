@@ -186,6 +186,7 @@ Public Class formNewDatabaseWizard
         My.Settings.settingsIsActiveWarning = lblWarning.Visible.ToString
         My.Settings.settingsIsActiveMessage = lblMessage.Visible.ToString
 
+        My.Settings.Save()
 
     End Sub
 
@@ -211,4 +212,7 @@ Public Class formNewDatabaseWizard
 
     End Sub
 
+    Private Sub cmdClose_Click(sender As Object, e As EventArgs) Handles cmdClose.Click
+        Me.Close()
+    End Sub
 End Class

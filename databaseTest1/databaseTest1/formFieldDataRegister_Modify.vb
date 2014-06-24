@@ -1,4 +1,6 @@
-﻿Public Class formFieldDataRegister_Modify
+﻿Option Explicit On
+
+Public Class formFieldDataRegister_Modify
     Dim sql As New SQLControl
     Dim export As New exportTables
     Dim EscapeChars As New EscapeChars
@@ -54,7 +56,7 @@
 
         ID = (row.Cells("ID").Value.ToString).Trim
         txtJobRefNum.Text = (row.Cells("Job Ref Number").Value.ToString).Trim
-        dtpDate.Text = (row.Cells("Date").Value.ToString).Trim
+        dtpDate.Text = (row.Cells("Date").Value.ToString)
         cmboSurveyor.Text = (row.Cells("Surveyor").Value.ToString).Trim
         cmboArea.Text = (row.Cells("Area").Value.ToString).Trim
         cmboJobType.Text = (row.Cells("Job Type").Value.ToString).Trim
@@ -315,4 +317,7 @@
         lblDocumentNameWarning.Visible = False
     End Sub
 
+    Private Sub cmdCancel_Click(sender As Object, e As EventArgs) Handles cmdCancel.Click
+        Me.Close()
+    End Sub
 End Class

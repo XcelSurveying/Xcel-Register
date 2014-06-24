@@ -23,6 +23,7 @@ Partial Class formFieldDataRegister_Modify
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(formFieldDataRegister_Modify))
         Me.txtJobRefNum = New System.Windows.Forms.TextBox()
         Me.dtpDate = New System.Windows.Forms.DateTimePicker()
         Me.cmboSurveyor = New System.Windows.Forms.ComboBox()
@@ -54,6 +55,7 @@ Partial Class formFieldDataRegister_Modify
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.Timer2 = New System.Windows.Forms.Timer(Me.components)
         Me.Timer3 = New System.Windows.Forms.Timer(Me.components)
+        Me.cmdCancel = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -64,24 +66,25 @@ Partial Class formFieldDataRegister_Modify
         Me.txtJobRefNum.Location = New System.Drawing.Point(19, 52)
         Me.txtJobRefNum.MaxLength = 10
         Me.txtJobRefNum.Name = "txtJobRefNum"
-        Me.txtJobRefNum.Size = New System.Drawing.Size(189, 33)
-        Me.txtJobRefNum.TabIndex = 0
+        Me.txtJobRefNum.Size = New System.Drawing.Size(212, 33)
+        Me.txtJobRefNum.TabIndex = 1
         '
         'dtpDate
         '
-        Me.dtpDate.Location = New System.Drawing.Point(358, 156)
+        Me.dtpDate.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.dtpDate.Location = New System.Drawing.Point(286, 156)
         Me.dtpDate.Name = "dtpDate"
-        Me.dtpDate.Size = New System.Drawing.Size(140, 21)
-        Me.dtpDate.TabIndex = 4
+        Me.dtpDate.Size = New System.Drawing.Size(100, 21)
+        Me.dtpDate.TabIndex = 5
         '
         'cmboSurveyor
         '
         Me.cmboSurveyor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmboSurveyor.FormattingEnabled = True
-        Me.cmboSurveyor.Location = New System.Drawing.Point(19, 231)
+        Me.cmboSurveyor.Location = New System.Drawing.Point(17, 231)
         Me.cmboSurveyor.Name = "cmboSurveyor"
-        Me.cmboSurveyor.Size = New System.Drawing.Size(189, 21)
-        Me.cmboSurveyor.TabIndex = 5
+        Me.cmboSurveyor.Size = New System.Drawing.Size(212, 21)
+        Me.cmboSurveyor.TabIndex = 6
         '
         'cmboArea
         '
@@ -89,8 +92,8 @@ Partial Class formFieldDataRegister_Modify
         Me.cmboArea.FormattingEnabled = True
         Me.cmboArea.Location = New System.Drawing.Point(19, 297)
         Me.cmboArea.Name = "cmboArea"
-        Me.cmboArea.Size = New System.Drawing.Size(189, 21)
-        Me.cmboArea.TabIndex = 7
+        Me.cmboArea.Size = New System.Drawing.Size(210, 21)
+        Me.cmboArea.TabIndex = 8
         '
         'cmboJobType
         '
@@ -98,8 +101,8 @@ Partial Class formFieldDataRegister_Modify
         Me.cmboJobType.FormattingEnabled = True
         Me.cmboJobType.Location = New System.Drawing.Point(286, 297)
         Me.cmboJobType.Name = "cmboJobType"
-        Me.cmboJobType.Size = New System.Drawing.Size(215, 21)
-        Me.cmboJobType.TabIndex = 8
+        Me.cmboJobType.Size = New System.Drawing.Size(212, 21)
+        Me.cmboJobType.TabIndex = 9
         '
         'txtJobDescription
         '
@@ -108,7 +111,7 @@ Partial Class formFieldDataRegister_Modify
         Me.txtJobDescription.Multiline = True
         Me.txtJobDescription.Name = "txtJobDescription"
         Me.txtJobDescription.Size = New System.Drawing.Size(212, 57)
-        Me.txtJobDescription.TabIndex = 1
+        Me.txtJobDescription.TabIndex = 2
         '
         'txtFieldBook
         '
@@ -116,7 +119,7 @@ Partial Class formFieldDataRegister_Modify
         Me.txtFieldBook.MaxLength = 2
         Me.txtFieldBook.Name = "txtFieldBook"
         Me.txtFieldBook.Size = New System.Drawing.Size(40, 21)
-        Me.txtFieldBook.TabIndex = 2
+        Me.txtFieldBook.TabIndex = 3
         '
         'txtFieldPage
         '
@@ -124,7 +127,7 @@ Partial Class formFieldDataRegister_Modify
         Me.txtFieldPage.MaxLength = 7
         Me.txtFieldPage.Name = "txtFieldPage"
         Me.txtFieldPage.Size = New System.Drawing.Size(48, 21)
-        Me.txtFieldPage.TabIndex = 3
+        Me.txtFieldPage.TabIndex = 4
         '
         'cmboInstrumentA
         '
@@ -133,7 +136,7 @@ Partial Class formFieldDataRegister_Modify
         Me.cmboInstrumentA.Location = New System.Drawing.Point(286, 231)
         Me.cmboInstrumentA.Name = "cmboInstrumentA"
         Me.cmboInstrumentA.Size = New System.Drawing.Size(212, 21)
-        Me.cmboInstrumentA.TabIndex = 6
+        Me.cmboInstrumentA.TabIndex = 7
         '
         'txtComments
         '
@@ -141,8 +144,8 @@ Partial Class formFieldDataRegister_Modify
         Me.txtComments.MaxLength = 255
         Me.txtComments.Multiline = True
         Me.txtComments.Name = "txtComments"
-        Me.txtComments.Size = New System.Drawing.Size(305, 52)
-        Me.txtComments.TabIndex = 9
+        Me.txtComments.Size = New System.Drawing.Size(479, 52)
+        Me.txtComments.TabIndex = 10
         '
         'Label1
         '
@@ -156,7 +159,7 @@ Partial Class formFieldDataRegister_Modify
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(355, 140)
+        Me.Label2.Location = New System.Drawing.Point(283, 140)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(80, 13)
         Me.Label2.TabIndex = 11
@@ -236,6 +239,7 @@ Partial Class formFieldDataRegister_Modify
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.cmdCancel)
         Me.GroupBox1.Controls.Add(Me.lblFieldBookWarning)
         Me.GroupBox1.Controls.Add(Me.Label12)
         Me.GroupBox1.Controls.Add(Me.lblDescriptionWarning)
@@ -264,7 +268,7 @@ Partial Class formFieldDataRegister_Modify
         Me.GroupBox1.Controls.Add(Me.txtComments)
         Me.GroupBox1.Location = New System.Drawing.Point(12, 12)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(520, 439)
+        Me.GroupBox1.Size = New System.Drawing.Size(520, 477)
         Me.GroupBox1.TabIndex = 20
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Enter Details"
@@ -313,12 +317,15 @@ Partial Class formFieldDataRegister_Modify
         '
         'cmdSave
         '
-        Me.cmdSave.Location = New System.Drawing.Point(395, 373)
+        Me.cmdSave.Image = CType(resources.GetObject("cmdSave.Image"), System.Drawing.Image)
+        Me.cmdSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.cmdSave.Location = New System.Drawing.Point(372, 441)
         Me.cmdSave.Name = "cmdSave"
-        Me.cmdSave.Size = New System.Drawing.Size(103, 46)
-        Me.cmdSave.TabIndex = 10
+        Me.cmdSave.Size = New System.Drawing.Size(60, 30)
+        Me.cmdSave.TabIndex = 11
         Me.cmdSave.Text = "Save"
-        Me.cmdSave.UseVisualStyleBackColor = True
+        Me.cmdSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.cmdSave.UseVisualStyleBackColor = False
         '
         'Label11
         '
@@ -342,14 +349,23 @@ Partial Class formFieldDataRegister_Modify
         'Timer3
         '
         '
-        'formModifyFieldDataRegister
+        'cmdCancel
+        '
+        Me.cmdCancel.Location = New System.Drawing.Point(438, 441)
+        Me.cmdCancel.Name = "cmdCancel"
+        Me.cmdCancel.Size = New System.Drawing.Size(60, 30)
+        Me.cmdCancel.TabIndex = 12
+        Me.cmdCancel.Text = "Cancel"
+        Me.cmdCancel.UseVisualStyleBackColor = False
+        '
+        'formFieldDataRegister_Modify
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(543, 462)
+        Me.ClientSize = New System.Drawing.Size(544, 502)
         Me.Controls.Add(Me.GroupBox1)
         Me.Font = New System.Drawing.Font("Tahoma", 8.25!)
-        Me.Name = "formModifyFieldDataRegister"
+        Me.Name = "formFieldDataRegister_Modify"
         Me.Text = "Modify Entry to Field Data Register"
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
@@ -388,4 +404,5 @@ Partial Class formFieldDataRegister_Modify
     Friend WithEvents Label12 As System.Windows.Forms.Label
     Friend WithEvents lblFieldBookWarning As System.Windows.Forms.Label
     Friend WithEvents Timer3 As System.Windows.Forms.Timer
+    Friend WithEvents cmdCancel As System.Windows.Forms.Button
 End Class

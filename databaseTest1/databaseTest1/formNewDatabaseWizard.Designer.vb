@@ -22,6 +22,7 @@ Partial Class formNewDatabaseWizard
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(formNewDatabaseWizard))
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.lblWarning = New System.Windows.Forms.Label()
         Me.cmdModify = New System.Windows.Forms.Button()
@@ -39,14 +40,14 @@ Partial Class formNewDatabaseWizard
         Me.txtServer = New System.Windows.Forms.TextBox()
         Me.cmdSetupDatabase = New System.Windows.Forms.Button()
         Me.cmd_CreateTables = New System.Windows.Forms.Button()
-        Me.cmboSQLServers = New System.Windows.Forms.ComboBox()
+        Me.cmdClose = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
         'GroupBox1
         '
-        Me.GroupBox1.Controls.Add(Me.cmboSQLServers)
         Me.GroupBox1.Controls.Add(Me.lblWarning)
+        Me.GroupBox1.Controls.Add(Me.cmd_CreateTables)
         Me.GroupBox1.Controls.Add(Me.cmdModify)
         Me.GroupBox1.Controls.Add(Me.lblMessage)
         Me.GroupBox1.Controls.Add(Me.cmdTestConn)
@@ -64,18 +65,17 @@ Partial Class formNewDatabaseWizard
         Me.GroupBox1.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox1.Location = New System.Drawing.Point(12, 12)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(347, 279)
+        Me.GroupBox1.Size = New System.Drawing.Size(347, 261)
         Me.GroupBox1.TabIndex = 0
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Database connection"
         '
         'lblWarning
         '
-        Me.lblWarning.AutoSize = True
         Me.lblWarning.ForeColor = System.Drawing.Color.Red
         Me.lblWarning.Location = New System.Drawing.Point(13, 218)
         Me.lblWarning.Name = "lblWarning"
-        Me.lblWarning.Size = New System.Drawing.Size(57, 13)
+        Me.lblWarning.Size = New System.Drawing.Size(166, 35)
         Me.lblWarning.TabIndex = 17
         Me.lblWarning.Text = "lblWarning"
         Me.lblWarning.Visible = False
@@ -208,39 +208,47 @@ Partial Class formNewDatabaseWizard
         'cmdSetupDatabase
         '
         Me.cmdSetupDatabase.Enabled = False
-        Me.cmdSetupDatabase.Location = New System.Drawing.Point(202, 58)
+        Me.cmdSetupDatabase.Image = CType(resources.GetObject("cmdSetupDatabase.Image"), System.Drawing.Image)
+        Me.cmdSetupDatabase.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.cmdSetupDatabase.Location = New System.Drawing.Point(215, 64)
         Me.cmdSetupDatabase.Name = "cmdSetupDatabase"
-        Me.cmdSetupDatabase.Size = New System.Drawing.Size(128, 35)
+        Me.cmdSetupDatabase.Size = New System.Drawing.Size(115, 35)
         Me.cmdSetupDatabase.TabIndex = 0
         Me.cmdSetupDatabase.Text = "Setup Database"
+        Me.cmdSetupDatabase.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.cmdSetupDatabase.UseVisualStyleBackColor = True
         '
         'cmd_CreateTables
         '
-        Me.cmd_CreateTables.Location = New System.Drawing.Point(405, 28)
+        Me.cmd_CreateTables.Image = CType(resources.GetObject("cmd_CreateTables.Image"), System.Drawing.Image)
+        Me.cmd_CreateTables.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.cmd_CreateTables.Location = New System.Drawing.Point(229, 218)
         Me.cmd_CreateTables.Name = "cmd_CreateTables"
-        Me.cmd_CreateTables.Size = New System.Drawing.Size(126, 36)
+        Me.cmd_CreateTables.Size = New System.Drawing.Size(101, 35)
         Me.cmd_CreateTables.TabIndex = 1
         Me.cmd_CreateTables.Text = "Create Tables"
+        Me.cmd_CreateTables.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.cmd_CreateTables.UseVisualStyleBackColor = True
         '
-        'cmboSQLServers
+        'cmdClose
         '
-        Me.cmboSQLServers.FormattingEnabled = True
-        Me.cmboSQLServers.Location = New System.Drawing.Point(139, 242)
-        Me.cmboSQLServers.Name = "cmboSQLServers"
-        Me.cmboSQLServers.Size = New System.Drawing.Size(121, 21)
-        Me.cmboSQLServers.TabIndex = 18
+        Me.cmdClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.cmdClose.Location = New System.Drawing.Point(299, 279)
+        Me.cmdClose.Name = "cmdClose"
+        Me.cmdClose.Size = New System.Drawing.Size(60, 30)
+        Me.cmdClose.TabIndex = 17
+        Me.cmdClose.Text = "Close"
+        Me.cmdClose.UseVisualStyleBackColor = True
         '
         'formNewDatabaseWizard
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(651, 348)
+        Me.ClientSize = New System.Drawing.Size(371, 317)
+        Me.Controls.Add(Me.cmdClose)
         Me.Controls.Add(Me.GroupBox1)
-        Me.Controls.Add(Me.cmd_CreateTables)
         Me.Name = "formNewDatabaseWizard"
-        Me.Text = "formNewDatabaseWizard"
+        Me.Text = "Setup Database"
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         Me.ResumeLayout(False)
@@ -263,5 +271,5 @@ Partial Class formNewDatabaseWizard
     Friend WithEvents lblMessage As System.Windows.Forms.Label
     Friend WithEvents cmdModify As System.Windows.Forms.Button
     Friend WithEvents lblWarning As System.Windows.Forms.Label
-    Friend WithEvents cmboSQLServers As System.Windows.Forms.ComboBox
+    Friend WithEvents cmdClose As System.Windows.Forms.Button
 End Class

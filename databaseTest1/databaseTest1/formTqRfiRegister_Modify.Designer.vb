@@ -22,6 +22,7 @@ Partial Class formTqRfiRegister_Modify
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(formTqRfiRegister_Modify))
         Me.txtDrawingNumber = New System.Windows.Forms.TextBox()
         Me.txtTqRfi = New System.Windows.Forms.TextBox()
         Me.dtpDate = New System.Windows.Forms.DateTimePicker()
@@ -36,22 +37,23 @@ Partial Class formTqRfiRegister_Modify
         Me.Label6 = New System.Windows.Forms.Label()
         Me.cmdSave = New System.Windows.Forms.Button()
         Me.cmdCancel = New System.Windows.Forms.Button()
-        Me.Label7 = New System.Windows.Forms.Label()
         Me.lblDNMessage = New System.Windows.Forms.Label()
         Me.lblTQMessage = New System.Windows.Forms.Label()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
         'txtDrawingNumber
         '
-        Me.txtDrawingNumber.Location = New System.Drawing.Point(15, 35)
+        Me.txtDrawingNumber.Location = New System.Drawing.Point(20, 32)
         Me.txtDrawingNumber.MaxLength = 30
         Me.txtDrawingNumber.Name = "txtDrawingNumber"
-        Me.txtDrawingNumber.Size = New System.Drawing.Size(121, 20)
+        Me.txtDrawingNumber.Size = New System.Drawing.Size(141, 20)
         Me.txtDrawingNumber.TabIndex = 0
         '
         'txtTqRfi
         '
-        Me.txtTqRfi.Location = New System.Drawing.Point(172, 35)
+        Me.txtTqRfi.Location = New System.Drawing.Point(177, 32)
         Me.txtTqRfi.MaxLength = 30
         Me.txtTqRfi.Name = "txtTqRfi"
         Me.txtTqRfi.Size = New System.Drawing.Size(141, 20)
@@ -60,18 +62,18 @@ Partial Class formTqRfiRegister_Modify
         'dtpDate
         '
         Me.dtpDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.dtpDate.Location = New System.Drawing.Point(15, 110)
+        Me.dtpDate.Location = New System.Drawing.Point(20, 108)
         Me.dtpDate.Name = "dtpDate"
-        Me.dtpDate.Size = New System.Drawing.Size(121, 20)
+        Me.dtpDate.Size = New System.Drawing.Size(100, 20)
         Me.dtpDate.TabIndex = 2
         '
         'cmboSurveyor
         '
         Me.cmboSurveyor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmboSurveyor.FormattingEnabled = True
-        Me.cmboSurveyor.Location = New System.Drawing.Point(172, 110)
+        Me.cmboSurveyor.Location = New System.Drawing.Point(136, 107)
         Me.cmboSurveyor.Name = "cmboSurveyor"
-        Me.cmboSurveyor.Size = New System.Drawing.Size(142, 21)
+        Me.cmboSurveyor.Size = New System.Drawing.Size(182, 21)
         Me.cmboSurveyor.TabIndex = 3
         '
         'cmboArea
@@ -79,14 +81,14 @@ Partial Class formTqRfiRegister_Modify
         Me.cmboArea.BackColor = System.Drawing.SystemColors.Window
         Me.cmboArea.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmboArea.FormattingEnabled = True
-        Me.cmboArea.Location = New System.Drawing.Point(15, 170)
+        Me.cmboArea.Location = New System.Drawing.Point(20, 183)
         Me.cmboArea.Name = "cmboArea"
         Me.cmboArea.Size = New System.Drawing.Size(298, 21)
         Me.cmboArea.TabIndex = 4
         '
         'txtDescription
         '
-        Me.txtDescription.Location = New System.Drawing.Point(15, 230)
+        Me.txtDescription.Location = New System.Drawing.Point(20, 258)
         Me.txtDescription.MaxLength = 255
         Me.txtDescription.Multiline = True
         Me.txtDescription.Name = "txtDescription"
@@ -96,7 +98,7 @@ Partial Class formTqRfiRegister_Modify
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(12, 19)
+        Me.Label1.Location = New System.Drawing.Point(17, 16)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(86, 13)
         Me.Label1.TabIndex = 6
@@ -105,7 +107,7 @@ Partial Class formTqRfiRegister_Modify
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(169, 19)
+        Me.Label2.Location = New System.Drawing.Point(174, 16)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(50, 13)
         Me.Label2.TabIndex = 7
@@ -114,7 +116,7 @@ Partial Class formTqRfiRegister_Modify
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(12, 94)
+        Me.Label3.Location = New System.Drawing.Point(17, 91)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(79, 13)
         Me.Label3.TabIndex = 8
@@ -123,7 +125,7 @@ Partial Class formTqRfiRegister_Modify
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(169, 94)
+        Me.Label4.Location = New System.Drawing.Point(133, 91)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(49, 13)
         Me.Label4.TabIndex = 9
@@ -132,7 +134,7 @@ Partial Class formTqRfiRegister_Modify
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(12, 154)
+        Me.Label5.Location = New System.Drawing.Point(17, 167)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(29, 13)
         Me.Label5.TabIndex = 10
@@ -141,7 +143,7 @@ Partial Class formTqRfiRegister_Modify
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(12, 214)
+        Me.Label6.Location = New System.Drawing.Point(17, 242)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(60, 13)
         Me.Label6.TabIndex = 11
@@ -149,36 +151,30 @@ Partial Class formTqRfiRegister_Modify
         '
         'cmdSave
         '
-        Me.cmdSave.Location = New System.Drawing.Point(241, 316)
+        Me.cmdSave.Image = CType(resources.GetObject("cmdSave.Image"), System.Drawing.Image)
+        Me.cmdSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.cmdSave.Location = New System.Drawing.Point(192, 337)
         Me.cmdSave.Name = "cmdSave"
-        Me.cmdSave.Size = New System.Drawing.Size(75, 36)
+        Me.cmdSave.Size = New System.Drawing.Size(60, 30)
         Me.cmdSave.TabIndex = 12
         Me.cmdSave.Text = "Save"
-        Me.cmdSave.UseVisualStyleBackColor = True
+        Me.cmdSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.cmdSave.UseVisualStyleBackColor = False
         '
         'cmdCancel
         '
-        Me.cmdCancel.Location = New System.Drawing.Point(183, 329)
+        Me.cmdCancel.Location = New System.Drawing.Point(258, 337)
         Me.cmdCancel.Name = "cmdCancel"
-        Me.cmdCancel.Size = New System.Drawing.Size(49, 23)
+        Me.cmdCancel.Size = New System.Drawing.Size(60, 30)
         Me.cmdCancel.TabIndex = 13
         Me.cmdCancel.Text = "Cancel"
-        Me.cmdCancel.UseVisualStyleBackColor = True
-        '
-        'Label7
-        '
-        Me.Label7.BackColor = System.Drawing.SystemColors.Control
-        Me.Label7.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.Label7.Location = New System.Drawing.Point(-28, 305)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(377, 82)
-        Me.Label7.TabIndex = 14
+        Me.cmdCancel.UseVisualStyleBackColor = False
         '
         'lblDNMessage
         '
         Me.lblDNMessage.AutoSize = True
         Me.lblDNMessage.ForeColor = System.Drawing.Color.Red
-        Me.lblDNMessage.Location = New System.Drawing.Point(17, 58)
+        Me.lblDNMessage.Location = New System.Drawing.Point(22, 55)
         Me.lblDNMessage.Name = "lblDNMessage"
         Me.lblDNMessage.Size = New System.Drawing.Size(76, 13)
         Me.lblDNMessage.TabIndex = 15
@@ -189,41 +185,51 @@ Partial Class formTqRfiRegister_Modify
         '
         Me.lblTQMessage.AutoSize = True
         Me.lblTQMessage.ForeColor = System.Drawing.Color.Red
-        Me.lblTQMessage.Location = New System.Drawing.Point(173, 58)
+        Me.lblTQMessage.Location = New System.Drawing.Point(178, 55)
         Me.lblTQMessage.Name = "lblTQMessage"
         Me.lblTQMessage.Size = New System.Drawing.Size(75, 13)
         Me.lblTQMessage.TabIndex = 16
         Me.lblTQMessage.Text = "lblTQMessage"
         Me.lblTQMessage.Visible = False
         '
-        'formNewEntryTqRfiRegister
+        'GroupBox1
+        '
+        Me.GroupBox1.Controls.Add(Me.Label1)
+        Me.GroupBox1.Controls.Add(Me.lblTQMessage)
+        Me.GroupBox1.Controls.Add(Me.txtTqRfi)
+        Me.GroupBox1.Controls.Add(Me.lblDNMessage)
+        Me.GroupBox1.Controls.Add(Me.Label2)
+        Me.GroupBox1.Controls.Add(Me.Label6)
+        Me.GroupBox1.Controls.Add(Me.dtpDate)
+        Me.GroupBox1.Controls.Add(Me.cmdCancel)
+        Me.GroupBox1.Controls.Add(Me.txtDrawingNumber)
+        Me.GroupBox1.Controls.Add(Me.Label5)
+        Me.GroupBox1.Controls.Add(Me.cmboArea)
+        Me.GroupBox1.Controls.Add(Me.txtDescription)
+        Me.GroupBox1.Controls.Add(Me.Label3)
+        Me.GroupBox1.Controls.Add(Me.cmdSave)
+        Me.GroupBox1.Controls.Add(Me.cmboSurveyor)
+        Me.GroupBox1.Controls.Add(Me.Label4)
+        Me.GroupBox1.Location = New System.Drawing.Point(12, 12)
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.Size = New System.Drawing.Size(343, 373)
+        Me.GroupBox1.TabIndex = 17
+        Me.GroupBox1.TabStop = False
+        Me.GroupBox1.Text = "TQ / RFI Register"
+        '
+        'formTqRfiRegister_Modify
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.Control
-        Me.ClientSize = New System.Drawing.Size(328, 364)
-        Me.Controls.Add(Me.lblTQMessage)
-        Me.Controls.Add(Me.lblDNMessage)
-        Me.Controls.Add(Me.Label6)
-        Me.Controls.Add(Me.cmdCancel)
-        Me.Controls.Add(Me.Label5)
-        Me.Controls.Add(Me.txtDescription)
-        Me.Controls.Add(Me.cmdSave)
-        Me.Controls.Add(Me.Label4)
-        Me.Controls.Add(Me.cmboSurveyor)
-        Me.Controls.Add(Me.Label1)
-        Me.Controls.Add(Me.Label3)
-        Me.Controls.Add(Me.cmboArea)
-        Me.Controls.Add(Me.txtDrawingNumber)
-        Me.Controls.Add(Me.dtpDate)
-        Me.Controls.Add(Me.Label2)
-        Me.Controls.Add(Me.txtTqRfi)
-        Me.Controls.Add(Me.Label7)
-        Me.Name = "formNewEntryTqRfiRegister"
+        Me.ClientSize = New System.Drawing.Size(366, 397)
+        Me.Controls.Add(Me.GroupBox1)
+        Me.Name = "formTqRfiRegister_Modify"
         Me.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.Text = "Enter New Entry to TQ / RFI Register"
+        Me.Text = "Modify Entry to TQ / RFI Register"
+        Me.GroupBox1.ResumeLayout(False)
+        Me.GroupBox1.PerformLayout()
         Me.ResumeLayout(False)
-        Me.PerformLayout()
 
     End Sub
     Friend WithEvents txtDrawingNumber As System.Windows.Forms.TextBox
@@ -240,7 +246,7 @@ Partial Class formTqRfiRegister_Modify
     Friend WithEvents Label6 As System.Windows.Forms.Label
     Friend WithEvents cmdSave As System.Windows.Forms.Button
     Friend WithEvents cmdCancel As System.Windows.Forms.Button
-    Friend WithEvents Label7 As System.Windows.Forms.Label
     Friend WithEvents lblDNMessage As System.Windows.Forms.Label
     Friend WithEvents lblTQMessage As System.Windows.Forms.Label
+    Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
 End Class

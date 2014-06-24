@@ -3,6 +3,8 @@
     Dim export As New exportTables
     Dim EscapeChars As New EscapeChars
 
+    Dim ID As String = ""
+
 
     Private Sub formModifyTqRfiRegister_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
@@ -30,6 +32,7 @@
             Dim row As New DataGridViewRow
             row = formMain.DGVData.Rows(formMain.DGVData.CurrentRow.Index)
 
+            ID = (row.Cells("ID").Value.ToString).Trim
             txtDrawingNumber.Text = (row.Cells("Drawing Number").Value.ToString).Trim
             txtTqRfi.Text = (row.Cells("TQ / RFI").Value.ToString).Trim
             dtpDate.Text = (row.Cells("Date Reieved").Value.ToString).Trim
@@ -59,35 +62,40 @@
     End Sub
 
     Private Sub cmdSave_Click(sender As Object, e As EventArgs) Handles cmdSave.Click
+        Try
 
-        'CHECK TO SEE IF TITLE FIELD IS NOT BLANK
-        If txtDescription.Text = ("") Then
-            lblDNMessage.Text = ("Please enter a Drawing Number!")
-            lblDNMessage.Visible = True
-            'tickCount = 0
-            'flashLabelTitle()
-            Exit Sub
-        End If
+            'CHECK TO SEE IF TITLE FIELD IS NOT BLANK
+            If txtDescription.Text = ("") Then
+                lblDNMessage.Text = ("Please enter a Drawing Number!")
+                lblDNMessage.Visible = True
+                'tickCount = 0
+                'flashLabelTitle()
+                Exit Sub
+            End If
 
-        'CHECK IF AREA AND DESCRIPTION FIELDS ARE SELECTED
-        If cmboArea.Text = ("Please select ...") Then Exit Sub
-        If cmboSurveyor.Text = ("Please select ...") Then Exit Sub
+            'CHECK IF AREA AND DESCRIPTION FIELDS ARE SELECTED
+            If cmboArea.Text = ("Please select ...") Then Exit Sub
+            If cmboSurveyor.Text = ("Please select ...") Then Exit Sub
 
-        '-- SQL INSERT QUERY IN TO THE DATABASE --
-        sql.DataUpdate("SET DATEFORMAT dmy; UPDATE TQRFIRegister " & _
-                        "SET " & _
-                       "[Drawing Number]='" & txtDrawingNumber.Text & "', " & _
-                       "[TQ / RFI]='" & txtTqRfi.Text & "', " & _
-                       "[Date Reieved]='" & dtpDate.Text & "', " & _
-                       "Surveyor='" & cmboSurveyor.Text & "', " & _
-                       "Area='" & cmboArea.Text & "', " & _
-                       "Description='" & txtDescription.Text & "', " & _
-                       "Modified=GETDATE()")
+            '-- SQL INSERT QUERY IN TO THE DATABASE --
+            sql.DataUpdate("SET DATEFORMAT dmy; UPDATE TQRFIRegister " & _
+                            "SET " & _
+                           "[Drawing Number]='" & txtDrawingNumber.Text & "', " & _
+                           "[TQ / RFI]='" & txtTqRfi.Text & "', " & _
+                           "[Date Reieved]='" & dtpDate.Text & "', " & _
+                           "Surveyor='" & cmboSurveyor.Text & "', " & _
+                           "Area='" & cmboArea.Text & "', " & _
+                           "Description='" & txtDescription.Text & "', " & _
+                           "Modified=GETDATE()" & _
+                           "WHERE ID='" & ID & "'")
 
-        'UPDATE THE BACKUP CSV FILE USING BCP UTILITY
-        export.exportTable_Single("csv", "TqRfiRegister", "C:\XCELRegister")
+            'UPDATE THE BACKUP CSV FILE USING BCP UTILITY
+            export.exportTable_Single("csv", "TqRfiRegister", "C:\XCELRegister")
 
-        Me.Close()
+            Me.Close()
+        Catch ex As Exception
+        End Try
+        
 
     End Sub
 
