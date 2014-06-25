@@ -51,6 +51,7 @@ Partial Class formMain
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.cmdNewEntry = New System.Windows.Forms.Button()
         Me.cmdModifySelectedRow = New System.Windows.Forms.Button()
+        Me.lblConnectionString = New System.Windows.Forms.Label()
         CType(Me.DGVData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox2.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
@@ -69,7 +70,7 @@ Partial Class formMain
         Me.DGVData.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnF2
         Me.DGVData.Location = New System.Drawing.Point(12, 186)
         Me.DGVData.Name = "DGVData"
-        Me.DGVData.Size = New System.Drawing.Size(1318, 490)
+        Me.DGVData.Size = New System.Drawing.Size(1318, 463)
         Me.DGVData.TabIndex = 2
         '
         'GroupBox2
@@ -306,12 +307,23 @@ Partial Class formMain
         Me.cmdModifySelectedRow.Text = "Modify Selected Row"
         Me.cmdModifySelectedRow.UseVisualStyleBackColor = True
         '
+        'lblConnectionString
+        '
+        Me.lblConnectionString.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lblConnectionString.BackColor = System.Drawing.Color.Transparent
+        Me.lblConnectionString.Location = New System.Drawing.Point(12, 652)
+        Me.lblConnectionString.Name = "lblConnectionString"
+        Me.lblConnectionString.Size = New System.Drawing.Size(1318, 24)
+        Me.lblConnectionString.TabIndex = 20
+        Me.lblConnectionString.TextAlign = System.Drawing.ContentAlignment.BottomRight
+        '
         'formMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.ClientSize = New System.Drawing.Size(1342, 688)
+        Me.Controls.Add(Me.lblConnectionString)
         Me.Controls.Add(Me.cmdExportXLXS)
         Me.Controls.Add(Me.cmdDeleteRow)
         Me.Controls.Add(Me.cmdPrintDGVData)
@@ -368,5 +380,6 @@ Partial Class formMain
     Friend WithEvents PrintDialog As System.Windows.Forms.PrintDialog
     Friend WithEvents PrintDocument As System.Drawing.Printing.PrintDocument
     Friend WithEvents cmdExportXLXS As System.Windows.Forms.Button
+    Friend WithEvents lblConnectionString As System.Windows.Forms.Label
 
 End Class

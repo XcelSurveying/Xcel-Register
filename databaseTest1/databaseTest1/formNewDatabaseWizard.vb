@@ -2,18 +2,25 @@
 
 Public Class formNewDatabaseWizard
     Dim SQL As New SQLControl
+    'Dim testConnectionString As String
 
 
     Private Sub cmdTestConn_Click(sender As Object, e As EventArgs) Handles cmdTestConn.Click
         Try
-            Dim myConn As SqlConnection = New SqlConnection("Server=" & txtServer.Text & ";uid=" & txtUid.Text & ";pwd=" & txtPassword.Text & ";database=master")
+            'testConnectionString = ("Server=" & txtServer.Text & ";uid=" & txtUid.Text & ";pwd=" & txtPassword.Text & ";database=master")
+            'Dim myConn As SqlConnection = New SqlConnection(SQL.connectionString)
 
             If txtServer.Text <> ("") OrElse txtUid.Text <> ("") Then
-                myConn.Open()
-                myConn.Close()
+                
+                SQL.connectionString = ("server=" & txtServer.Text & ";Database=register;user=" & txtUid.Text & ";Pwd=" & txtPassword.Text & ";")
+
+                SQL.SQLCon = New SqlConnection(SQL.connectionString)
+                SQL.SQLCon.Open()
+                SQL.SQLCon.Close()
 
                 lblMessage.Visible = True
                 cmdSetupDatabase.Enabled = True
+                cmd_CreateTables.Enabled = True
                 cmdModify.Visible = True
                 cmdModify.Enabled = True
 
@@ -22,6 +29,13 @@ Public Class formNewDatabaseWizard
                 txtUid.Enabled = False
                 cmdTestConn.Enabled = False
 
+                My.Settings.settingsDbServerName = txtServer.Text
+                My.Settings.settingDbUserId = txtUid.Text
+                My.Settings.settingsDbPassword = txtPassword.Text
+                My.Settings.Save()
+
+                formMain.lblConnectionString.Text = SQL.connectionString
+
             Else
                 lblWarning.Text = "Warning: Server or User fields can't be blank"
                 lblWarning.Visible = True
@@ -29,6 +43,12 @@ Public Class formNewDatabaseWizard
 
             Return
         Catch ex As Exception
+            My.Settings.settingsDbServerName = txtServer.Text
+            My.Settings.settingDbUserId = txtUid.Text
+            My.Settings.settingsDbPassword = txtPassword.Text
+            My.Settings.Save()
+            formMain.lblConnectionString.Text = SQL.connectionString
+
             MessageBox.Show(ex.ToString())
         End Try
 
@@ -37,7 +57,7 @@ Public Class formNewDatabaseWizard
 
     Private Sub cmdSetupDatabase_Click(sender As Object, e As EventArgs) Handles cmdSetupDatabase.Click
         Dim Str As String
-        Dim myConn As SqlConnection = New SqlConnection("Server=" & txtServer.Text & ";uid=" & txtUid.Text & ";pwd=" & txtPassword.Text & ";database=master")
+        Dim myConn As SqlConnection = New SqlConnection(SQL.connectionString) '"Server=" & txtServer.Text & ";uid=" & txtUid.Text & ";pwd=" & txtPassword.Text & ";database=master")
 
 
 
@@ -161,6 +181,7 @@ Public Class formNewDatabaseWizard
         cmdTestConn.Enabled = True
 
         cmdSetupDatabase.Enabled = False
+        cmd_CreateTables.Enabled = False
         lblMessage.Visible = False
         cmdModify.Enabled = False
 
@@ -179,6 +200,7 @@ Public Class formNewDatabaseWizard
 
         My.Settings.settingsIsActiveModify = cmdModify.Visible.ToString
         My.Settings.settingsIsActiveSetup = cmdSetupDatabase.Enabled.ToString
+        My.Settings.settingsIsActiveCreateTables = cmd_CreateTables.Enabled.ToString
         My.Settings.settingsIsActiveTest = cmdTestConn.Enabled.ToString
         My.Settings.settingsIsActivePass = txtPassword.Enabled.ToString
         My.Settings.settingsIsActiveServer = txtServer.Enabled.ToString
@@ -187,6 +209,12 @@ Public Class formNewDatabaseWizard
         My.Settings.settingsIsActiveMessage = lblMessage.Visible.ToString
 
         My.Settings.Save()
+
+        If SQL.HasConnection() = False Then
+            Me.Show()
+        End If
+
+        formMain.Enabled() = True
 
     End Sub
 
@@ -203,6 +231,7 @@ Public Class formNewDatabaseWizard
         txtPassword.Text = My.Settings.settingsDbPassword
         cmdModify.Visible = My.Settings.settingsIsActiveModify
         cmdSetupDatabase.Enabled = My.Settings.settingsIsActiveSetup
+        cmd_CreateTables.Enabled = My.Settings.settingsIsActiveCreateTables
         cmdTestConn.Enabled = My.Settings.settingsIsActiveTest
         txtPassword.Enabled = My.Settings.settingsIsActivePass
         txtServer.Enabled = My.Settings.settingsIsActiveServer

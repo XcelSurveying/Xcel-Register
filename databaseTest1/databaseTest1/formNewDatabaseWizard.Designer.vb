@@ -25,6 +25,7 @@ Partial Class formNewDatabaseWizard
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(formNewDatabaseWizard))
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.lblWarning = New System.Windows.Forms.Label()
+        Me.cmd_CreateTables = New System.Windows.Forms.Button()
         Me.cmdModify = New System.Windows.Forms.Button()
         Me.lblMessage = New System.Windows.Forms.Label()
         Me.cmdTestConn = New System.Windows.Forms.Button()
@@ -39,7 +40,6 @@ Partial Class formNewDatabaseWizard
         Me.txtUid = New System.Windows.Forms.TextBox()
         Me.txtServer = New System.Windows.Forms.TextBox()
         Me.cmdSetupDatabase = New System.Windows.Forms.Button()
-        Me.cmd_CreateTables = New System.Windows.Forms.Button()
         Me.cmdClose = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
@@ -80,6 +80,18 @@ Partial Class formNewDatabaseWizard
         Me.lblWarning.Text = "lblWarning"
         Me.lblWarning.Visible = False
         '
+        'cmd_CreateTables
+        '
+        Me.cmd_CreateTables.Image = CType(resources.GetObject("cmd_CreateTables.Image"), System.Drawing.Image)
+        Me.cmd_CreateTables.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.cmd_CreateTables.Location = New System.Drawing.Point(229, 218)
+        Me.cmd_CreateTables.Name = "cmd_CreateTables"
+        Me.cmd_CreateTables.Size = New System.Drawing.Size(101, 35)
+        Me.cmd_CreateTables.TabIndex = 1
+        Me.cmd_CreateTables.Text = "Create Tables"
+        Me.cmd_CreateTables.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.cmd_CreateTables.UseVisualStyleBackColor = True
+        '
         'cmdModify
         '
         Me.cmdModify.Location = New System.Drawing.Point(109, 87)
@@ -97,18 +109,19 @@ Partial Class formNewDatabaseWizard
         Me.lblMessage.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.lblMessage.Location = New System.Drawing.Point(215, 25)
         Me.lblMessage.Name = "lblMessage"
-        Me.lblMessage.Size = New System.Drawing.Size(102, 19)
+        Me.lblMessage.Size = New System.Drawing.Size(110, 19)
         Me.lblMessage.TabIndex = 15
-        Me.lblMessage.Text = "SUCESSFUL"
+        Me.lblMessage.Text = "CONNECTED"
         Me.lblMessage.Visible = False
         '
         'cmdTestConn
         '
-        Me.cmdTestConn.Location = New System.Drawing.Point(139, 41)
+        Me.cmdTestConn.Font = New System.Drawing.Font("Tahoma", 5.25!)
+        Me.cmdTestConn.Location = New System.Drawing.Point(139, 40)
         Me.cmdTestConn.Name = "cmdTestConn"
         Me.cmdTestConn.Size = New System.Drawing.Size(40, 22)
         Me.cmdTestConn.TabIndex = 14
-        Me.cmdTestConn.Text = "Test"
+        Me.cmdTestConn.Text = "Connect"
         Me.cmdTestConn.UseVisualStyleBackColor = True
         '
         'TextBox1
@@ -217,18 +230,6 @@ Partial Class formNewDatabaseWizard
         Me.cmdSetupDatabase.Text = "Setup Database"
         Me.cmdSetupDatabase.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.cmdSetupDatabase.UseVisualStyleBackColor = True
-        '
-        'cmd_CreateTables
-        '
-        Me.cmd_CreateTables.Image = CType(resources.GetObject("cmd_CreateTables.Image"), System.Drawing.Image)
-        Me.cmd_CreateTables.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.cmd_CreateTables.Location = New System.Drawing.Point(229, 218)
-        Me.cmd_CreateTables.Name = "cmd_CreateTables"
-        Me.cmd_CreateTables.Size = New System.Drawing.Size(101, 35)
-        Me.cmd_CreateTables.TabIndex = 1
-        Me.cmd_CreateTables.Text = "Create Tables"
-        Me.cmd_CreateTables.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.cmd_CreateTables.UseVisualStyleBackColor = True
         '
         'cmdClose
         '

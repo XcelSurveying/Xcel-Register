@@ -1,4 +1,7 @@
 ﻿Public Class exportTables
+
+    Public backupFolder As String = "C:\XCELRegister"
+
     Public Sub exportCSV_All()
         Try
             If (MessageBox.Show("Are you sure you want to export ALL tables?", "Are you sure?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.No) Then

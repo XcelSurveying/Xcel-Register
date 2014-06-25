@@ -194,7 +194,7 @@
                             "GETDATE())")
 
             'UPDATE THE BACKUP CSV FILE USING BCP UTILITY
-            export.exportTable_Single("csv", "SurveyReportRegister", "C:\XCELRegister")
+            export.exportTable_Single("csv", "SurveyReportRegister", export.backupFolder)
 
             Me.Close()
         Catch ex As Exception

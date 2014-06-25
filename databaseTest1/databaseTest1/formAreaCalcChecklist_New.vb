@@ -1,6 +1,7 @@
 ﻿Public Class formAreaCalcChecklist_New
     Dim SQL As New SQLControl
     Dim EscapeChars As New EscapeChars
+    Dim export As New exportTables
 
     Private Sub formAreaCalcChecklist_Modify_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
         formMain.Enabled = True 'Enables the main form when this form is closed
@@ -41,6 +42,10 @@
                         "'" & dtpCheckedDate.Value & "', " & _
                         "'" & txtComments.Text & "', " & _
                         "GETDATE())")
+
+        'UPDATE THE BACKUP CSV FILE USING BCP UTILITY
+        '(extension), (tablename), (destination)
+        export.exportTable_Single("csv", "AreaCalcChecklist", export.backupFolder)
 
         Me.Close()
 

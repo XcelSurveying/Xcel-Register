@@ -90,7 +90,7 @@
                            "WHERE ID='" & ID & "'")
 
             'UPDATE THE BACKUP CSV FILE USING BCP UTILITY
-            export.exportTable_Single("csv", "TqRfiRegister", "C:\XCELRegister")
+            export.exportTable_Single("csv", "TqRfiRegister", export.backupFolder)
 
             Me.Close()
         Catch ex As Exception

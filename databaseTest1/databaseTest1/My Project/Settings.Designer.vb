@@ -147,8 +147,7 @@ Namespace My
         End Property
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
         Public Property settingsIsActiveTest() As Boolean
             Get
                 Return CType(Me("settingsIsActiveTest"),Boolean)
@@ -170,8 +169,7 @@ Namespace My
         End Property
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
         Public Property settingsIsActiveServer() As Boolean
             Get
                 Return CType(Me("settingsIsActiveServer"),Boolean)
@@ -182,8 +180,7 @@ Namespace My
         End Property
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
         Public Property settingsIsActiveUser() As Boolean
             Get
                 Return CType(Me("settingsIsActiveUser"),Boolean)
@@ -194,8 +191,7 @@ Namespace My
         End Property
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
         Public Property settingsIsActivePass() As Boolean
             Get
                 Return CType(Me("settingsIsActivePass"),Boolean)
@@ -282,6 +278,18 @@ Namespace My
                 Me("activationKey") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property settingsIsActiveCreateTables() As String
+            Get
+                Return CType(Me("settingsIsActiveCreateTables"),String)
+            End Get
+            Set
+                Me("settingsIsActiveCreateTables") = value
+            End Set
+        End Property
     End Class
 End Namespace
 
@@ -292,7 +300,7 @@ Namespace My
      Global.System.Runtime.CompilerServices.CompilerGeneratedAttribute()>  _
     Friend Module MySettingsProperty
         
-        <Global.System.ComponentModel.Design.HelpKeywordAttribute("My.Settings")> _
+        <Global.System.ComponentModel.Design.HelpKeywordAttribute("My.Settings")>  _
         Friend ReadOnly Property Settings() As Global.databaseTest1.My.MySettings
             Get
                 Return Global.databaseTest1.My.MySettings.Default

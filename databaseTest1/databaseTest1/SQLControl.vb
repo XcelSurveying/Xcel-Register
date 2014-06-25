@@ -2,29 +2,42 @@
 Imports System.Data.SqlClient
 
 Public Class SQLControl
-    Public SQLCon As New SqlConnection With {.ConnectionString = "server=" & My.Settings.settingsDbServerName & ";Database=register;user=" & My.Settings.settingDbUserId & ";Pwd=" & My.Settings.settingsDbPassword & ";"}
     Public SQLCmd As SqlCommand
     Public SQLDA As SqlDataAdapter
     Public SQLDataset As DataSet
+    Public SQLCon As SqlConnection
+    'Public SQLCon As New SqlConnection With {.ConnectionString = "server=" & My.Settings.settingsDbServerName & ";Database=register;user=" & My.Settings.settingDbUserId & ";Pwd=" & My.Settings.settingsDbPassword & ";"}
+
+    Public connectionString As String = ("server=" & My.Settings.settingsDbServerName & ";Database=register;user=" & My.Settings.settingDbUserId & ";Pwd=" & My.Settings.settingsDbPassword & ";")
+
 
     Public Function HasConnection() As Boolean
         Try
+            connectionString = ("server=" & My.Settings.settingsDbServerName & ";Database=register;user=" & My.Settings.settingDbUserId & ";Pwd=" & My.Settings.settingsDbPassword & ";")
+            SQLCon = New SqlConnection(connectionString)
             If My.Settings.settingsIsActiveMessage = True Then
                 SQLCon.Open()
                 SQLCon.Close()
                 Return True
             Else
+                SQLCon.Dispose()
+                formNewDatabaseWizard.Show()
+                formNewDatabaseWizard.TopMost = True
                 Return False
             End If
-            
+
         Catch ex As Exception
             MessageBox.Show(ex.Message, "SQL Server Connection", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            SQLCon.Dispose()
+            formNewDatabaseWizard.Show()
+            formNewDatabaseWizard.TopMost = True
             Return False
         End Try
     End Function
 
     Public Sub RunQuery(Query As String)
         Try
+            SQLCon = New SqlConnection(connectionString)
             SQLCon.Open()
             SQLCmd = New SqlCommand(Query, SQLCon)
 
@@ -47,6 +60,7 @@ Public Class SQLControl
 
     Public Sub DataUpdate(command As String)
         Try
+            SQLCon = New SqlConnection(connectionString)
             SQLCon.Open()
             SQLCmd = New SqlCommand(command, SQLCon)
 

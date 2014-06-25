@@ -1,6 +1,7 @@
 ﻿Public Class formAreaCalcChecklist_Modify
     Dim SQL As New SQLControl
     Dim EscapeChars As New EscapeChars
+    Dim export As New exportTables
 
     'LOAD TEXTBOX'S WITH FIELDS FROM DATABASE
     Private Sub formAreaCalcChecklist_Modify_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -57,6 +58,11 @@
                        "[Checked date]='" & dtpCheckedDate.Value & "', " & _
                        "Modified=GETDATE() " & _
                        "WHERE ID='" & row.Cells("ID").Value.ToString & "'") 'gets unique ID of the row selected
+
+
+        'UPDATE THE BACKUP CSV FILE USING BCP UTILITY
+        '(extension), (tablename), (destination)
+        export.exportTable_Single("csv", "AreaCalcChecklist", export.backupFolder)
 
         Me.Close()
 

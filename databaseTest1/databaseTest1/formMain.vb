@@ -44,9 +44,15 @@ Public Class formMain
 
     'REFREASHES THE DATA GRIDVIEW
     Private Sub refreshDataGridView()
-        If SQL.SQLDataset.Tables.Count > 0 Then
-            DGVData.DataSource = SQL.SQLDataset.Tables(0)  ' Makes sure that there is data in the Table
-        End If
+        Try
+            Me.lblConnectionString.Text = SQL.connectionString
+            If SQL.SQLDataset.Tables.Count > 0 Then
+                DGVData.DataSource = SQL.SQLDataset.Tables(0)  ' Makes sure that there is data in the Table
+            End If
+        Catch ex As Exception
+            Me.lblConnectionString.Text = SQL.connectionString
+        End Try
+
     End Sub
 
     'NEW ENTRY 

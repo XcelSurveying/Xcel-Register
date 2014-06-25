@@ -202,7 +202,7 @@ Public Class formFieldDataRegister_Modify
 
             'UPDATE THE BACKUP CSV FILE USING BCP UTILITY
             '(extension), (tablename), (destination)
-            export.exportTable_Single("csv", "FieldDataRegister", "C:\XCELRegister")
+            export.exportTable_Single("csv", "FieldDataRegister", export.backupFolder)
 
             Me.Close()
         Catch ex As Exception

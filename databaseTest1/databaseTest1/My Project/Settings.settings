@@ -27,19 +27,19 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="settingsIsActiveTest" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
+      <Value Profile="(Default)" />
     </Setting>
     <Setting Name="settingsIsActiveModify" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="settingsIsActiveServer" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
+      <Value Profile="(Default)" />
     </Setting>
     <Setting Name="settingsIsActiveUser" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
+      <Value Profile="(Default)" />
     </Setting>
     <Setting Name="settingsIsActivePass" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
+      <Value Profile="(Default)" />
     </Setting>
     <Setting Name="settingsIsActiveMessage" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)" />
@@ -61,6 +61,9 @@
     </Setting>
     <Setting Name="activationKey" Type="System.Int64" Scope="User">
       <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="settingsIsActiveCreateTables" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
     </Setting>
   </Settings>
 </SettingsFile>
