@@ -121,6 +121,7 @@
     <Compile Include="formTqRfiRegister_New.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="MainFormButtons.vb" />
     <Compile Include="sortColumnsDGVData.vb" />
     <Compile Include="exportTables.vb" />
     <Compile Include="formMain.vb">

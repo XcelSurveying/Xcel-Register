@@ -1,39 +1,92 @@
 ﻿Imports System.Data.SqlClient
+Imports System.Data.Sql
 
 Public Class formNewDatabaseWizard
     Dim SQL As New SQLControl
+    Dim MainFormButtons As New MainFormButtons
     'Dim testConnectionString As String
+
+    Private Sub formNewDatabaseWizard_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+        'Form Settings
+        Me.ShowIcon = False
+        Me.MinimizeBox = False
+        Me.MaximizeBox = False
+        Me.FormBorderStyle = Windows.Forms.FormBorderStyle.FixedToolWindow
+        Me.TopMost = False
+
+        txtServerIP.Text = My.Settings.settingsDbServerName
+        txtServerPort.Text = My.Settings.settingsDbServerPort
+        txtUid.Text = My.Settings.settingDbUserId
+        txtPassword.Text = My.Settings.settingsDbPassword
+        cmdModify.Visible = My.Settings.settingsIsActiveModify
+        cmdSetupDatabase.Enabled = My.Settings.settingsIsActiveSetup
+        cmd_CreateTables.Enabled = My.Settings.settingsIsActiveCreateTables
+        cmdTestConn.Enabled = My.Settings.settingsIsActiveTest
+        txtPassword.Enabled = My.Settings.settingsIsActivePass
+        txtServerIP.Enabled = My.Settings.settingsIsActiveServer
+        txtServerPort.Enabled = My.Settings.settingsIsActiveServer
+        txtUid.Enabled = My.Settings.settingsIsActiveUser
+        lblWarning.Visible = My.Settings.settingsIsActiveWarning
+        lblMessage.Visible = My.Settings.settingsIsActiveMessage
+
+    End Sub
+
+    Private Sub cmdSearch_click(sender As Object, e As EventArgs) Handles cmdSearch.Click
+        Try
+            Me.Cursor = Cursors.AppStarting 'Activates Wait cursor
+            Dim dataTable As DataTable = SqlDataSourceEnumerator.Instance.GetDataSources()
+            dgvSQLServers.DataSource = dataTable
+
+        Catch ex As Exception
+            MessageBox.Show(ex.Message)
+
+        Finally
+            Me.Cursor = Cursors.Default
+        End Try
+
+
+    End Sub
 
 
     Private Sub cmdTestConn_Click(sender As Object, e As EventArgs) Handles cmdTestConn.Click
         Try
+            Me.Cursor = Cursors.AppStarting
+            MainFormButtons.Disable() 'Disable buttons in main form while testing connection
+
             'testConnectionString = ("Server=" & txtServer.Text & ";uid=" & txtUid.Text & ";pwd=" & txtPassword.Text & ";database=master")
             'Dim myConn As SqlConnection = New SqlConnection(SQL.connectionString)
 
-            If txtServer.Text <> ("") OrElse txtUid.Text <> ("") Then
-                
-                SQL.connectionString = ("server=" & txtServer.Text & ";Database=register;user=" & txtUid.Text & ";Pwd=" & txtPassword.Text & ";")
+            If txtServerIP.Text <> ("") OrElse txtServerPort.Text <> ("") OrElse txtUid.Text <> ("") Then
 
+                'SQL.connectionString = ("server=" & txtServer.Text & ";Database=register;user=" & txtUid.Text & ";Pwd=" & txtPassword.Text & ";")
+                SQL.connectionString = ("Data Source=" & txtServerIP.Text & "," & txtServerPort.Text & ";Network Library=DBMSSOCN;Initial Catalog=register;User ID=" & txtUid.Text & ";Password=" & txtPassword.Text & ";")
+
+                'Tries to open and close a connection to the database server using the connection string variables from the textboxes
                 SQL.SQLCon = New SqlConnection(SQL.connectionString)
                 SQL.SQLCon.Open()
                 SQL.SQLCon.Close()
 
+                'Once connected makes the create tables button active and shows the connected label
                 lblMessage.Visible = True
-                cmdSetupDatabase.Enabled = True
                 cmd_CreateTables.Enabled = True
                 cmdModify.Visible = True
                 cmdModify.Enabled = True
 
+                cmdSetupDatabase.Enabled = False 'once connected, that means that the database has already been created
                 txtPassword.Enabled = False
-                txtServer.Enabled = False
+                txtServerIP.Enabled = False
+                txtServerPort.Enabled = False
                 txtUid.Enabled = False
                 cmdTestConn.Enabled = False
 
-                My.Settings.settingsDbServerName = txtServer.Text
+                My.Settings.settingsDbServerName = txtServerIP.Text
+                My.Settings.settingsDbServerPort = txtServerPort.Text
                 My.Settings.settingDbUserId = txtUid.Text
                 My.Settings.settingsDbPassword = txtPassword.Text
                 My.Settings.Save()
 
+                'updates the connection string label on the main window (bottom right)
                 formMain.lblConnectionString.Text = SQL.connectionString
 
             Else
@@ -41,51 +94,83 @@ Public Class formNewDatabaseWizard
                 lblWarning.Visible = True
             End If
 
+            'Positive Connection established, re-enable the main form buttons
+            MainFormButtons.Enable()
+
             Return
         Catch ex As Exception
-            My.Settings.settingsDbServerName = txtServer.Text
-            My.Settings.settingDbUserId = txtUid.Text
-            My.Settings.settingsDbPassword = txtPassword.Text
-            My.Settings.Save()
-            formMain.lblConnectionString.Text = SQL.connectionString
+            Try
+                'On error saves the new textbox.text settings and updates the connection string label in the main window.
+                My.Settings.settingsDbServerName = txtServerIP.Text
+                My.Settings.settingsDbServerPort = txtServerPort.Text
+                My.Settings.settingDbUserId = txtUid.Text
+                My.Settings.settingsDbPassword = txtPassword.Text
+                My.Settings.Save()
+                formMain.lblConnectionString.Text = SQL.connectionString
 
-            MessageBox.Show(ex.ToString())
+                'MessageBox.Show(ex.ToString.Substring(0, 100))
+                'Read's the error message string. 
+                Select Case ex.ToString.Substring(0, 100)
+                    'Username is correct but No database found ---> database is setup and the tables are created.
+                    Case "System.Data.SqlClient.SqlException (0x80131904): Cannot open database ""register"" requested by the lo"
+                        MessageBox.Show("""register"" database not found. It will be created now.")
+                        'Runs the database setup
+                        cmdSetupDatabase_Click(AcceptButton, AcceptButton)
+                        'Runs the tables setup
+                        cmd_CreateTables_Click(AcceptButton, AcceptButton)
+                    Case Else
+                        'Shows error message
+                        MessageBox.Show(ex.Message)
+                End Select
+            Catch ex1 As Exception
+                MessageBox.Show(ex.Message)
+            End Try
+        Finally
+            Me.Cursor = Cursors.Default 'Restore default sursor
         End Try
 
     End Sub
 
 
     Private Sub cmdSetupDatabase_Click(sender As Object, e As EventArgs) Handles cmdSetupDatabase.Click
-        Dim Str As String
-        Dim myConn As SqlConnection = New SqlConnection(SQL.connectionString) '"Server=" & txtServer.Text & ";uid=" & txtUid.Text & ";pwd=" & txtPassword.Text & ";database=master")
 
+        Dim queryString As String
+        Dim myConn As SqlConnection
+        'myConn = New SqlConnection("Server=" & My.Settings.settingsDbServerName & ";uid=" & My.Settings.settingDbUserId & ";pwd=" & My.Settings.settingsDbPassword & ";database=master")
 
-
-
-        Str = ("CREATE DATABASE register ON PRIMARY " & vbCrLf & _
-                "( NAME = register_dat, " & vbCrLf & _
-                "FILENAME = 'C:\registerDatabase\registerDAT.mdf', " & vbCrLf & _
-                "Size = 10, " & vbCrLf & _
-                "--MAXSIZE    = 5, " & vbCrLf & _
-                "FILEGROWTH = 5 ) " & vbCrLf & _
-                "LOG ON" & vbCrLf & _
-                "( NAME = register_log, " & vbCrLf & _
-                "FILENAME = 'C:\registerDatabase\registerLOG.ldf', " & vbCrLf & _
-                "SIZE = 5MB, " & vbCrLf & _
-                "--MAXSIZE = 25MB, " & vbCrLf & _
-                "FILEGROWTH = 5MB ) ; ")
-
-        Dim createDBCommand As SqlCommand = New SqlCommand(Str, myConn)
+        myConn = New SqlConnection("Data Source=" & My.Settings.settingsDbServerName & "," & My.Settings.settingsDbServerPort & ";Network Library=DBMSSOCN;Initial Catalog=register;User ID=" & My.Settings.settingDbUserId & ";Password=" & My.Settings.settingsDbPassword & ";")
 
         Try
+
+
+            queryString = ("CREATE DATABASE register ON PRIMARY " & vbCrLf & _
+                           "( NAME = register_dat, " & vbCrLf & _
+                           "FILENAME = 'C:\XCELregister\registerDAT.mdf', " & vbCrLf & _
+                           "Size = 10, " & vbCrLf & _
+                           "--MAXSIZE    = 5, " & vbCrLf & _
+                           "FILEGROWTH = 5 ) " & vbCrLf & _
+                           "LOG ON" & vbCrLf & _
+                           "( NAME = register_log, " & vbCrLf & _
+                           "FILENAME = 'C:\XCELregister\registerLOG.ldf', " & vbCrLf & _
+                           "SIZE = 5MB, " & vbCrLf & _
+                           "--MAXSIZE = 25MB, " & vbCrLf & _
+                           "FILEGROWTH = 5MB ) ; ")
+
+            Dim createDB As SqlCommand = New SqlCommand(queryString, myConn)
+
+
+
             myConn.Open()
-            createDBCommand.ExecuteNonQuery()
+            createDB.ExecuteNonQuery()
             MessageBox.Show("Database is created successfully", _
                         "MyProgram", MessageBoxButtons.OK, _
                          MessageBoxIcon.Information)
 
         Catch ex As Exception
             MessageBox.Show(ex.ToString())
+            MessageBox.Show("Database creation failed", _
+                        "MyProgram", MessageBoxButtons.OK, _
+                         MessageBoxIcon.Error)
         Finally
             If (myConn.State = ConnectionState.Open) Then
                 myConn.Close()
@@ -103,9 +188,9 @@ Public Class formNewDatabaseWizard
                         ",[Model/Layer] nvarchar(30) " & vbCrLf & _
                         ",[Drawing Number] nvarchar(30) " & vbCrLf & _
                         ",[TQ/RFI] nvarchar(10) " & vbCrLf & _
-                        ",[Calc'd by] nvarchar(5) " & vbCrLf & _
+                        ",[Calc'd by] nvarchar(50) " & vbCrLf & _
                         ",[Calc'd date] date " & vbCrLf & _
-                        ",[Checked by] nvarchar(5) " & vbCrLf & _
+                        ",[Checked by] nvarchar(50) " & vbCrLf & _
                         ",[Checked date] date " & vbCrLf & _
                         ",Comments nvarchar(255) " & vbCrLf & _
                         ",Created datetime2(7) " & vbCrLf & _
@@ -113,7 +198,7 @@ Public Class formNewDatabaseWizard
                         ",Primary Key(ID) " & vbCrLf & _
                         ") " & vbCrLf & _
                         "; " & vbCrLf & _
-                        "INSERT INTO AreaCalcChecklist(Created, Modified) VALUES (GETDATE(), GETDATE());")
+                        "INSERT INTO AreaCalcChecklist(Comments, Created, Modified) VALUES ('Table Created', GETDATE(), GETDATE());")
 
         SQL.DataUpdate("USE register " & vbCrLf & _
                         "CREATE TABLE FieldDataRegister " & vbCrLf & _
@@ -133,7 +218,7 @@ Public Class formNewDatabaseWizard
                         ",Primary Key(ID) " & vbCrLf & _
                         ") " & vbCrLf & _
                         "; " & vbCrLf & _
-                        "INSERT INTO FieldDataRegister(Created, Modified) VALUES (GETDATE(), GETDATE());")
+                        "INSERT INTO FieldDataRegister(Comments, Created, Modified) VALUES ('Table Created', GETDATE(), GETDATE());")
 
         SQL.DataUpdate("USE register " & vbCrLf & _
                         "CREATE TABLE SurveyReportRegister " & vbCrLf & _
@@ -153,7 +238,7 @@ Public Class formNewDatabaseWizard
                         ",Primary Key(ID) " & vbCrLf & _
                         ") " & vbCrLf & _
                         "; " & vbCrLf & _
-                        "INSERT INTO SurveyReportRegister(Created, Modified) VALUES (GETDATE(), GETDATE());")
+                        "INSERT INTO SurveyReportRegister(Comments, Created, Modified) VALUES ('Table Created', GETDATE(), GETDATE());")
 
         SQL.DataUpdate("USE register " & vbCrLf & _
                         "CREATE TABLE TQRFIRegister " & vbCrLf & _
@@ -170,13 +255,14 @@ Public Class formNewDatabaseWizard
                         ",Primary Key(ID) " & vbCrLf & _
                         ") " & vbCrLf & _
                         "; " & vbCrLf & _
-                        "INSERT INTO TQRFIRegister(Created, Modified) VALUES (GETDATE(), GETDATE());")
+                        "INSERT INTO TQRFIRegister(Description, Created, Modified) VALUES ('Table Created', GETDATE(), GETDATE());")
     End Sub
 
-    
+
     Private Sub cmdModify_Click(sender As Object, e As EventArgs) Handles cmdModify.Click
         txtPassword.Enabled = True
-        txtServer.Enabled = True
+        txtServerIP.Enabled = True
+        txtServerPort.Enabled = True
         txtUid.Enabled = True
         cmdTestConn.Enabled = True
 
@@ -188,12 +274,13 @@ Public Class formNewDatabaseWizard
     End Sub
 
     'CLEARS THE WARNING MESSAGE ONCE TEXT IS TYPED INTO THE TEXTBOX'S
-    Private Sub allDatabaseTextFields_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtServer.KeyPress, txtPassword.KeyPress, txtUid.KeyPress
+    Private Sub allDatabaseTextFields_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtServerIP.KeyPress, txtPassword.KeyPress, txtUid.KeyPress
         lblWarning.Visible = False
     End Sub
 
     Private Sub formNewDatabaseWizard_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
-        My.Settings.settingsDbServerName = txtServer.Text
+        My.Settings.settingsDbServerName = txtServerIP.Text
+        My.Settings.settingsDbServerPort = txtServerPort.Text
         My.Settings.settingDbUserId = txtUid.Text
         My.Settings.settingsDbPassword = txtPassword.Text
 
@@ -203,7 +290,7 @@ Public Class formNewDatabaseWizard
         My.Settings.settingsIsActiveCreateTables = cmd_CreateTables.Enabled.ToString
         My.Settings.settingsIsActiveTest = cmdTestConn.Enabled.ToString
         My.Settings.settingsIsActivePass = txtPassword.Enabled.ToString
-        My.Settings.settingsIsActiveServer = txtServer.Enabled.ToString
+        My.Settings.settingsIsActiveServer = txtServerIP.Enabled.ToString
         My.Settings.settingsIsActiveUser = txtUid.Enabled.ToString
         My.Settings.settingsIsActiveWarning = lblWarning.Visible.ToString
         My.Settings.settingsIsActiveMessage = lblMessage.Visible.ToString
@@ -215,29 +302,6 @@ Public Class formNewDatabaseWizard
         End If
 
         formMain.Enabled() = True
-
-    End Sub
-
-    Private Sub formNewDatabaseWizard_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
-        'Form Settings
-        Me.ShowIcon = False
-        Me.MinimizeBox = False
-        Me.MaximizeBox = False
-        Me.FormBorderStyle = Windows.Forms.FormBorderStyle.FixedToolWindow
-
-        txtServer.Text = My.Settings.settingsDbServerName
-        txtUid.Text = My.Settings.settingDbUserId
-        txtPassword.Text = My.Settings.settingsDbPassword
-        cmdModify.Visible = My.Settings.settingsIsActiveModify
-        cmdSetupDatabase.Enabled = My.Settings.settingsIsActiveSetup
-        cmd_CreateTables.Enabled = My.Settings.settingsIsActiveCreateTables
-        cmdTestConn.Enabled = My.Settings.settingsIsActiveTest
-        txtPassword.Enabled = My.Settings.settingsIsActivePass
-        txtServer.Enabled = My.Settings.settingsIsActiveServer
-        txtUid.Enabled = My.Settings.settingsIsActiveUser
-        lblWarning.Visible = My.Settings.settingsIsActiveWarning
-        lblMessage.Visible = My.Settings.settingsIsActiveMessage
 
     End Sub
 

@@ -3,19 +3,43 @@
 Public Class Activation
 
     Public Function WaitForActivation() As Boolean
-        formMain.Enabled = False
+        'DISABLE ALL BUTTONS UNTILL ACTIVATION IS PASSED
+        formMain.cmdDeleteRow.Enabled = False
+        formMain.cmdModifySelectedRow.Enabled = False
+        formMain.cmdNewEntry.Enabled = False
+        formMain.rbAreaCalcChecklist.Enabled = False
+        formMain.rbFieldDataRegister.Enabled = False
+        formMain.rbSurveyReportRegister.Enabled = False
+        formMain.rbTqRfiRegister.Enabled = False
         Try
             Dim serial As Long = GetSerial()
 
             If CheckKeyFromSettings() = True Then
-                formMain.Enabled = True
+                ' Enable disabled buttons Activation passes
+                formMain.cmdDeleteRow.Enabled = True
+                formMain.cmdModifySelectedRow.Enabled = True
+                formMain.cmdNewEntry.Enabled = True
+                formMain.rbAreaCalcChecklist.Enabled = True
+                formMain.rbFieldDataRegister.Enabled = True
+                formMain.rbSurveyReportRegister.Enabled = True
+                formMain.rbTqRfiRegister.Enabled = True
+
                 Return True
             End If
 
             Dim inputKey As Long = InputBox("Enter the Activation key for Serial: " & serial, "Activate")
             If CheckKey(inputKey) = True Then
                 MessageBox.Show("Activation Sucessful!")
-                formMain.Enabled = True
+
+                formMain.cmdDeleteRow.Enabled = True
+                formMain.cmdModifySelectedRow.Enabled = True
+                formMain.cmdNewEntry.Enabled = True
+                formMain.rbAreaCalcChecklist.Enabled = True
+                formMain.rbFieldDataRegister.Enabled = True
+                formMain.rbSurveyReportRegister.Enabled = True
+                formMain.rbTqRfiRegister.Enabled = True
+
+
                 My.Settings.activationKey = inputKey
                 My.Settings.Save()
                 Return True

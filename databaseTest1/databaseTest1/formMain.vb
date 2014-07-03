@@ -15,6 +15,9 @@ Public Class formMain
         'Open main window Maximised
         Me.WindowState = FormWindowState.Maximized
 
+
+
+
         'PERFORM KEY CHECK BEFORE ANY ANYTHING ELSE
         If activation.WaitForActivation() = True Then
             Me.Enabled = True
