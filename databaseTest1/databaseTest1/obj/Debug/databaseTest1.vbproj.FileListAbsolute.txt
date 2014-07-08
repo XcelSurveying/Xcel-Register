@@ -60,3 +60,7 @@ C:\Users\Xcel 07\Documents\GitHub\Xcel-Register\databaseTest1\databaseTest1\obj\
 C:\Users\Xcel 07\Documents\GitHub\Xcel-Register\databaseTest1\databaseTest1\obj\Debug\DatabaseTest1.exe
 C:\Users\Xcel 07\Documents\GitHub\Xcel-Register\databaseTest1\databaseTest1\obj\Debug\DatabaseTest1.xml
 C:\Users\Xcel 07\Documents\GitHub\Xcel-Register\databaseTest1\databaseTest1\obj\Debug\DatabaseTest1.pdb
+C:\Users\Xcel 07\Documents\GitHub\Xcel-Register\databaseTest1\databaseTest1\bin\Debug\databaseTest1.exe.manifest
+C:\Users\Xcel 07\Documents\GitHub\Xcel-Register\databaseTest1\databaseTest1\bin\Debug\databaseTest1.application
+C:\Users\Xcel 07\Documents\GitHub\Xcel-Register\databaseTest1\databaseTest1\obj\Debug\databaseTest1.exe.manifest
+C:\Users\Xcel 07\Documents\GitHub\Xcel-Register\databaseTest1\databaseTest1\obj\Debug\databaseTest1.application
