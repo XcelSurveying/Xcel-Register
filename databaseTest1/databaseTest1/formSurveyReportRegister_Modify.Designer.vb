@@ -27,13 +27,8 @@ Partial Class formSurveyReportRegister_Modify
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.cmdCancel = New System.Windows.Forms.Button()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
-        Me.lblModDestFolder = New System.Windows.Forms.Label()
-        Me.Label9 = New System.Windows.Forms.Label()
-        Me.Label10 = New System.Windows.Forms.Label()
-        Me.lblModDestination = New System.Windows.Forms.Label()
         Me.cmdNewEntryBrowse = New System.Windows.Forms.Button()
         Me.linkSource = New System.Windows.Forms.LinkLabel()
-        Me.lblDocumentNameWarning = New System.Windows.Forms.Label()
         Me.lblTitleWarning = New System.Windows.Forms.Label()
         Me.cmboSurveyor = New System.Windows.Forms.ComboBox()
         Me.Label4 = New System.Windows.Forms.Label()
@@ -66,7 +61,6 @@ Partial Class formSurveyReportRegister_Modify
         '
         Me.GroupBox1.Controls.Add(Me.cmdCancel)
         Me.GroupBox1.Controls.Add(Me.GroupBox2)
-        Me.GroupBox1.Controls.Add(Me.lblDocumentNameWarning)
         Me.GroupBox1.Controls.Add(Me.lblTitleWarning)
         Me.GroupBox1.Controls.Add(Me.cmboSurveyor)
         Me.GroupBox1.Controls.Add(Me.Label4)
@@ -104,10 +98,6 @@ Partial Class formSurveyReportRegister_Modify
         '
         'GroupBox2
         '
-        Me.GroupBox2.Controls.Add(Me.lblModDestFolder)
-        Me.GroupBox2.Controls.Add(Me.Label9)
-        Me.GroupBox2.Controls.Add(Me.Label10)
-        Me.GroupBox2.Controls.Add(Me.lblModDestination)
         Me.GroupBox2.Controls.Add(Me.cmdNewEntryBrowse)
         Me.GroupBox2.Controls.Add(Me.linkSource)
         Me.GroupBox2.Location = New System.Drawing.Point(208, 0)
@@ -116,41 +106,6 @@ Partial Class formSurveyReportRegister_Modify
         Me.GroupBox2.TabIndex = 53
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Select PDF"
-        '
-        'lblModDestFolder
-        '
-        Me.lblModDestFolder.Location = New System.Drawing.Point(90, 166)
-        Me.lblModDestFolder.Name = "lblModDestFolder"
-        Me.lblModDestFolder.Size = New System.Drawing.Size(298, 47)
-        Me.lblModDestFolder.TabIndex = 52
-        Me.lblModDestFolder.Text = "lblModDestFolder"
-        '
-        'Label9
-        '
-        Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(30, 166)
-        Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(44, 13)
-        Me.Label9.TabIndex = 51
-        Me.Label9.Text = "Folder :"
-        '
-        'Label10
-        '
-        Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(6, 117)
-        Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(68, 13)
-        Me.Label10.TabIndex = 50
-        Me.Label10.Text = "Destination :"
-        '
-        'lblModDestination
-        '
-        Me.lblModDestination.Location = New System.Drawing.Point(90, 117)
-        Me.lblModDestination.Name = "lblModDestination"
-        Me.lblModDestination.Size = New System.Drawing.Size(298, 45)
-        Me.lblModDestination.TabIndex = 49
-        Me.lblModDestination.Text = "lblModDestination"
-        Me.lblModDestination.Visible = False
         '
         'cmdNewEntryBrowse
         '
@@ -171,18 +126,6 @@ Partial Class formSurveyReportRegister_Modify
         Me.linkSource.TabIndex = 42
         Me.linkSource.TabStop = True
         Me.linkSource.Text = "Browse to create link to PDF"
-        '
-        'lblDocumentNameWarning
-        '
-        Me.lblDocumentNameWarning.AutoSize = True
-        Me.lblDocumentNameWarning.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblDocumentNameWarning.ForeColor = System.Drawing.SystemColors.ControlDarkDark
-        Me.lblDocumentNameWarning.Location = New System.Drawing.Point(9, 77)
-        Me.lblDocumentNameWarning.Name = "lblDocumentNameWarning"
-        Me.lblDocumentNameWarning.Size = New System.Drawing.Size(132, 13)
-        Me.lblDocumentNameWarning.TabIndex = 48
-        Me.lblDocumentNameWarning.Text = "lblDocumentNameWarning"
-        Me.lblDocumentNameWarning.Visible = False
         '
         'lblTitleWarning
         '
@@ -254,6 +197,7 @@ Partial Class formSurveyReportRegister_Modify
         'txtTitle
         '
         Me.txtTitle.Location = New System.Drawing.Point(9, 253)
+        Me.txtTitle.MaxLength = 100
         Me.txtTitle.Name = "txtTitle"
         Me.txtTitle.Size = New System.Drawing.Size(587, 21)
         Me.txtTitle.TabIndex = 5
@@ -365,15 +309,6 @@ Partial Class formSurveyReportRegister_Modify
         '
         Me.ErrorProvider1.ContainerControl = Me
         '
-        'Timer1
-        '
-        '
-        'Timer2
-        '
-        '
-        'timerDestFolder
-        '
-        '
         'formSurveyReportRegister_Modify
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -387,7 +322,6 @@ Partial Class formSurveyReportRegister_Modify
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         Me.GroupBox2.ResumeLayout(False)
-        Me.GroupBox2.PerformLayout()
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
@@ -415,13 +349,8 @@ Partial Class formSurveyReportRegister_Modify
     Friend WithEvents cmboSurveyor As System.Windows.Forms.ComboBox
     Friend WithEvents ErrorProvider1 As System.Windows.Forms.ErrorProvider
     Friend WithEvents lblTitleWarning As System.Windows.Forms.Label
-    Friend WithEvents lblDocumentNameWarning As System.Windows.Forms.Label
     Friend WithEvents Timer1 As System.Windows.Forms.Timer
     Friend WithEvents Timer2 As System.Windows.Forms.Timer
-    Friend WithEvents Label10 As System.Windows.Forms.Label
-    Friend WithEvents lblModDestination As System.Windows.Forms.Label
-    Friend WithEvents lblModDestFolder As System.Windows.Forms.Label
-    Friend WithEvents Label9 As System.Windows.Forms.Label
     Friend WithEvents GroupBox2 As System.Windows.Forms.GroupBox
     Friend WithEvents timerDestFolder As System.Windows.Forms.Timer
     Friend WithEvents cmdCancel As System.Windows.Forms.Button

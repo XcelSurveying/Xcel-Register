@@ -25,6 +25,7 @@ Partial Class formSurveyReportRegister_New
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(formSurveyReportRegister_New))
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.cmdCancel = New System.Windows.Forms.Button()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.lblDestFolder = New System.Windows.Forms.Label()
         Me.Label9 = New System.Windows.Forms.Label()
@@ -56,7 +57,6 @@ Partial Class formSurveyReportRegister_New
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.Timer2 = New System.Windows.Forms.Timer(Me.components)
         Me.timerDestFolder = New System.Windows.Forms.Timer(Me.components)
-        Me.cmdCancel = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -92,6 +92,15 @@ Partial Class formSurveyReportRegister_New
         Me.GroupBox1.TabIndex = 38
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Survey Report Register"
+        '
+        'cmdCancel
+        '
+        Me.cmdCancel.Location = New System.Drawing.Point(536, 470)
+        Me.cmdCancel.Name = "cmdCancel"
+        Me.cmdCancel.Size = New System.Drawing.Size(60, 30)
+        Me.cmdCancel.TabIndex = 54
+        Me.cmdCancel.Text = "Cancel"
+        Me.cmdCancel.UseVisualStyleBackColor = False
         '
         'GroupBox2
         '
@@ -245,6 +254,7 @@ Partial Class formSurveyReportRegister_New
         'txtTitle
         '
         Me.txtTitle.Location = New System.Drawing.Point(9, 253)
+        Me.txtTitle.MaxLength = 100
         Me.txtTitle.Name = "txtTitle"
         Me.txtTitle.Size = New System.Drawing.Size(587, 21)
         Me.txtTitle.TabIndex = 4
@@ -364,15 +374,6 @@ Partial Class formSurveyReportRegister_New
         '
         'timerDestFolder
         '
-        '
-        'cmdCancel
-        '
-        Me.cmdCancel.Location = New System.Drawing.Point(536, 470)
-        Me.cmdCancel.Name = "cmdCancel"
-        Me.cmdCancel.Size = New System.Drawing.Size(60, 30)
-        Me.cmdCancel.TabIndex = 54
-        Me.cmdCancel.Text = "Cancel"
-        Me.cmdCancel.UseVisualStyleBackColor = False
         '
         'formSurveyReportRegister_New
         '

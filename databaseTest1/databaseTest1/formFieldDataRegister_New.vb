@@ -94,6 +94,8 @@
 
     '--------====== SAVE ENTRY =======-------
     Private Sub cmdSave_Click(sender As Object, e As EventArgs) Handles cmdSave.Click
+        Dim dataDir As String
+
         Try
 
             'CHECK MINIMUM LENGTH OF DOCUMENT NAME
@@ -169,6 +171,14 @@
             If cmboJobType.Text = ("Please select ...") Then Exit Sub
             If cmboInstrumentA.Text = ("Please select ...") Then Exit Sub
 
+            'Create and open new folder for the data to reside
+            dataDir = My.Settings.settingsProjectFolderPath.ToString & "\Area\" & cmboArea.Text & "\Field Data\" & cmboJobType.Text & "\" & txtJobRefNum.Text & " - " & txtJobDescription.Text
+            If Not System.IO.Directory.Exists(dataDir) Then
+                System.IO.Directory.CreateDirectory(dataDir)
+            End If
+            Process.Start("explorer.exe", """" & dataDir & """")
+
+
             '-- SQL INSERT QUERY IN TO THE DATABASE --
             sql.DataUpdate("SET DATEFORMAT dmy; INSERT INTO FieldDataRegister ([Job Ref Number], Date, Surveyor, Area, " & _
                                                           "[Job Type], [job Description], [FLD-BK/PG], [Instrument A], Comments, " & _
@@ -180,7 +190,7 @@
                             "'" & cmboArea.Text & "', " & _
                             "'" & cmboJobType.Text & "', " & _
                             "'" & txtJobDescription.Text & "', " & _
-                            "'" & txtFieldBook.Text & "/" & txtFieldPage.Text & "', " & _
+                            "'FB-" & txtFieldBook.Text & " / pg" & txtFieldPage.Text & "', " & _
                             "'" & cmboInstrumentA.Text & "', " & _
                             "'" & txtComments.Text & "', " & _
                             "GETDATE())")

@@ -15,18 +15,22 @@ Public Class formNewDatabaseWizard
         Me.FormBorderStyle = Windows.Forms.FormBorderStyle.FixedToolWindow
         Me.TopMost = False
 
+        ' Disable modification of username and passsword, It is now going to be fixed as (sa, XcelSurveying)
+        txtPassword.Enabled = False
+        txtUid.Enabled = False
+
         txtServerIP.Text = My.Settings.settingsDbServerName
         txtServerPort.Text = My.Settings.settingsDbServerPort
-        txtUid.Text = My.Settings.settingDbUserId
-        txtPassword.Text = My.Settings.settingsDbPassword
+        'txtUid.Text = My.Settings.settingDbUserId
+        'txtPassword.Text = My.Settings.settingsDbPassword
         cmdModify.Visible = My.Settings.settingsIsActiveModify
         cmdSetupDatabase.Enabled = My.Settings.settingsIsActiveSetup
         cmd_CreateTables.Enabled = My.Settings.settingsIsActiveCreateTables
         cmdTestConn.Enabled = My.Settings.settingsIsActiveTest
-        txtPassword.Enabled = My.Settings.settingsIsActivePass
+        'txtUid.Enabled = My.Settings.settingsIsActiveUser
+        'txtPassword.Enabled = My.Settings.settingsIsActivePass
         txtServerIP.Enabled = My.Settings.settingsIsActiveServer
         txtServerPort.Enabled = My.Settings.settingsIsActiveServer
-        txtUid.Enabled = My.Settings.settingsIsActiveUser
         lblWarning.Visible = My.Settings.settingsIsActiveWarning
         lblMessage.Visible = My.Settings.settingsIsActiveMessage
 
@@ -260,10 +264,10 @@ Public Class formNewDatabaseWizard
 
 
     Private Sub cmdModify_Click(sender As Object, e As EventArgs) Handles cmdModify.Click
-        txtPassword.Enabled = True
+        'txtUid.Enabled = True
+        'txtPassword.Enabled = True
         txtServerIP.Enabled = True
         txtServerPort.Enabled = True
-        txtUid.Enabled = True
         cmdTestConn.Enabled = True
 
         cmdSetupDatabase.Enabled = False
@@ -308,4 +312,6 @@ Public Class formNewDatabaseWizard
     Private Sub cmdClose_Click(sender As Object, e As EventArgs) Handles cmdClose.Click
         Me.Close()
     End Sub
+
+    
 End Class

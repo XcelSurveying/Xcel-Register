@@ -16,6 +16,8 @@ Public Class formFieldDataRegister_Modify
     Dim tickCount As Integer = 0
     Dim tickCountTitle As Integer = 0
 
+    Dim txtJobDescription_orig As String = ""
+    Dim txtJobRefNum_orig As String = ""
 
     'FORM LOAD
     Private Sub formModifyFieldDataRegister_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -43,7 +45,7 @@ Public Class formFieldDataRegister_Modify
         Dim row As New DataGridViewRow
         row = formMain.DGVData.Rows(formMain.DGVData.CurrentRow.Index)
         Try
-            Dim separator() As String = {"/"} 'sets the separator string
+            Dim separator() As String = {"FB-", " / pg"} 'sets the separator string
             Dim fieldBkPg As String = (row.Cells("FLD-BK/PG").Value.ToString).Trim 'set FD-Bk/Pg from database to single string
             Dim fieldBkPgSeparated() As String = fieldBkPg.Split(separator, StringSplitOptions.RemoveEmptyEntries) 'splits string to multiple strings separated at the separator
             Select Case fieldBkPgSeparated.Count 'Counts separations
@@ -64,6 +66,9 @@ Public Class formFieldDataRegister_Modify
         cmboInstrumentA.Text = (row.Cells("Instrument A").Value.ToString).Trim
         txtComments.Text = (row.Cells("Comments").Value.ToString).Trim
 
+        'Set original values upon loding of the form
+        txtJobDescription_orig = (row.Cells("Job description").Value.ToString).Trim
+        txtJobRefNum_orig = (row.Cells("Job Ref Number").Value.ToString).Trim
 
         'VALIDATING CONTROL FOR ALL TEXTBOX AND COMBOBOX IN FORM
         For Each c As Control In Me.Controls
@@ -184,6 +189,11 @@ Public Class formFieldDataRegister_Modify
             If cmboJobType.Text = ("Please select ...") Then Exit Sub
             If cmboInstrumentA.Text = ("Please select ...") Then Exit Sub
 
+            If txtJobDescription.Text <> txtJobDescription_orig Or txtJobRefNum.Text <> txtJobRefNum_orig Then
+                MessageBox.Show("The [Job Ref Number] or the [Job Description] has changed. " & vbCrLf & "You will need to manually update the name changes in the job directory your self to reflect whats in this database.", "Folder Stucture", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            End If
+
+
             '-- SQL UPDATE QUERY IN TO THE DATABASE -- 'variable ID Set on formLoad
             sql.DataUpdate("SET DATEFORMAT dmy; UPDATE FieldDataRegister " & _
                             "SET " & _
@@ -193,7 +203,7 @@ Public Class formFieldDataRegister_Modify
                             "Area='" & cmboArea.Text & "', " & _
                             "[Job Type]='" & cmboJobType.Text & "', " & _
                             "[Job Description]='" & txtJobDescription.Text & "', " & _
-                            "[FLD-BK/PG]='" & txtFieldBook.Text & "/" & txtFieldPage.Text & "', " & _
+                            "[FLD-BK/PG]='FB-" & txtFieldBook.Text & " / pg" & txtFieldPage.Text & "', " & _
                             "[Instrument A]='" & cmboInstrumentA.Text & "', " & _
                             "Comments='" & txtComments.Text & "', " & _
                             "Modified = GETDATE() " & _

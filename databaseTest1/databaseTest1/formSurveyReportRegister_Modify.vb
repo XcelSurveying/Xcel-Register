@@ -17,6 +17,7 @@
 
     Dim DestinationDir As String
 
+    Dim DocumentName_orig As String = "blank"
     Dim Rev_orig As String = "blank"
     Dim ID_orig As String = "blank"
     Dim Area_orig As String = "blank"
@@ -46,6 +47,7 @@
         row = formMain.DGVData.Rows(formMain.DGVData.CurrentRow.Index) 'Returns integer value of the select row index from the datagrid
 
         'stores a copy of the Original Values so can be used to restore if the user cancels
+        DocumentName_orig = (row.Cells("Document Name").Value.ToString).Trim
         Rev_orig = (row.Cells("Rev").Value.ToString).Trim
         ID_orig = (row.Cells("ID").Value.ToString)
         Area_orig = (row.Cells("Area").Value.ToString).Trim
@@ -70,9 +72,6 @@
                 AddHandler c.Validating, AddressOf Me.TextBox_Validating
             End If
         Next
-
-        'STARTS DESTINATION FOLDER TIMER
-        timerDestFolder_Tick()
 
     End Sub
 
@@ -104,15 +103,11 @@
 
     '---------==========  SAVE BUTTON RECORD TO DATABASE =========--------------
     Private Sub cmdNewEntrySave_Click(sender As Object, e As EventArgs) Handles cmdNewEntrySave.Click
-        Dim fullpathNew As String
-
         Try
 
             'CHECK MINIMUM LENGTH OF DOCUMENT NAME
             If txtDocumentName.Text.Length < 9 Then
-                lblDocumentNameWarning.Text = ("Document Name too short")
-                tickCount = 0
-                flashLabel()
+                MessageBox.Show("The document name appears to be too short, the format must contain date formated to yymmdd, surveyors initials up to 3 characters, and an occurance number starting from 1 to a maximum of 99.", "Document Name too short", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 Exit Sub
             End If
 
@@ -122,15 +117,11 @@
                     If txtDocumentName.Text.Substring(0, 2) > 20 _
                         Or txtDocumentName.Text.Substring(2, 2) > 12 _
                         Or txtDocumentName.Text.Substring(4, 2) > 31 Then 'test for mmdd date format
-                        lblDocumentNameWarning.Text = ("Document Name date format must be" & vbCrLf & "(yymmdd)")
-                        tickCount = 0
-                        flashLabel()
+                        MessageBox.Show("Document Name date format must be (yymmdd)", "Incorrect data format", MessageBoxButtons.OK, MessageBoxIcon.Information)
                         Exit Sub
                     End If
                 Else
-                    lblDocumentNameWarning.Text = ("Document Name date format must be" & vbCrLf & "(yymmdd)")
-                    tickCount = 0
-                    flashLabel()
+                    MessageBox.Show("Document Name date format must be" & vbCrLf & "(yymmdd)", "Incorrect date format", MessageBoxButtons.OK, MessageBoxIcon.Information)
                     Exit Sub
                 End If
             End If
@@ -145,35 +136,47 @@
                 End If
             Next
             If foundMatch = False Then
-                lblDocumentNameWarning.Text = ("Surveyor initials " & nonNumericOnlyString & " not found in settings list")
-                tickCount = 0
-                flashLabel()
+                MessageBox.Show("Surveyor initials " & nonNumericOnlyString & " not found in settings list. Please make sure the surveyors details are added to the settings page in File/Settings", "Surveyors initials not found", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 Exit Sub
             End If
-            '
 
 
             'QUERY FOR REV NUMBER DUPLICATE   (SEARCH FOR MAX REV NUMBER FOR DOCUMENT THAT IS BEING CREATED)
-            sql.RunQuery("SELECT MAX(Rev) AS result From SurveyReportRegister WHERE [Document Name] = '" & txtDocumentName.Text & "'")
-            If sql.SQLDataset.Tables(0).Rows(0).Item("result") IsNot DBNull.Value Then 'tests for NULL value
-                If sql.SQLDataset.Tables(0).Rows(0).Item("result") >= txtRev.Text Then
-                    If Not Rev_orig = txtRev.Text Then 'tests for equal or higher existing rev number
-                        lblDocumentNameWarning.Text = ("Rev " & txtRev.Text & " or higher already exists" & vbCrLf & _
-                               "Rev " & sql.SQLDataset.Tables(0).Rows(0).Item("result") + 1 & " is the next available revision")
-                        tickCount = 0
-                        flashLabel()
-                        txtRev.Focus()
-                        txtRev.SelectAll() 'Highlights rev text box ready for input
-                        Exit Sub
-                    End If
+            'return number of entries in query result
+            Dim numOfRows As Integer = 0
+            sql.RunQuery("SELECT COUNT(Rev) AS count From SurveyReportRegister WHERE [Document Name] = '" & txtDocumentName.Text & "'")
+            If sql.SQLDataset.Tables(0).Rows(0).Item("count") IsNot DBNull.Value Then
+                numOfRows = sql.SQLDataset.Tables(0).Rows(0).Item("count") 'sets number of rows returned inthe search query for the loop to make the array
+            End If
+
+            'returns all rev values listed in database under the specific doument name
+
+            'Only run if the Document Name or the Rev Number has changed
+            If (txtDocumentName.Text <> DocumentName_orig Or txtRev.Text <> Rev_orig) And numOfRows <> 0 Then
+                Dim i As Integer = 0
+                Dim revArray(numOfRows - 1) As Integer
+                sql.RunQuery("SELECT Rev AS result From SurveyReportRegister WHERE [Document Name] = '" & txtDocumentName.Text & "'")
+                If sql.SQLDataset.Tables(0).Rows(0).Item("result") IsNot DBNull.Value Then 'tests for NULL value
+                    ' Creates an array of revision numbers
+                    For i = 0 To numOfRows - 1
+                        revArray(i) = sql.SQLDataset.Tables(0).Rows(i).Item("result")
+                    Next
+                    'loops through each row or revision number results
+                    For i = 0 To numOfRows - 1
+                        If revArray(i) = txtRev.Text Then
+                            MessageBox.Show("The revision number that you are trying to enter already existes in the database. Try a different number.", "Revision already exists", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                            txtRev.Focus()
+                            txtRev.SelectAll() 'Highlights rev text box ready for input
+                            Exit Sub
+                        End If
+                    Next
                 End If
             End If
 
+
             'CHECK TO SEE IF TITLE FIELD IS NOT BLANK
             If txtTitle.Text = ("") Then
-                lblTitleWarning.Text = ("Please enter a title for the report")
-                tickCount = 0
-                flashLabelTitle()
+                MessageBox.Show("It appears that the title field is blank. Please enter a title for the report", "Enter a title for the report", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 Exit Sub
             End If
 
@@ -181,8 +184,8 @@
             If cmboArea.Text = ("Please select ...") Then Exit Sub
             If cmboDescription.Text = ("Please select ...") Then Exit Sub
 
-            'UPDATE THE PDF PATH LINK
-            fullpathNew = My.Settings.settingsProjectFolderPath.ToString & DestinationDir.ToString & "\" & txtDocumentName.Text & ".pdf"
+            ' 'UPDATE THE PDF PATH LINK
+            ' fullpathNew = My.Settings.settingsProjectFolderPath.ToString & DestinationDir.ToString & "\" & txtDocumentName.Text & ".pdf"
 
             '-- SQL INSERT QUERY IN TO THE DATABASE --
             sql.DataUpdate("SET DATEFORMAT dmy; UPDATE SurveyReportRegister " & _
@@ -195,25 +198,25 @@
                        "Description='" & cmboDescription.Text & "', " & _
                        "Surveyor='" & cmboSurveyor.Text & "', " & _
                        "Comments='" & txtComments.Text & "', " & _
-                       "PDFLink='" & fullpathNew & "', " & _
+                       "PDFLink='" & fullpath & "', " & _
                        "Modified=GETDATE() " & _
                        "WHERE ID='" & ID_orig & "'") 'gets unique ID of the row selected
 
 
-            'CREATE AND COPY THE PDF TO THE NEW DIRECTORY
-            ' Copy the file to a new folder and rename it.
-            If fullpath <> Linksource_orig Then 'checks to see if file has changed
-                My.Computer.FileSystem.CopyFile(
-                fullpath, fullpathNew,
-                Microsoft.VisualBasic.FileIO.UIOption.AllDialogs,
-                Microsoft.VisualBasic.FileIO.UICancelOption.DoNothing)
-                'MsgBox(fullpath)
-                'MsgBox(My.Settings.settingsProjectFolderPath & DestinationDir & "\" & txtDocumentName.Text & ".pdf")
-
-                'REMOVE OLD PDF FROM ORIGINAL DIRECTORY
-                'if folder hasnt changed dont delete file
-                'My.Computer.FileSystem.DeleteFile(fullpathOrig)
-            End If
+            '     'CREATE AND COPY THE PDF TO THE NEW DIRECTORY
+            '     ' Copy the file to a new folder and rename it.
+            '     If fullpathNew <> Linksource_orig Then 'checks to see if file has changed
+            '         My.Computer.FileSystem.CopyFile(
+            '         fullpath, fullpathNew,
+            '         Microsoft.VisualBasic.FileIO.UIOption.AllDialogs,
+            '         Microsoft.VisualBasic.FileIO.UICancelOption.DoNothing)
+            '         'MsgBox(fullpath)
+            '         'MsgBox(My.Settings.settingsProjectFolderPath & DestinationDir & "\" & txtDocumentName.Text & ".pdf")
+            '
+            '         'REMOVE OLD PDF FROM ORIGINAL DIRECTORY
+            '         'if folder hasnt changed dont delete file
+            '         'My.Computer.FileSystem.DeleteFile(fullpathOrig)
+            '     End If
 
 
 
@@ -239,9 +242,6 @@
             e.Handled = False
         End If
 
-        Timer1.Stop()
-        lblDocumentNameWarning.Visible = False
-
     End Sub
 
     'CHECK TO SEE IF REV FIELD IS GREATER THAN 0
@@ -262,10 +262,6 @@
             If (Char.IsLower(e.KeyChar)) Then
                 e.KeyChar = Char.ToUpper(e.KeyChar)
             End If
-
-            'MAKES WARNING LABEL NOT VISIBLE
-            lblDocumentNameWarning.Visible = False
-            Timer1.Stop()
 
         Catch ex As Exception
             MessageBox.Show(ex.Message, "Document Name", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -297,11 +293,12 @@
             'QUERY FOR REV NUMBER DUPLICATE   (SEARCH FOR MAX REV NUMBER FOR DOCUMENT THAT IS BEING CREATED)
             sql.RunQuery("SELECT MAX(Rev) AS result From SurveyReportRegister WHERE [Document Name] = '" & txtDocumentName.Text & "'")
             If sql.SQLDataset.Tables(0).Rows(0).Item("result") IsNot DBNull.Value Then 'tests for NULL value
-                If sql.SQLDataset.Tables(0).Rows(0).Item("result") >= txtRev.Text Then 'tests for equal or higher existing rev number
-                    txtRev.Text = (sql.SQLDataset.Tables(0).Rows(0).Item("result") + 1)
-                    Exit Sub
-
-                End If
+                'tests for equal or higher existing rev number
+                ' If sql.SQLDataset.Tables(0).Rows(0).Item("result") >= txtRev.Text Then 
+                '     txtRev.Text = (sql.SQLDataset.Tables(0).Rows(0).Item("result") + 1)
+                '     Exit Sub
+                '
+                ' End If
             Else
                 txtRev.Text = ("1")
             End If
@@ -332,53 +329,6 @@
         If Me.cmboDescription.SelectedItem = ("") Then Me.cmboDescription.SelectedIndex = 0
     End Sub
 
-    '----==== TIMERS ====---------------------------------------------------------
-    Private Sub flashLabel() Handles Timer1.Tick
-        Timer1.Interval = 500
-        Timer1.Enabled = True
-        Timer1.Start()
-        tickCount += 1
-        If Not tickCount > 5 Then
-            lblDocumentNameWarning.Visible = Not lblDocumentNameWarning.Visible
-        Else
-            lblDocumentNameWarning.Visible = True
-            Timer1.Stop()
-        End If
-    End Sub
-    Private Sub flashLabelTitle() Handles Timer2.Tick
-        Timer2.Interval = 500
-        Timer2.Enabled = True
-        Timer2.Start()
-        tickCountTitle += 1
-        If Not tickCountTitle > 5 Then
-            lblTitleWarning.Visible = Not lblTitleWarning.Visible
-        Else
-            lblTitleWarning.Visible = True
-            Timer2.Stop()
-        End If
-    End Sub
-    Private Sub timerDestFolder_Tick() Handles timerDestFolder.Tick
-        timerDestFolder.Interval = 100
-        timerDestFolder.Enabled = True
-        timerDestFolder.Start()
-        'ADDS DESTINATION FOLDER LABEL TO FORM
-        If txtRev.Text <> ("") And txtDocumentName.Text <> ("") And cmboDescription.Text <> ("Please select ...") And cmboArea.Text <> ("") Then
-            DestinationDir = ("\" & cmboArea.Text & "\" & cmboDescription.Text & "\" & txtDocumentName.Text & "\Rev" & txtRev.Text)
-            lblModDestFolder.Text = DestinationDir
-            lblModDestFolder.Visible = True
-        Else
-            lblModDestFolder.Visible = False
-        End If
-
-        'ADDS DESTINATION PDF NAME LABEL TO FORM
-        If txtDocumentName.Text <> ("") And fullpath <> ("") Then
-            lblModDestination.Text = (txtDocumentName.Text & ".pdf")
-            lblModDestination.Visible = True
-        Else
-            lblModDestination.Visible = False
-        End If
-
-    End Sub
 
     '----==========BROWSE BUTTON ========------------------------------------------------
     Private Sub cmdNewEntryBrowse_Click(sender As Object, e As EventArgs) Handles cmdNewEntryBrowse.Click
@@ -394,7 +344,7 @@
         ofdBrowseDocumentName.ShowDialog()
         fullpath = ofdBrowseDocumentName.FileName
         filename = System.IO.Path.GetFileName(fullpath) 'Reduces the full path to filename only
-        linkSource.Text = filename 'Creates hyperlink name with full path name
+        linkSource.Text = fullpath 'Creates hyperlink name with full path name
     End Sub
 
     'ESCAPE CHARACTERS ENTERED IN TO THE TEXT BOXES
@@ -404,7 +354,7 @@
         EscapeChars.Include(e, True, True)
     End Sub
 
-    
+
     Private Sub cmdCancel_Click(sender As Object, e As EventArgs) Handles cmdCancel.Click
         Me.Close()
     End Sub

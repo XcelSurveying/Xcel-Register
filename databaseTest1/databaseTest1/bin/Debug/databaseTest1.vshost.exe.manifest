@@ -43,14 +43,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="databaseTest1.exe" size="799232">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="databaseTest1.exe" size="805888">
       <assemblyIdentity name="databaseTest1" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>4KVg/AW4BpbmA3IWzP6AfjQ45dzvhgW3odh29/nIKjs=</dsig:DigestValue>
+        <dsig:DigestValue>+jGcd6+dtTt/5gUNvVj4G0fAr6fQ4iVb55YYH0wnBvM=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

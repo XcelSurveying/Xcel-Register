@@ -42,6 +42,13 @@ Public Class formMain
         ' Set the background color for all rows and for alternating rows.  
         ' The value for alternating rows overrides the value for all rows. 
         DGVData.AlternatingRowsDefaultCellStyle.BackColor = Color.WhiteSmoke
+        If DGVData.Columns(2).HeaderText = "Document Name" Then
+            DGVData.Columns(2).DefaultCellStyle.Font = New Font("Tahoma", 8.25, FontStyle.Bold)
+        End If
+        If DGVData.Columns(1).HeaderText = "Job Ref Number" Then
+            DGVData.Columns(1).DefaultCellStyle.Font = New Font("Tahoma", 8.25, FontStyle.Bold)
+        End If
+        'DGVData.Columns("Comments").DefaultCellStyle.WrapMode = DataGridViewTriState.True
 
     End Sub
 
@@ -78,7 +85,7 @@ Public Class formMain
             MessageBox.Show(ex.Message, "New Entry", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
-
+    'MODIFY ENTRY
     Private Sub cmdModifySelectedRow_Click(sender As Object, e As EventArgs) Handles cmdModifySelectedRow.Click
         Try
             Select Case True
@@ -195,6 +202,7 @@ Public Class formMain
                     col.Visible = False
             End Select
         Next
+
     End Sub
 
     Private Sub setSearchStringSurveyReportRegister()
@@ -248,6 +256,8 @@ Public Class formMain
                     col.Visible = False
             End Select
         Next
+        'Adds the bold to the hyperlinks
+        initilizeDataGridView()
     End Sub
 
     Private Sub setSearchStringFieldDataRegister()
@@ -298,6 +308,8 @@ Public Class formMain
                     col.Visible = False
             End Select
         Next
+        ' Adds bold text to the datagrid view to the hyperlink column
+        initilizeDataGridView()
     End Sub
 
     Private Sub setSearchStringTqRfiRegister()
@@ -363,7 +375,7 @@ Public Class formMain
     End Sub
 
     Private Sub AboutToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AboutToolStripMenuItem.Click
-        MessageBox.Show("Xcel Database Register: Version ##.##", "About", MessageBoxButtons.OK, MessageBoxIcon.None)
+        MessageBox.Show("Xcel Database Register: Version 1.0.0.1", "About", MessageBoxButtons.OK, MessageBoxIcon.None)
     End Sub
 
     '--DELETE SELECTED ROW
@@ -400,6 +412,32 @@ Public Class formMain
             End If
         Catch ex As Exception
             MessageBox.Show(ex.Message, "Delete Entry", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    'ADD HYPERLINKS TO THE DATA GRID VIEW
+    Private Sub DGVData_CellContentClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles DGVData.CellContentClick
+        Try
+            'if the linkColumn is clicked
+            If DGVData.Columns(e.ColumnIndex).HeaderText = "Document Name" And DGVData.Item(9, e.RowIndex).Value <> "" Then
+                Process.Start("explorer", "/select," & DGVData.Item(9, e.RowIndex).Value)
+            End If
+            ' check to see if the area, job type and description fields aren't blank, then opens the folder location
+            If DGVData.Columns(e.ColumnIndex).HeaderText = "Job Ref Number" And DGVData.Item(4, e.RowIndex).Value <> "" _
+                And DGVData.Item(5, e.RowIndex).Value <> "" And DGVData.Item(4, e.RowIndex).Value <> "" Then
+                Dim row As New DataGridViewRow
+                row = Me.DGVData.Rows(Me.DGVData.CurrentRow.Index)
+
+                Dim dataDir As String = ""
+                Dim cmboArea As String = (row.Cells("Area").Value.ToString).Trim
+                Dim cmboJobType As String = (row.Cells("Job Type").Value.ToString).Trim
+                Dim txtJobRefNum As String = (row.Cells("Job Ref Number").Value.ToString).Trim
+                Dim txtJobDescription As String = (row.Cells("Job Description").Value.ToString).Trim
+                dataDir = My.Settings.settingsProjectFolderPath.ToString & "\Area\" & cmboArea & "\Field Data\" & cmboJobType & "\" & txtJobRefNum & " - " & txtJobDescription & "\"
+                Process.Start("explorer", "/select," & """" & dataDir & """")
+            End If
+
+        Catch ex As Exception
         End Try
     End Sub
 
@@ -440,9 +478,15 @@ Public Class formMain
                 Next
             Next
 
+            'Sets Date for export
+            Dim myDateTime As DateTime = DateTime.Now    'Sets the date for the filename to now
+            Dim myDateOnly As String = myDateTime.ToString("yyyyMMdd")
+
             Dim exportXLSXFile As New SaveFileDialog()
             exportXLSXFile.Filter = "Excel file|*.xlsx"
             exportXLSXFile.Title = "Export an Excel File"
+            If My.Settings.settingsProjectFolderPath <> "" Then exportXLSXFile.InitialDirectory = My.Settings.settingsProjectFolderPath
+            exportXLSXFile.FileName = myDateOnly & "_" & lblRegisterSelected.Text & "_XCELregister_export"
             exportXLSXFile.ShowDialog()
 
             If exportXLSXFile.FileName <> "" Then

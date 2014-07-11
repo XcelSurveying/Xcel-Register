@@ -91,6 +91,7 @@
     '---------==========  SAVE BUTTON RECORD TO DATABASE =========--------------
     Private Sub cmdNewEntrySave_Click(sender As Object, e As EventArgs) Handles cmdNewEntrySave.Click
         Dim fullpathNew As String
+        Dim fullDirNew As String
 
         Try
 
@@ -144,7 +145,8 @@
             'QUERY FOR REV NUMBER DUPLICATE   (SEARCH FOR MAX REV NUMBER FOR DOCUMENT THAT IS BEING CREATED)
             sql.RunQuery("SELECT MAX(Rev) AS result From SurveyReportRegister WHERE [Document Name] = '" & txtDocumentName.Text & "'")
             If sql.SQLDataset.Tables(0).Rows(0).Item("result") IsNot DBNull.Value Then 'tests for NULL value
-                If sql.SQLDataset.Tables(0).Rows(0).Item("result") >= txtRev.Text Then 'tests for equal or higher existing rev number
+                'tests for equal or higher existing rev number
+                If sql.SQLDataset.Tables(0).Rows(0).Item("result") >= txtRev.Text Then
                     lblDocumentNameWarning.Text = ("Rev " & txtRev.Text & " or higher already exists" & vbCrLf & _
                            "Rev " & sql.SQLDataset.Tables(0).Rows(0).Item("result") + 1 & " is the next available revision")
                     tickCount = 0
@@ -153,7 +155,25 @@
                     txtRev.SelectAll() 'Highlights rev text box ready for input
                     Exit Sub
                 End If
+                'tests for equal or higher existing rev number
+                If sql.SQLDataset.Tables(0).Rows(0).Item("result") + 1 < txtRev.Text Then 'tests for equal or higher existing rev number
+                    lblDocumentNameWarning.Text = ("Looks like a revision has been skipped" & vbCrLf & _
+                           "Rev " & sql.SQLDataset.Tables(0).Rows(0).Item("result") + 1 & " is the next available revision")
+                    tickCount = 0
+                    flashLabel()
+                    txtRev.Focus()
+                    txtRev.SelectAll() 'Highlights rev text box ready for input
+                    Exit Sub
+                End If
+            Else
+                'Finally test if query doesnt find an existing ducument name entry, it must start from revision 1
+                If txtRev.Text <> 1 Then
+                    lblDocumentNameWarning.Text = "Revisions must start at 1"
+                    Exit Sub
+                End If
             End If
+            
+
 
             'CHECK TO SEE IF TITLE FIELD IS NOT BLANK
             If txtTitle.Text = ("") Then
@@ -168,13 +188,24 @@
             If cmboDescription.Text = ("Please select ...") Then Exit Sub
 
             'CAN ONLY BE CREATED WHEN DESTINATION DIR AND TXT DOCUMENT NAME ARE ENTERED, ESCAPE OTHERWISE
-            fullpathNew = My.Settings.settingsProjectFolderPath.ToString & DestinationDir.ToString & "\" & txtDocumentName.Text & ".pdf"
+            fullpathNew = My.Settings.settingsProjectFolderPath.ToString & DestinationDir.ToString & "\" & txtDocumentName.Text & " Rev" & txtRev.Text & ".pdf"
+            fullDirNew = My.Settings.settingsProjectFolderPath.ToString & DestinationDir.ToString & "\"
 
             'CREATE AND COPY THE PDF TO THE NEW DIRECTORY
             ' Copy the file to a new folder and rename it.
-            My.Computer.FileSystem.CopyFile(fullpath, fullpathNew,
+            If fullpath <> "" Then
+                My.Computer.FileSystem.CopyFile(fullpath, fullpathNew,
                 Microsoft.VisualBasic.FileIO.UIOption.AllDialogs,
                 Microsoft.VisualBasic.FileIO.UICancelOption.DoNothing)
+            Else
+                MessageBox.Show("The report PDF file hasn't been selected, so no file has been copied. However the folder has been created at the location shown below: " & vbCrLf & fullDirNew)
+                If Not System.IO.Directory.Exists(fullDirNew) Then
+                    System.IO.Directory.CreateDirectory(fullDirNew)
+                End If
+                Process.Start("explorer.exe", fullDirNew)
+                fullpathNew = "... to be added at a later date ..."
+            End If
+            
 
 
             '-- SQL INSERT QUERY IN TO THE DATABASE --
@@ -366,7 +397,7 @@
         timerDestFolder.Start()
         'ADDS DESTINATION FOLDER TO FORM
         If txtRev.Text <> ("") And txtDocumentName.Text <> ("") And cmboDescription.Text <> ("Please select ...") And cmboArea.Text <> ("") Then
-            DestinationDir = ("\" & cmboArea.Text & "\" & cmboDescription.Text & "\" & txtDocumentName.Text & "\Rev" & txtRev.Text)
+            DestinationDir = ("\Area\" & cmboArea.Text & "\Asbuilts\" & txtDocumentName.Text & "\Rev" & txtRev.Text)
             lblDestFolder.Text = DestinationDir
             lblDestFolder.Visible = True
         Else

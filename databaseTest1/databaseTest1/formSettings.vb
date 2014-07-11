@@ -167,4 +167,39 @@
     End Sub
 
 
+    'Creates a description in the form describing what the listbox should contain
+    Private Sub ListBox_MouseHover(sender As Object, e As EventArgs) _
+        Handles lbSRRSurveyors.MouseHover, lbFDRArea.MouseHover, lbFDRInstrumentA.MouseHover, lbFDRJobType.MouseHover, _
+        lbSRRArea.MouseHover, lbSRRDescription.MouseHover, lbTQRArea.MouseHover, MyBase.MouseHover
+        Try
+            Dim listbox As ListBox = CType(sender, ListBox)
+
+            Select Case listbox.Name
+                Case "lbSRRSurveyors" : lblSettingsDescription.Text = "COMMON :" & vbCrLf & vbCrLf & "The name of the surveyors on site, and those who will be completing works. " & vbCrLf & vbCrLf & "e.g JS - John Surveyor"
+                Case "lbFDRArea" : lblSettingsDescription.Text = "FIELD DATA :" & vbCrLf & vbCrLf & "The name of the area that the work has been completed. " & vbCrLf & vbCrLf & "e.g 01 PLANT"
+                Case "lbFDRInstrumentA" : lblSettingsDescription.Text = "FIELD DATA :" & vbCrLf & vbCrLf & "The type of intruments used on site. " & vbCrLf & vbCrLf & "e.g Total Station"
+                Case "lbFDRJobType" : lblSettingsDescription.Text = "FIELD DATA :" & vbCrLf & vbCrLf & "The type of job. " & vbCrLf & vbCrLf & "e.g. ASCON"
+                Case "lbSRRArea" : lblSettingsDescription.Text = "SURVEY REPORT :" & vbCrLf & vbCrLf & "The name of the area that the work has been completed. " & vbCrLf & vbCrLf & "e.g 01 PLANT"
+                Case "lbSRRDescription" : lblSettingsDescription.Text = "SURVEY REPORT :" & vbCrLf & vbCrLf & "The type of job. " & vbCrLf & vbCrLf & "e.g. ASCON"
+                Case "lbTQRArea" : lblSettingsDescription.Text = "TQ / RFI :" & vbCrLf & vbCrLf & "The name of the area that the work has been completed. " & vbCrLf & vbCrLf & "e.g 01 PLANT"
+            End Select
+
+        Catch ex As Exception
+
+        End Try
+    End Sub
+    'Clears the label area once the mouse is taken off the listbox
+    Private Sub ListBox_MouseLeave(sender As Object, e As EventArgs) _
+        Handles lbSRRSurveyors.MouseLeave, lbFDRArea.MouseLeave, lbFDRInstrumentA.MouseLeave, lbFDRJobType.MouseLeave, _
+        lbSRRArea.MouseLeave, lbSRRDescription.MouseLeave, lbTQRArea.MouseLeave
+        Try
+
+            lblSettingsDescription.Text = ""
+
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+   
 End Class

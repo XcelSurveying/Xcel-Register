@@ -243,10 +243,12 @@ Partial Class formMain
         '
         Me.cmdExportXLXS.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.cmdExportXLXS.Image = CType(resources.GetObject("cmdExportXLXS.Image"), System.Drawing.Image)
-        Me.cmdExportXLXS.Location = New System.Drawing.Point(1300, 150)
+        Me.cmdExportXLXS.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.cmdExportXLXS.Location = New System.Drawing.Point(1174, 150)
         Me.cmdExportXLXS.Name = "cmdExportXLXS"
-        Me.cmdExportXLXS.Size = New System.Drawing.Size(30, 30)
+        Me.cmdExportXLXS.Size = New System.Drawing.Size(156, 30)
         Me.cmdExportXLXS.TabIndex = 19
+        Me.cmdExportXLXS.Text = "Export to Client"
         Me.cmdExportXLXS.UseVisualStyleBackColor = True
         '
         'cmdDeleteRow
@@ -265,7 +267,7 @@ Partial Class formMain
         '
         Me.cmdPrintDGVData.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.cmdPrintDGVData.Image = CType(resources.GetObject("cmdPrintDGVData.Image"), System.Drawing.Image)
-        Me.cmdPrintDGVData.Location = New System.Drawing.Point(1264, 150)
+        Me.cmdPrintDGVData.Location = New System.Drawing.Point(1084, 150)
         Me.cmdPrintDGVData.Name = "cmdPrintDGVData"
         Me.cmdPrintDGVData.Size = New System.Drawing.Size(30, 30)
         Me.cmdPrintDGVData.TabIndex = 17
