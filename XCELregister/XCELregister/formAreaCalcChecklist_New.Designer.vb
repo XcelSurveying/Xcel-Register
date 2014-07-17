@@ -42,11 +42,13 @@ Partial Class formAreaCalcChecklist_New
         Me.Label2 = New System.Windows.Forms.Label()
         Me.txtModelLayer = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
+        Me.chkChecked = New System.Windows.Forms.CheckBox()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.chkChecked)
         Me.GroupBox1.Controls.Add(Me.cmdCancel)
         Me.GroupBox1.Controls.Add(Me.cmboCheckedBy)
         Me.GroupBox1.Controls.Add(Me.cmboCalcdBy)
@@ -67,14 +69,14 @@ Partial Class formAreaCalcChecklist_New
         Me.GroupBox1.Controls.Add(Me.Label1)
         Me.GroupBox1.Location = New System.Drawing.Point(12, 11)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(436, 319)
+        Me.GroupBox1.Size = New System.Drawing.Size(436, 363)
         Me.GroupBox1.TabIndex = 37
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Add New Entry"
         '
         'cmdCancel
         '
-        Me.cmdCancel.Location = New System.Drawing.Point(347, 283)
+        Me.cmdCancel.Location = New System.Drawing.Point(347, 327)
         Me.cmdCancel.Name = "cmdCancel"
         Me.cmdCancel.Size = New System.Drawing.Size(60, 30)
         Me.cmdCancel.TabIndex = 10
@@ -85,7 +87,7 @@ Partial Class formAreaCalcChecklist_New
         '
         Me.cmboCheckedBy.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmboCheckedBy.FormattingEnabled = True
-        Me.cmboCheckedBy.Location = New System.Drawing.Point(32, 155)
+        Me.cmboCheckedBy.Location = New System.Drawing.Point(32, 194)
         Me.cmboCheckedBy.Name = "cmboCheckedBy"
         Me.cmboCheckedBy.Size = New System.Drawing.Size(252, 21)
         Me.cmboCheckedBy.TabIndex = 6
@@ -101,18 +103,18 @@ Partial Class formAreaCalcChecklist_New
         '
         'txtComments
         '
-        Me.txtComments.Location = New System.Drawing.Point(32, 205)
+        Me.txtComments.Location = New System.Drawing.Point(32, 244)
         Me.txtComments.MaxLength = 255
         Me.txtComments.Multiline = True
         Me.txtComments.Name = "txtComments"
-        Me.txtComments.Size = New System.Drawing.Size(375, 52)
+        Me.txtComments.Size = New System.Drawing.Size(375, 77)
         Me.txtComments.TabIndex = 8
         '
         'dtpCheckedDate
         '
         Me.dtpCheckedDate.CustomFormat = "dd/MM/yyyy"
         Me.dtpCheckedDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.dtpCheckedDate.Location = New System.Drawing.Point(307, 156)
+        Me.dtpCheckedDate.Location = New System.Drawing.Point(307, 195)
         Me.dtpCheckedDate.Name = "dtpCheckedDate"
         Me.dtpCheckedDate.Size = New System.Drawing.Size(100, 20)
         Me.dtpCheckedDate.TabIndex = 7
@@ -133,7 +135,7 @@ Partial Class formAreaCalcChecklist_New
         '
         Me.cmdNewEntrySave.Image = CType(resources.GetObject("cmdNewEntrySave.Image"), System.Drawing.Image)
         Me.cmdNewEntrySave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.cmdNewEntrySave.Location = New System.Drawing.Point(281, 283)
+        Me.cmdNewEntrySave.Location = New System.Drawing.Point(281, 327)
         Me.cmdNewEntrySave.Name = "cmdNewEntrySave"
         Me.cmdNewEntrySave.Size = New System.Drawing.Size(60, 30)
         Me.cmdNewEntrySave.TabIndex = 9
@@ -144,7 +146,7 @@ Partial Class formAreaCalcChecklist_New
         'Label8
         '
         Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(29, 189)
+        Me.Label8.Location = New System.Drawing.Point(29, 228)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(56, 13)
         Me.Label8.TabIndex = 31
@@ -153,7 +155,7 @@ Partial Class formAreaCalcChecklist_New
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(304, 140)
+        Me.Label7.Location = New System.Drawing.Point(304, 179)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(74, 13)
         Me.Label7.TabIndex = 30
@@ -162,7 +164,7 @@ Partial Class formAreaCalcChecklist_New
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(29, 140)
+        Me.Label6.Location = New System.Drawing.Point(29, 179)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(64, 13)
         Me.Label6.TabIndex = 28
@@ -237,11 +239,21 @@ Partial Class formAreaCalcChecklist_New
         Me.Label1.TabIndex = 19
         Me.Label1.Text = "Model / Layer"
         '
+        'chkChecked
+        '
+        Me.chkChecked.AutoSize = True
+        Me.chkChecked.Location = New System.Drawing.Point(32, 146)
+        Me.chkChecked.Name = "chkChecked"
+        Me.chkChecked.Size = New System.Drawing.Size(226, 17)
+        Me.chkChecked.TabIndex = 32
+        Me.chkChecked.Text = "Tick box if this drawing has been checked"
+        Me.chkChecked.UseVisualStyleBackColor = True
+        '
         'formAreaCalcChecklist_New
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(460, 340)
+        Me.ClientSize = New System.Drawing.Size(460, 386)
         Me.Controls.Add(Me.GroupBox1)
         Me.Name = "formAreaCalcChecklist_New"
         Me.Text = "New Entry to Area Calc Checlist"
@@ -269,4 +281,5 @@ Partial Class formAreaCalcChecklist_New
     Friend WithEvents cmboCheckedBy As System.Windows.Forms.ComboBox
     Friend WithEvents cmboCalcdBy As System.Windows.Forms.ComboBox
     Friend WithEvents cmdCancel As System.Windows.Forms.Button
+    Friend WithEvents chkChecked As System.Windows.Forms.CheckBox
 End Class

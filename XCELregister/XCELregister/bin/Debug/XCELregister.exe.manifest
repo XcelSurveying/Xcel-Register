@@ -43,14 +43,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="XCELregister.exe" size="814080">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="XCELregister.exe" size="817152">
       <assemblyIdentity name="XCELregister" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>koJ4g8N4DXOZqhado2+f22soI7t9bU5MBMNtzaWr9Bo=</dsig:DigestValue>
+        <dsig:DigestValue>3w0sLdd/9v3xjgxbPpX6lxEEftFQAgqWf5ZHQugGUaw=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

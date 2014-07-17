@@ -152,17 +152,17 @@ Public Class formMain
 
     Private Sub setSearchStringAreaCalcChecklist()
         queryString = ("SELECT * FROM AreaCalcChecklist WHERE " & vbCrLf & _
-                            "ID LIKE '" & txtSearch.Text & "%' OR " & vbCrLf & _
-                            "[Model/Layer] LIKE '" & txtSearch.Text & "%' OR " & vbCrLf & _
-                            "[Drawing Number] LIKE '" & txtSearch.Text & "%' OR " & vbCrLf & _
-                            "[TQ/RFI] LIKE '" & txtSearch.Text & "%' OR " & vbCrLf & _
-                            "[Calc'd by] LIKE '" & txtSearch.Text & "%' OR " & vbCrLf & _
-                            "[Calc'd date] LIKE '" & txtSearch.Text & "%' OR " & vbCrLf & _
-                            "[Checked by] LIKE '" & txtSearch.Text & "%' OR " & vbCrLf & _
-                            "[Checked date] LIKE '" & txtSearch.Text & "%' OR " & vbCrLf & _
-                            "Comments LIKE '" & txtSearch.Text & "%' OR " & vbCrLf & _
-                            "Created LIKE '" & txtSearch.Text & "%' OR " & vbCrLf & _
-                            "Modified LIKE '" & txtSearch.Text & "%' ORDER BY Created DESC")
+                            "ID LIKE '%" & txtSearch.Text & "%' OR " & vbCrLf & _
+                            "[Model/Layer] LIKE '%" & txtSearch.Text & "%' OR " & vbCrLf & _
+                            "[Drawing Number] LIKE '%" & txtSearch.Text & "%' OR " & vbCrLf & _
+                            "[TQ/RFI] LIKE '%" & txtSearch.Text & "%' OR " & vbCrLf & _
+                            "[Calc'd by] LIKE '%" & txtSearch.Text & "%' OR " & vbCrLf & _
+                            "[Calc'd date] LIKE '%" & txtSearch.Text & "%' OR " & vbCrLf & _
+                            "[Checked by] LIKE '%" & txtSearch.Text & "%' OR " & vbCrLf & _
+                            "[Checked date] LIKE '%" & txtSearch.Text & "%' OR " & vbCrLf & _
+                            "Comments LIKE '%" & txtSearch.Text & "%' OR " & vbCrLf & _
+                            "Created LIKE '%" & txtSearch.Text & "%' OR " & vbCrLf & _
+                            "Modified LIKE '%" & txtSearch.Text & "%' ORDER BY Created DESC")
 
         SQL.RunQuery(queryString)
         refreshDataGridView()
@@ -204,18 +204,18 @@ Public Class formMain
     Private Sub setSearchStringSurveyReportRegister()
 
         queryString = ("SELECT * FROM SurveyReportRegister WHERE " & vbCrLf & _
-                            "ID LIKE '" & txtSearch.Text & "%' OR " & vbCrLf & _
-                            "Date LIKE '" & txtSearch.Text & "%' OR " & vbCrLf & _
-                            "[Document Name] LIKE '" & txtSearch.Text & "%' OR " & vbCrLf & _
-                            "Rev LIKE '" & txtSearch.Text & "%' OR " & vbCrLf & _
-                            "Title LIKE '" & txtSearch.Text & "%' OR " & vbCrLf & _
-                            "Area LIKE '" & txtSearch.Text & "%' OR " & vbCrLf & _
-                            "Description LIKE '" & txtSearch.Text & "%' OR " & vbCrLf & _
-                            "Surveyor LIKE '" & txtSearch.Text & "%' OR " & vbCrLf & _
-                            "Comments LIKE '" & txtSearch.Text & "%' OR " & vbCrLf & _
-                            "PDFLink LIKE '" & txtSearch.Text & "%' OR " & vbCrLf & _
-                            "Created LIKE '" & txtSearch.Text & "%' OR " & vbCrLf & _
-                            "Modified LIKE '" & txtSearch.Text & "%' ORDER BY Created DESC")
+                            "ID LIKE '%" & txtSearch.Text & "%' OR " & vbCrLf & _
+                            "Date LIKE '%" & txtSearch.Text & "%' OR " & vbCrLf & _
+                            "[Document Name] LIKE '%" & txtSearch.Text & "%' OR " & vbCrLf & _
+                            "Rev LIKE '%" & txtSearch.Text & "%' OR " & vbCrLf & _
+                            "Title LIKE '%" & txtSearch.Text & "%' OR " & vbCrLf & _
+                            "Area LIKE '%" & txtSearch.Text & "%' OR " & vbCrLf & _
+                            "Description LIKE '%" & txtSearch.Text & "%' OR " & vbCrLf & _
+                            "Surveyor LIKE '%" & txtSearch.Text & "%' OR " & vbCrLf & _
+                            "Comments LIKE '%" & txtSearch.Text & "%' OR " & vbCrLf & _
+                            "PDFLink LIKE '%" & txtSearch.Text & "%' OR " & vbCrLf & _
+                            "Created LIKE '%" & txtSearch.Text & "%' OR " & vbCrLf & _
+                            "Modified LIKE '%" & txtSearch.Text & "%' ORDER BY Created DESC")
 
         SQL.RunQuery(queryString)
         refreshDataGridView()
@@ -258,18 +258,18 @@ Public Class formMain
 
     Private Sub setSearchStringFieldDataRegister()
         queryString = ("SELECT * FROM FieldDataRegister WHERE " & vbCrLf & _
-                            "ID LIKE '" & txtSearch.Text & "%' OR " & vbCrLf & _
-                            "[Job Ref Number] LIKE '" & txtSearch.Text & "%' OR " & vbCrLf & _
-                            "Date LIKE '" & txtSearch.Text & "%' OR " & vbCrLf & _
-                            "Surveyor LIKE '" & txtSearch.Text & "%' OR " & vbCrLf & _
-                            "Area LIKE '" & txtSearch.Text & "%' OR " & vbCrLf & _
-                            "[Job Type] LIKE '" & txtSearch.Text & "%' OR " & vbCrLf & _
-                            "[Job Description] LIKE '" & txtSearch.Text & "%' OR " & vbCrLf & _
-                            "[FLD-BK/PG] LIKE '" & txtSearch.Text & "%' OR " & vbCrLf & _
-                            "[Instrument A] LIKE '" & txtSearch.Text & "%' OR " & vbCrLf & _
-                            "Comments LIKE '" & txtSearch.Text & "%' OR " & vbCrLf & _
-                            "Created LIKE '" & txtSearch.Text & "%' OR " & vbCrLf & _
-                            "Modified LIKE '" & txtSearch.Text & "%' ORDER BY Created DESC")
+                            "ID LIKE '%" & txtSearch.Text & "%' OR " & vbCrLf & _
+                            "[Job Ref Number] LIKE '%" & txtSearch.Text & "%' OR " & vbCrLf & _
+                            "Date LIKE '%" & txtSearch.Text & "%' OR " & vbCrLf & _
+                            "Surveyor LIKE '%" & txtSearch.Text & "%' OR " & vbCrLf & _
+                            "Area LIKE '%" & txtSearch.Text & "%' OR " & vbCrLf & _
+                            "[Job Type] LIKE '%" & txtSearch.Text & "%' OR " & vbCrLf & _
+                            "[Job Description] LIKE '%" & txtSearch.Text & "%' OR " & vbCrLf & _
+                            "[FLD-BK/PG] LIKE '%" & txtSearch.Text & "%' OR " & vbCrLf & _
+                            "[Instrument A] LIKE '%" & txtSearch.Text & "%' OR " & vbCrLf & _
+                            "Comments LIKE '%" & txtSearch.Text & "%' OR " & vbCrLf & _
+                            "Created LIKE '%" & txtSearch.Text & "%' OR " & vbCrLf & _
+                            "Modified LIKE '%" & txtSearch.Text & "%' ORDER BY Created DESC")
 
         SQL.RunQuery(queryString)
         refreshDataGridView()
@@ -310,15 +310,15 @@ Public Class formMain
 
     Private Sub setSearchStringTqRfiRegister()
         queryString = ("SELECT * FROM TqRfiRegister WHERE " & vbCrLf & _
-                            "ID LIKE '" & txtSearch.Text & "%' OR " & vbCrLf & _
-                            "[Drawing Number] LIKE '" & txtSearch.Text & "%' OR " & vbCrLf & _
-                            "[TQ / RFI] LIKE '" & txtSearch.Text & "%' OR " & vbCrLf & _
-                            "[Date Reieved] LIKE '" & txtSearch.Text & "%' OR " & vbCrLf & _
-                            "Surveyor LIKE '" & txtSearch.Text & "%' OR " & vbCrLf & _
-                            "Area LIKE '" & txtSearch.Text & "%' OR " & vbCrLf & _
-                            "Description LIKE '" & txtSearch.Text & "%' OR " & vbCrLf & _
-                            "Created LIKE '" & txtSearch.Text & "%' OR " & vbCrLf & _
-                            "Modified LIKE '" & txtSearch.Text & "%' ORDER BY Created DESC")
+                            "ID LIKE '%" & txtSearch.Text & "%' OR " & vbCrLf & _
+                            "[Drawing Number] LIKE '%" & txtSearch.Text & "%' OR " & vbCrLf & _
+                            "[TQ / RFI] LIKE '%" & txtSearch.Text & "%' OR " & vbCrLf & _
+                            "[Date Reieved] LIKE '%" & txtSearch.Text & "%' OR " & vbCrLf & _
+                            "Surveyor LIKE '%" & txtSearch.Text & "%' OR " & vbCrLf & _
+                            "Area LIKE '%" & txtSearch.Text & "%' OR " & vbCrLf & _
+                            "Description LIKE '%" & txtSearch.Text & "%' OR " & vbCrLf & _
+                            "Created LIKE '%" & txtSearch.Text & "%' OR " & vbCrLf & _
+                            "Modified LIKE '%" & txtSearch.Text & "%' ORDER BY Created DESC")
 
 
         SQL.RunQuery(queryString)
@@ -348,12 +348,6 @@ Public Class formMain
                     col.Visible = False
             End Select
         Next
-    End Sub
-
-
-
-    Private Sub SettingsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SettingsToolStripMenuItem.Click
-        formSettings.Show()
     End Sub
 
     Private Sub formMain_EnabledChanged(sender As Object, e As EventArgs) Handles MyBase.EnabledChanged
@@ -429,7 +423,7 @@ Public Class formMain
                 Dim cmboJobType As String = (row.Cells("Job Type").Value.ToString).Trim
                 Dim txtJobRefNum As String = (row.Cells("Job Ref Number").Value.ToString).Trim
                 Dim txtJobDescription As String = (row.Cells("Job Description").Value.ToString).Trim
-                dataDir = My.Settings.settingsProjectFolderPath.ToString & "\Area\" & cmboArea & "\Field Data\" & cmboJobType & "\" & txtJobRefNum & " - " & txtJobDescription & "\"
+                dataDir = formSettings.settingsProjectFolder & "\Area\" & cmboArea & "\Field Data\" & cmboJobType & "\" & txtJobRefNum & " - " & txtJobDescription & "\"
                 Process.Start("explorer", "/select," & """" & dataDir & """")
             End If
 
@@ -453,6 +447,9 @@ Public Class formMain
     'EXPORT TO MS EXCEL
     Private Sub cmdExportXLXS_Click(sender As Object, e As EventArgs) Handles cmdExportXLXS.Click
         Try
+            'Selects the Survey Report Register for Export
+            rbSurveyReportRegister.Checked = True
+
             Dim xlApp As Microsoft.Office.Interop.Excel.Application
             Dim xlWorkBook As Microsoft.Office.Interop.Excel.Workbook
             Dim xlWorkSheet As Microsoft.Office.Interop.Excel.Worksheet
@@ -481,7 +478,7 @@ Public Class formMain
             Dim exportXLSXFile As New SaveFileDialog()
             exportXLSXFile.Filter = "Excel file|*.xlsx"
             exportXLSXFile.Title = "Export an Excel File"
-            If My.Settings.settingsProjectFolderPath <> "" Then exportXLSXFile.InitialDirectory = My.Settings.settingsProjectFolderPath
+            If formSettings.settingsProjectFolder <> "" Then exportXLSXFile.InitialDirectory = formSettings.settingsProjectFolder & "\Export To Client\"
             exportXLSXFile.FileName = myDateOnly & "_" & lblRegisterSelected.Text & "_XCELregister_export"
             exportXLSXFile.ShowDialog()
 
@@ -520,5 +517,9 @@ Public Class formMain
 
     Private Sub ConnectToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ConnectToolStripMenuItem.Click
         formNewDatabaseWizard.Show()
+    End Sub
+
+    Private Sub SettingsToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles SettingsToolStripMenuItem1.Click
+        formSettings.Show()
     End Sub
 End Class

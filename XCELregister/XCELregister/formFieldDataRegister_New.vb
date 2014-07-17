@@ -189,7 +189,7 @@
             If cmboInstrumentA.Text = ("Please select ...") Then Exit Sub
 
             'Create and open new folder for the data to reside
-            dataDir = My.Settings.settingsProjectFolderPath.ToString & "\Area\" & cmboArea.Text & "\Field Data\" & cmboJobType.Text & "\" & txtJobRefNum.Text & " - " & txtJobDescription.Text
+            dataDir = formSettings.settingsProjectFolder & "\Area\" & cmboArea.Text & "\Field Data\" & cmboJobType.Text & "\" & txtJobRefNum.Text & " - " & txtJobDescription.Text
             If Not System.IO.Directory.Exists(dataDir) Then
                 System.IO.Directory.CreateDirectory(dataDir)
             End If

@@ -28,13 +28,13 @@ Partial Class formMain
         Me.txtSearch = New System.Windows.Forms.TextBox()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.SettingsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SetupToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ConnectToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SettingsToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.DatabaseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExportTablesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MoveDatabaseFileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.SetupToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ConnectToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
@@ -103,22 +103,35 @@ Partial Class formMain
         '
         'FileToolStripMenuItem
         '
-        Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SettingsToolStripMenuItem, Me.ExitToolStripMenuItem})
+        Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ExitToolStripMenuItem})
         Me.FileToolStripMenuItem.Name = "FileToolStripMenuItem"
         Me.FileToolStripMenuItem.Size = New System.Drawing.Size(37, 20)
         Me.FileToolStripMenuItem.Text = "&File"
-        '
-        'SettingsToolStripMenuItem
-        '
-        Me.SettingsToolStripMenuItem.Name = "SettingsToolStripMenuItem"
-        Me.SettingsToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
-        Me.SettingsToolStripMenuItem.Text = "&Settings"
         '
         'ExitToolStripMenuItem
         '
         Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
         Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.ExitToolStripMenuItem.Text = "E&xit"
+        '
+        'SetupToolStripMenuItem
+        '
+        Me.SetupToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ConnectToolStripMenuItem, Me.SettingsToolStripMenuItem1})
+        Me.SetupToolStripMenuItem.Name = "SetupToolStripMenuItem"
+        Me.SetupToolStripMenuItem.Size = New System.Drawing.Size(49, 20)
+        Me.SetupToolStripMenuItem.Text = "&Setup"
+        '
+        'ConnectToolStripMenuItem
+        '
+        Me.ConnectToolStripMenuItem.Name = "ConnectToolStripMenuItem"
+        Me.ConnectToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.ConnectToolStripMenuItem.Text = "&Connect"
+        '
+        'SettingsToolStripMenuItem1
+        '
+        Me.SettingsToolStripMenuItem1.Name = "SettingsToolStripMenuItem1"
+        Me.SettingsToolStripMenuItem1.Size = New System.Drawing.Size(152, 22)
+        Me.SettingsToolStripMenuItem1.Text = "&Settings"
         '
         'DatabaseToolStripMenuItem
         '
@@ -138,19 +151,6 @@ Partial Class formMain
         Me.MoveDatabaseFileToolStripMenuItem.Name = "MoveDatabaseFileToolStripMenuItem"
         Me.MoveDatabaseFileToolStripMenuItem.Size = New System.Drawing.Size(206, 22)
         Me.MoveDatabaseFileToolStripMenuItem.Text = "Restore Tables from .CSV"
-        '
-        'SetupToolStripMenuItem
-        '
-        Me.SetupToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ConnectToolStripMenuItem})
-        Me.SetupToolStripMenuItem.Name = "SetupToolStripMenuItem"
-        Me.SetupToolStripMenuItem.Size = New System.Drawing.Size(49, 20)
-        Me.SetupToolStripMenuItem.Text = "&Setup"
-        '
-        'ConnectToolStripMenuItem
-        '
-        Me.ConnectToolStripMenuItem.Name = "ConnectToolStripMenuItem"
-        Me.ConnectToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
-        Me.ConnectToolStripMenuItem.Text = "&Connect"
         '
         'HelpToolStripMenuItem
         '
@@ -252,11 +252,12 @@ Partial Class formMain
         Me.cmdExportXLXS.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.cmdExportXLXS.Image = CType(resources.GetObject("cmdExportXLXS.Image"), System.Drawing.Image)
         Me.cmdExportXLXS.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.cmdExportXLXS.Location = New System.Drawing.Point(1174, 150)
+        Me.cmdExportXLXS.Location = New System.Drawing.Point(575, 36)
         Me.cmdExportXLXS.Name = "cmdExportXLXS"
-        Me.cmdExportXLXS.Size = New System.Drawing.Size(156, 30)
+        Me.cmdExportXLXS.Size = New System.Drawing.Size(101, 30)
         Me.cmdExportXLXS.TabIndex = 19
         Me.cmdExportXLXS.Text = "Export to Client"
+        Me.cmdExportXLXS.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.cmdExportXLXS.UseVisualStyleBackColor = True
         '
         'cmdDeleteRow
@@ -380,7 +381,6 @@ Partial Class formMain
     Friend WithEvents rbAreaCalcChecklist As System.Windows.Forms.RadioButton
     Friend WithEvents lblRegisterSelected As System.Windows.Forms.Label
     Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
-    Friend WithEvents SettingsToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents HelpToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents AboutToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents printPreview As System.Windows.Forms.PrintPreviewDialog
@@ -392,5 +392,6 @@ Partial Class formMain
     Friend WithEvents lblConnectionString As System.Windows.Forms.Label
     Friend WithEvents SetupToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ConnectToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents SettingsToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
 
 End Class

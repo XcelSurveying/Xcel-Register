@@ -2,6 +2,21 @@
     Dim SQL As New SQLControl
     Dim EscapeChars As New EscapeChars
 
+    Public Function settingsProjectFolder() As String
+        Dim projFolder As String = ""
+        Try
+            SQL.SettingsQuery("SELECT * FROM settingsProjectFolder ORDER BY data")
+            If SQL.SQLDataset_lb.Tables.Count > 0 Then
+                projFolder = SQL.SQLDataset_lb.Tables(0).Rows(0)("data").ToString  ' Makes sure that there is data in the Table
+            End If
+            Return projFolder
+        Catch ex As Exception
+            MessageBox.Show("Please go to settings and set the Project Folder", "Can't find Project Folder", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Return projFolder
+        End Try
+    End Function
+
+
     '--------------------------------------------------------------------------------------------------------------------------
     '                                             R E F R E S H   L I S T B O X E S
     '--------------------------------------------------------------------------------------------------------------------------

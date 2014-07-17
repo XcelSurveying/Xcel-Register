@@ -99,7 +99,7 @@
 
         Try
 
-            ' MessageBox.Show(My.Settings.settingsProjectFolderPath.ToString & DestinationDir.ToString & "\" & txtDocumentName.Text & ".pdf")
+            ' MessageBox.Show(settingsProjectFolderPath.ToString & DestinationDir.ToString & "\" & txtDocumentName.Text & ".pdf")
 
             'CHECK MINIMUM LENGTH OF DOCUMENT NAME
             If txtDocumentName.Text.Length < 9 Then
@@ -178,8 +178,8 @@
             If cmboDescription.Text = ("Please select ...") Then Exit Sub
 
             'CAN ONLY BE CREATED WHEN DESTINATION DIR AND TXT DOCUMENT NAME ARE ENTERED, ESCAPE OTHERWISE
-            fullpathNew = My.Settings.settingsProjectFolderPath.ToString & DestinationDir.ToString & "\" & txtDocumentName.Text & " Rev" & txtRev.Text & ".pdf"
-            fullDirNew = My.Settings.settingsProjectFolderPath.ToString & DestinationDir.ToString & "\"
+            fullpathNew = formSettings.settingsProjectFolder & DestinationDir.ToString & "\" & txtDocumentName.Text & " Rev" & txtRev.Text & ".pdf"
+            fullDirNew = formSettings.settingsProjectFolder & DestinationDir.ToString & "\"
 
             'CREATE AND COPY THE PDF TO THE NEW DIRECTORY
             ' Copy the file to a new folder and rename it.
@@ -193,7 +193,7 @@
                     System.IO.Directory.CreateDirectory(fullDirNew)
                 End If
                 Process.Start("explorer.exe", fullDirNew)
-                fullpathNew = ""
+                fullpathNew = fullDirNew
             End If
             
 

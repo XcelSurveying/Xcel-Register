@@ -200,7 +200,7 @@
             If cmboDescription.Text = ("Please select ...") Then Exit Sub
 
             ' 'UPDATE THE PDF PATH LINK
-            ' fullpathNew = My.Settings.settingsProjectFolderPath.ToString & DestinationDir.ToString & "\" & txtDocumentName.Text & ".pdf"
+            ' fullpathNew = settingsProjectFolderPath.ToString & DestinationDir.ToString & "\" & txtDocumentName.Text & ".pdf"
 
             '-- SQL INSERT QUERY IN TO THE DATABASE --
             sql.DataUpdate("SET DATEFORMAT dmy; UPDATE SurveyReportRegister " & _
@@ -226,7 +226,7 @@
             '         Microsoft.VisualBasic.FileIO.UIOption.AllDialogs,
             '         Microsoft.VisualBasic.FileIO.UICancelOption.DoNothing)
             '         'MsgBox(fullpath)
-            '         'MsgBox(My.Settings.settingsProjectFolderPath & DestinationDir & "\" & txtDocumentName.Text & ".pdf")
+            '         'MsgBox(settingsProjectFolderPath & DestinationDir & "\" & txtDocumentName.Text & ".pdf")
             '
             '         'REMOVE OLD PDF FROM ORIGINAL DIRECTORY
             '         'if folder hasnt changed dont delete file

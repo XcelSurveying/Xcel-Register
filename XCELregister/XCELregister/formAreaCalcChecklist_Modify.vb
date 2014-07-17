@@ -3,8 +3,12 @@
     Dim EscapeChars As New EscapeChars
     Dim export As New exportTables
 
+    Dim ID As String = ""
+
     'LOAD TEXTBOX'S WITH FIELDS FROM DATABASE
     Private Sub formAreaCalcChecklist_Modify_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Dim checkedBy As String = ""
+
 
         'Form Settings
         Me.ShowIcon = False
@@ -32,17 +36,31 @@
         Dim row As DataGridViewRow
         row = formMain.DGVData.Rows(formMain.DGVData.CurrentRow.Index) 'Returns integer value of the select row index from the datagrid
 
+        checkedBy = (row.Cells("Checked By").Value.ToString).Trim
+        ID = (row.Cells("ID").Value.ToString).Trim
         txtModelLayer.Text = (row.Cells("Model/Layer").Value.ToString).Trim
         txtDrawingNumber.Text = (row.Cells("Drawing Number").Value.ToString).Trim
         txtTqRfi.Text = (row.Cells("TQ/RFI").Value.ToString).Trim
         cmboCalcdBy.Text = (row.Cells("Calc'd By").Value.ToString).Trim
-        cmboCheckedBy.Text = (row.Cells("Checked By").Value.ToString).Trim
+        cmboCheckedBy.Text = checkedBy
         txtComments.Text = (row.Cells("Comments").Value.ToString).Trim
-        dtpCalcdDate.Value = (row.Cells("Calc'd Date").Value).Trim
-        dtpCheckedDate.Value = (row.Cells("Checked Date").Value).Trim
+        dtpCalcdDate.Value = (row.Cells("Calc'd Date").Value)
+        dtpCheckedDate.Value = (row.Cells("Checked Date").Value)
 
-
-
+        'SET UP CHECKED BY AS OFF BY DEFAULT WHEN MODIFYING AN EXISTING ENTRY
+        If checkedBy = "... not checked ..." Then
+            chkChecked.Checked = False
+            cmboCheckedBy.Enabled = False
+            dtpCheckedDate.Enabled = False
+            Label6.Enabled = False
+            Label7.Enabled = False
+        Else
+            chkChecked.Checked = True
+            cmboCheckedBy.Enabled = True
+            dtpCheckedDate.Enabled = True
+            Label6.Enabled = True
+            Label7.Enabled = True
+        End If
 
     End Sub
 
@@ -56,20 +74,63 @@
         Dim row As DataGridViewRow
         row = formMain.DGVData.Rows(formMain.DGVData.CurrentRow.Index) 'Returns integer value of the select row index from the datagrid
 
-        SQL.DataUpdate("SET DATEFORMAT dmy; UPDATE AreaCalcChecklist " & _
-                       "SET " & _
-                       "[Model/Layer]='" & txtModelLayer.Text & "', " & _
-                       "[Drawing Number]='" & txtDrawingNumber.Text & "', " & _
-                       "[TQ/RFI]='" & txtTqRfi.Text & "', " & _
-                       "[Calc'd by]='" & cmboCalcdBy.Text & "', " & _
-                       "[Checked by]='" & cmboCheckedBy.Text & "', " & _
-                       "Comments='" & txtComments.Text & "', " & _
-                       "[Calc'd date]='" & dtpCalcdDate.Value & "', " & _
-                       "[Checked date]='" & dtpCheckedDate.Value & "', " & _
-                       "Modified=GETDATE() " & _
-                       "WHERE ID='" & row.Cells("ID").Value.ToString & "'") 'gets unique ID of the row selected
+        If txtDrawingNumber.Text = "" Then
+            Exit Sub
+        End If
 
+        If txtModelLayer.Text = "" Then
+            Exit Sub
+        End If
 
+        If txtTqRfi.Text = "" Then
+            Exit Sub
+        End If
+
+        If cmboCalcdBy.Text = "Please select ..." OrElse cmboCalcdBy.Text = "" Then
+            Exit Sub
+        End If
+        'Only test if the checkbox has been ticked
+        If chkChecked.Checked = True Then
+            If cmboCheckedBy.Text = "Please select ..." OrElse cmboCheckedBy.Text = "" Then
+                Exit Sub
+            End If
+        End If
+
+        'Check that different surveyor checks the calcs
+        If cmboCalcdBy.Text = cmboCheckedBy.Text And chkChecked.Checked = True Then
+            MessageBox.Show("You must get another Surveyor to check your calcs", "Check Calcs")
+            Exit Sub
+        End If
+
+        If chkChecked.Checked = True Then
+
+            SQL.DataUpdate("SET DATEFORMAT dmy; UPDATE AreaCalcChecklist " & _
+                           "SET " & _
+                           "[Model/Layer]='" & txtModelLayer.Text & "', " & _
+                           "[Drawing Number]='" & txtDrawingNumber.Text & "', " & _
+                           "[TQ/RFI]='" & txtTqRfi.Text & "', " & _
+                           "[Calc'd by]='" & cmboCalcdBy.Text & "', " & _
+                           "[Checked by]='" & cmboCheckedBy.Text & "', " & _
+                           "Comments='" & txtComments.Text & "', " & _
+                           "[Calc'd date]='" & dtpCalcdDate.Value & "', " & _
+                           "[Checked date]='" & dtpCheckedDate.Value & "', " & _
+                           "Modified=GETDATE() " & _
+                           "WHERE ID='" & ID & "'") 'gets unique ID of the row selected
+
+        Else
+            SQL.DataUpdate("SET DATEFORMAT dmy; UPDATE AreaCalcChecklist " & _
+                          "SET " & _
+                          "[Model/Layer]='" & txtModelLayer.Text & "', " & _
+                          "[Drawing Number]='" & txtDrawingNumber.Text & "', " & _
+                          "[TQ/RFI]='" & txtTqRfi.Text & "', " & _
+                          "[Calc'd by]='" & cmboCalcdBy.Text & "', " & _
+                          "[Checked by]='... not checked ...', " & _
+                          "Comments='" & txtComments.Text & "', " & _
+                          "[Calc'd date]='" & dtpCalcdDate.Value & "', " & _
+                          "Modified=GETDATE() " & _
+                          "WHERE ID='" & ID & "'") 'gets unique ID of the row selected
+
+        End If
         'UPDATE THE BACKUP CSV FILE USING BCP UTILITY
         '(extension), (tablename), (destination)
         export.exportTable_Single("csv", "AreaCalcChecklist", export.backupFolder)
@@ -87,5 +148,20 @@
 
     Private Sub cmdCancel_Click(sender As Object, e As EventArgs) Handles cmdCancel.Click
         Me.Close()
+    End Sub
+
+    ' CHECKBOX TO DISABLE OR ENABLE CHECKED BY FIELDS
+    Private Sub chkChecked_CheckedChanged(sender As Object, e As EventArgs) Handles chkChecked.CheckedChanged
+        If chkChecked.Checked = True Then
+            cmboCheckedBy.Enabled = True
+            dtpCheckedDate.Enabled = True
+            Label6.Enabled = True
+            Label7.Enabled = True
+        Else
+            cmboCheckedBy.Enabled = False
+            dtpCheckedDate.Enabled = False
+            Label6.Enabled = False
+            Label7.Enabled = False
+        End If
     End Sub
 End Class
