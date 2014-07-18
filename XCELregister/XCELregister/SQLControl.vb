@@ -41,12 +41,13 @@ Public Class SQLControl
             Else
                 SQLCon.Dispose()
                 formNewDatabaseWizard.Show()
+                formNewDatabaseWizard.TopMost = True
                 Return False
             End If
 
         Catch ex As Exception
             SQLCon.Dispose()
-            MessageBox.Show(ex.ToString.Substring(0, 100))
+            'MessageBox.Show(ex.ToString.Substring(0, 100))
             'Read's the error message string. 
             Try
                 Select Case ex.ToString.Substring(0, 100)
@@ -63,7 +64,7 @@ Public Class SQLControl
             Catch ex1 As Exception
             End Try
             formNewDatabaseWizard.Show()
-            Return False
+            formNewDatabaseWizard.TopMost = True
         Finally
             Me.Cursor = Cursors.Default
         End Try

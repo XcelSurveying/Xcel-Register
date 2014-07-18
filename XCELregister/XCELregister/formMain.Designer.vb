@@ -111,7 +111,7 @@ Partial Class formMain
         'ExitToolStripMenuItem
         '
         Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
-        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(92, 22)
         Me.ExitToolStripMenuItem.Text = "E&xit"
         '
         'SetupToolStripMenuItem
@@ -124,13 +124,13 @@ Partial Class formMain
         'ConnectToolStripMenuItem
         '
         Me.ConnectToolStripMenuItem.Name = "ConnectToolStripMenuItem"
-        Me.ConnectToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.ConnectToolStripMenuItem.Size = New System.Drawing.Size(119, 22)
         Me.ConnectToolStripMenuItem.Text = "&Connect"
         '
         'SettingsToolStripMenuItem1
         '
         Me.SettingsToolStripMenuItem1.Name = "SettingsToolStripMenuItem1"
-        Me.SettingsToolStripMenuItem1.Size = New System.Drawing.Size(152, 22)
+        Me.SettingsToolStripMenuItem1.Size = New System.Drawing.Size(119, 22)
         Me.SettingsToolStripMenuItem1.Text = "&Settings"
         '
         'DatabaseToolStripMenuItem
@@ -211,12 +211,10 @@ Partial Class formMain
         'rbAreaCalcChecklist
         '
         Me.rbAreaCalcChecklist.AutoSize = True
-        Me.rbAreaCalcChecklist.Checked = True
         Me.rbAreaCalcChecklist.Location = New System.Drawing.Point(23, 26)
         Me.rbAreaCalcChecklist.Name = "rbAreaCalcChecklist"
         Me.rbAreaCalcChecklist.Size = New System.Drawing.Size(117, 17)
         Me.rbAreaCalcChecklist.TabIndex = 0
-        Me.rbAreaCalcChecklist.TabStop = True
         Me.rbAreaCalcChecklist.Text = "Area Calc Checklist"
         Me.rbAreaCalcChecklist.UseVisualStyleBackColor = True
         '

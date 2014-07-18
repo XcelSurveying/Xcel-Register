@@ -63,7 +63,7 @@ Public Class formNewDatabaseWizard
             'testConnectionString = ("Server=" & txtServer.Text & ";uid=" & txtUid.Text & ";pwd=" & txtPassword.Text & ";database=master")
             'Dim myConn As SqlConnection = New SqlConnection(SQL.connectionString)
 
-            If txtServerIP.Text <> ("") OrElse txtUid.Text <> ("") Then
+            If txtServerIP.Text <> ("") Then
 
                 'SQL.connectionString = ("server=" & txtServer.Text & ";Database=register;user=" & txtUid.Text & ";Pwd=" & txtPassword.Text & ";")
                 SQL.connectionString = ("Data Source=" & txtServerIP.Text & ",1433;Network Library=DBMSSOCN;Initial Catalog=register;User ID=sa;Password=XcelSurveying;")
@@ -124,6 +124,8 @@ Public Class formNewDatabaseWizard
                         MessageBox.Show("""register"" database not found. It will be created now.")
                         'Runs the database setup
                         cmdSetupDatabase_Click(AcceptButton, AcceptButton)
+                        'Wait 5 seconds after the database has been created to start adding tables
+                        System.Threading.Thread.Sleep(5000)
                         'Runs the tables setup
                         cmd_CreateTables_Click(AcceptButton, AcceptButton)
                     Case Else

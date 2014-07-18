@@ -67,8 +67,12 @@
                 'Renames the backup file so that it cannot be accidentally used again for restore in the future.
                 Dim myDateTime As DateTime = DateTime.Now    'Sets the date for the filename to now
                 Dim myDateOnly As String = myDateTime.ToString("yyyyMMdd")
-                Shell("cmd.exe /c REN " & restoreFolder & fileToRestore & " " & selectedTable & "_RestoreCompleted_" & myDateOnly & ".bak  ")
+
+                ' Deletes existing file first
+                Shell("cmd.exe /c if exists " & restoreFolder & selectedTable & "_RestoreCompleted_" & myDateOnly & ".bak DEL " & restoreFolder & selectedTable & "_RestoreCompleted_" & myDateOnly & ".bak")
                 'sets the new backup restore file to "table_RestoreCompleted_yyyyMMdd.bak"
+                Shell("cmd.exe /c REN " & restoreFolder & fileToRestore & " " & selectedTable & "_RestoreCompleted_" & myDateOnly & ".bak  ")
+
                 MessageBox.Show("Backup file Renamed to " & selectedTable & "_RestoreCompleted_" & myDateOnly & ".bak  ")
 
                 'REFRESHES THE DATA GRID IN THE MAIN FORM AFTER THE TABLES HAVE BEEN RESTORED

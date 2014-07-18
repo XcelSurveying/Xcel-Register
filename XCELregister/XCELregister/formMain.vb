@@ -4,7 +4,7 @@ Public Class formMain
     Dim SQL As New SQLControl
     Dim export As New exportTables
     Dim activation As New Activation
-    Dim queryString As String
+    Dim queryString As String = "0"
     'Dim sortColumns As sortColumnsDGVData
 
     Private Sub formMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -30,11 +30,10 @@ Public Class formMain
         If SQL.HasConnection = True Then 'has connected
             initilizeDataGridView() 'Set visual params for data grid view
             setSearchStringAreaCalcChecklist()
+            rbAreaCalcChecklist.Checked = True
             '-- Updates/Refreshes the data grid --
             SQL.RunQuery("SELECT * FROM AreaCalcChecklist ORDER BY Created DESC")
             refreshDataGridView()
-        Else
-            formNewDatabaseWizard.Show()
         End If
     End Sub
 
@@ -375,6 +374,13 @@ Public Class formMain
             Dim selectedRegister As String = ""
             row = DGVData.Rows(DGVData.CurrentRow.Index) 'Returns integer value of the select row index from the datagrid
             Dim rowID As String = (row.Cells("ID").Value.ToString)
+            Dim record As String = ""
+
+            ' Stores to variable a comma delimited record of the record to be deleted
+            For i As Integer = 0 To (DGVData.ColumnCount - 2)
+                record = record & row.Cells(i).Value.ToString & ","
+            Next
+            record = record & row.Cells(DGVData.ColumnCount - 1).Value.ToString
 
 
             Select Case True
@@ -392,13 +398,16 @@ Public Class formMain
             If MessageBox.Show("Are you sure you want to delete the row?" & vbCrLf & vbCrLf & vbTab & "ID: " & rowID & vbCrLf & vbCrLf & _
                                "Once deleted this can't be undone", "Confirmation", MessageBoxButtons.YesNo, _
                                MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) = Windows.Forms.DialogResult.Yes Then
+                export.recordDeletedEntry(record)
 
+
+                ' Delete data from databse
                 queryString = ("DELETE FROM " & selectedRegister & " WHERE " & _
                             "ID=" & rowID)
 
                 SQL.RunQuery(queryString)
                 txtSearch_KeyUp(AcceptButton, AcceptButton)
-              
+
             End If
         Catch ex As Exception
             MessageBox.Show(ex.Message, "Delete Entry", MessageBoxButtons.OK, MessageBoxIcon.Error)
