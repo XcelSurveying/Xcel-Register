@@ -1,5 +1,6 @@
 ﻿Imports System.Data.SqlClient
 Imports System.Data.Sql
+Imports System.ServiceProcess 'used for finding service running on local PC
 
 Public Class formNewDatabaseWizard
     Dim SQL As New SQLControl
@@ -152,34 +153,42 @@ Public Class formNewDatabaseWizard
 
         Try
             '(INSERT HERE) <-- test for same computer that is running SQL server, then install if is server else skip
+            If findLocalSQLService("MSSQL$SQLEXPRESS") = True Then
 
-            queryString = ("CREATE DATABASE register ON PRIMARY " & vbCrLf & _
-                           "( NAME = register_dat, " & vbCrLf & _
-                           "FILENAME = 'C:\XCELregister\registerDAT.mdf', " & vbCrLf & _
-                           "Size = 10, " & vbCrLf & _
-                           "--MAXSIZE    = 5, " & vbCrLf & _
-                           "FILEGROWTH = 5 ) " & vbCrLf & _
-                           "LOG ON" & vbCrLf & _
-                           "( NAME = register_log, " & vbCrLf & _
-                           "FILENAME = 'C:\XCELregister\registerLOG.ldf', " & vbCrLf & _
-                           "SIZE = 5MB, " & vbCrLf & _
-                           "--MAXSIZE = 25MB, " & vbCrLf & _
-                           "FILEGROWTH = 5MB ) ; ")
+                queryString = ("CREATE DATABASE register ON PRIMARY " & vbCrLf & _
+                               "( NAME = register_dat, " & vbCrLf & _
+                               "FILENAME = 'C:\XCELregister\registerDAT.mdf', " & vbCrLf & _
+                               "Size = 10, " & vbCrLf & _
+                               "--MAXSIZE    = 5, " & vbCrLf & _
+                               "FILEGROWTH = 5 ) " & vbCrLf & _
+                               "LOG ON" & vbCrLf & _
+                               "( NAME = register_log, " & vbCrLf & _
+                               "FILENAME = 'C:\XCELregister\registerLOG.ldf', " & vbCrLf & _
+                               "SIZE = 5MB, " & vbCrLf & _
+                               "--MAXSIZE = 25MB, " & vbCrLf & _
+                               "FILEGROWTH = 5MB ) ; ")
 
-            Dim createDB As SqlCommand = New SqlCommand(queryString, myConn)
+                Dim createDB As SqlCommand = New SqlCommand(queryString, myConn)
 
 
 
-            myConn.Open()
-            createDB.ExecuteNonQuery()
-            MessageBox.Show("Database is created successfully", _
-                        "MyProgram", MessageBoxButtons.OK, _
-                         MessageBoxIcon.Information)
+                myConn.Open()
+                createDB.ExecuteNonQuery()
+                MessageBox.Show("Database is created successfully", _
+                            "Setup Database", MessageBoxButtons.OK, _
+                             MessageBoxIcon.Information)
+            Else
+                MessageBox.Show("Database can only be created on the Server where there is a local instance of SQL Installed. Please verify that you are on the computer with SQL installed and tht the Service Name on creation was left as it default MSSQL$SQLEXPRESS", _
+                            "Setup Database", MessageBoxButtons.OK, _
+                             MessageBoxIcon.Information)
+
+            End If
+
 
         Catch ex As Exception
             MessageBox.Show(ex.ToString())
             MessageBox.Show("Database creation failed", _
-                        "MyProgram", MessageBoxButtons.OK, _
+                        "Setup Database", MessageBoxButtons.OK, _
                          MessageBoxIcon.Error)
         Finally
             If (myConn.State = ConnectionState.Open) Then
@@ -335,6 +344,21 @@ Public Class formNewDatabaseWizard
 
 
     End Sub
+
+    Public Function findLocalSQLService(serviceName As String) As Boolean
+        Try
+            Dim controller As New ServiceController(serviceName)
+
+            If controller.Status.Equals(ServiceControllerStatus.Running) Then
+                Return True ' Validates that this service is running (True)
+            Else
+                Return False ' The SQL service is not running (False)
+            End If
+
+        Catch ex As Exception
+            Return False ' Error returns (False)
+        End Try
+    End Function
 
 
     Private Sub cmdModify_Click(sender As Object, e As EventArgs) Handles cmdModify.Click

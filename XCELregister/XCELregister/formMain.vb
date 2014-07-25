@@ -77,6 +77,8 @@ Public Class formMain
                     formFieldDataRegister_New.Show()
                 Case rbTqRfiRegister.Checked
                     formTqRfiRegister_New.Show()
+                Case Else
+                    Exit Sub
             End Select
             Me.Enabled = False
             'End If
@@ -96,7 +98,8 @@ Public Class formMain
                     formFieldDataRegister_Modify.Show()
                 Case rbTqRfiRegister.Checked
                     formTqRfiRegister_Modify.Show()
-
+                Case Else
+                    Exit Sub
             End Select
             Me.Enabled = False
         Catch ex As Exception
@@ -139,6 +142,8 @@ Public Class formMain
                     setSearchStringFieldDataRegister()
                 Case rbTqRfiRegister.Checked
                     setSearchStringTqRfiRegister()
+                Case Else
+                    Exit Sub
             End Select
             SQL.RunQuery(queryString)
             refreshDataGridView()
@@ -356,11 +361,15 @@ Public Class formMain
 
 
     Private Sub ExportTablesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportTablesToolStripMenuItem.Click
-        export.exportCSV_All() 'Calls the public sub from exportTables.vb
+        If SQL.HasConnection = True Then
+            export.exportCSV_All() 'Calls the public sub from exportTables.vb
+        End If
     End Sub
 
     Private Sub MoveDatabaseFileToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MoveDatabaseFileToolStripMenuItem.Click
-        formRestoreTables.Show()
+        If SQL.HasConnection = True Then
+            formRestoreTables.Show()
+        End If
     End Sub
 
     Private Sub AboutToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AboutToolStripMenuItem.Click
@@ -392,7 +401,8 @@ Public Class formMain
                     selectedRegister = "FieldDataRegister"
                 Case rbTqRfiRegister.Checked
                     selectedRegister = "TqRfiRegister"
-
+                Case Else
+                    Exit Sub
             End Select
 
             If MessageBox.Show("Are you sure you want to delete the row?" & vbCrLf & vbCrLf & vbTab & "ID: " & rowID & vbCrLf & vbCrLf & _
@@ -509,7 +519,7 @@ Public Class formMain
         Catch ex As Exception
             MessageBox.Show(ex.Message)
         End Try
-        
+
 
     End Sub
     'Release the Excel application
@@ -529,6 +539,8 @@ Public Class formMain
     End Sub
 
     Private Sub SettingsToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles SettingsToolStripMenuItem1.Click
-        formSettings.Show()
+        If SQL.HasConnection = True Then
+            formSettings.Show()
+        End If
     End Sub
 End Class

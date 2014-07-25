@@ -14,14 +14,14 @@
     <framework targetVersion="4.5" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="XCELregister.exe.manifest" size="3958">
+    <dependentAssembly dependencyType="install" codebase="XCELregister.exe.manifest" size="5130">
       <assemblyIdentity name="XCELregister.exe" version="1.0.0.1" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>veD6WclbQx0nzx/826WRjUd50JCgnBgH46y66YmF8cM=</dsig:DigestValue>
+        <dsig:DigestValue>hoRstHY0w50NLa2oSuWjZJs116o+aFtYidYNm3a4kxE=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

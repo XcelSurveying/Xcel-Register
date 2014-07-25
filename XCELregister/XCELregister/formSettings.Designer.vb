@@ -258,9 +258,9 @@ Partial Class formSettings
         Me.Label4.Font = New System.Drawing.Font("Tahoma", 8.25!)
         Me.Label4.Location = New System.Drawing.Point(5, 25)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(81, 13)
+        Me.Label4.Size = New System.Drawing.Size(180, 13)
         Me.Label4.TabIndex = 1
-        Me.Label4.Text = "Project Folder :"
+        Me.Label4.Text = "Project Folder (Network path only) :"
         '
         'cmdBrowse
         '
