@@ -56,8 +56,11 @@ Partial Class formFieldDataRegister_New
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.Timer2 = New System.Windows.Forms.Timer(Me.components)
         Me.Timer3 = New System.Windows.Forms.Timer(Me.components)
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.CopyToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GroupBox1.SuspendLayout()
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ContextMenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'txtJobRefNum
@@ -107,7 +110,7 @@ Partial Class formFieldDataRegister_New
         'txtJobDescription
         '
         Me.txtJobDescription.Location = New System.Drawing.Point(286, 52)
-        Me.txtJobDescription.MaxLength = 150
+        Me.txtJobDescription.MaxLength = 30
         Me.txtJobDescription.Multiline = True
         Me.txtJobDescription.Name = "txtJobDescription"
         Me.txtJobDescription.Size = New System.Drawing.Size(212, 57)
@@ -358,6 +361,18 @@ Partial Class formFieldDataRegister_New
         'Timer3
         '
         '
+        'ContextMenuStrip1
+        '
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CopyToolStripMenuItem})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(153, 48)
+        '
+        'CopyToolStripMenuItem
+        '
+        Me.CopyToolStripMenuItem.Name = "CopyToolStripMenuItem"
+        Me.CopyToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.CopyToolStripMenuItem.Text = "Copy"
+        '
         'formFieldDataRegister_New
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -370,6 +385,7 @@ Partial Class formFieldDataRegister_New
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ContextMenuStrip1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -405,4 +421,6 @@ Partial Class formFieldDataRegister_New
     Friend WithEvents lblFieldBookWarning As System.Windows.Forms.Label
     Friend WithEvents Timer3 As System.Windows.Forms.Timer
     Friend WithEvents cmdCancel As System.Windows.Forms.Button
+    Friend WithEvents ContextMenuStrip1 As System.Windows.Forms.ContextMenuStrip
+    Friend WithEvents CopyToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 End Class

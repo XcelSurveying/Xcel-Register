@@ -1,0 +1,11 @@
+Changes in XCELregister 1.0.2
+
+1. Temporarily bypas activation to avoid overflow when  trying to locate MAC address from non-existant NICs.
+
+( to do )---> For future activation, need to program in to use hardware number from HDD, to run in the encryption folrmula. 
+
+
+Changes in XCELregister 1.0.2.1
+
+1. Job description Character length shortened from 150 to 30 characters to prevent long names problem in windows.
+2. lblwarning on databaseSetup form visible = false  when form closes

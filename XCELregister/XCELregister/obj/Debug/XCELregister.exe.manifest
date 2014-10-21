@@ -4,7 +4,7 @@
   <description asmv2:iconFile="icon.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <application />
   <entryPoint>
-    <assemblyIdentity name="XCELregister" version="1.0.1.0" language="neutral" processorArchitecture="msil" />
+    <assemblyIdentity name="XCELregister" version="1.0.2.1" language="neutral" processorArchitecture="msil" />
     <commandLine file="XCELregister.exe" parameters="" />
   </entryPoint>
   <trustInfo>
@@ -43,14 +43,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="XCELregister.exe" size="818688">
-      <assemblyIdentity name="XCELregister" version="1.0.1.0" language="neutral" processorArchitecture="msil" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="XCELregister.exe" size="819200">
+      <assemblyIdentity name="XCELregister" version="1.0.2.1" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>92QzIYyNlcjxi+yWeR8v7C5QsjRy9oGeHBuKXL1A4M4=</dsig:DigestValue>
+        <dsig:DigestValue>gR4U5PgAC6i78a5Xi3JC1HA+MVeCtrm9KCqYx05zGvg=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

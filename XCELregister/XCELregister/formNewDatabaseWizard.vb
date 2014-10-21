@@ -153,36 +153,36 @@ Public Class formNewDatabaseWizard
 
         Try
             '(INSERT HERE) <-- test for same computer that is running SQL server, then install if is server else skip
-            If findLocalSQLService("MSSQL$SQLEXPRESS") = True Then
+            'If findLocalSQLService("MSSQL$SQLEXPRESS") = True Then
 
-                queryString = ("CREATE DATABASE register ON PRIMARY " & vbCrLf & _
-                               "( NAME = register_dat, " & vbCrLf & _
-                               "FILENAME = 'C:\XCELregister\registerDAT.mdf', " & vbCrLf & _
-                               "Size = 10, " & vbCrLf & _
-                               "--MAXSIZE    = 5, " & vbCrLf & _
-                               "FILEGROWTH = 5 ) " & vbCrLf & _
-                               "LOG ON" & vbCrLf & _
-                               "( NAME = register_log, " & vbCrLf & _
-                               "FILENAME = 'C:\XCELregister\registerLOG.ldf', " & vbCrLf & _
-                               "SIZE = 5MB, " & vbCrLf & _
-                               "--MAXSIZE = 25MB, " & vbCrLf & _
-                               "FILEGROWTH = 5MB ) ; ")
+            queryString = ("CREATE DATABASE register ON PRIMARY " & vbCrLf & _
+                           "( NAME = register_dat, " & vbCrLf & _
+                           "FILENAME = 'C:\XCELregister\registerDAT.mdf', " & vbCrLf & _
+                           "Size = 10, " & vbCrLf & _
+                           "--MAXSIZE    = 5, " & vbCrLf & _
+                           "FILEGROWTH = 5 ) " & vbCrLf & _
+                           "LOG ON" & vbCrLf & _
+                           "( NAME = register_log, " & vbCrLf & _
+                           "FILENAME = 'C:\XCELregister\registerLOG.ldf', " & vbCrLf & _
+                           "SIZE = 5MB, " & vbCrLf & _
+                           "--MAXSIZE = 25MB, " & vbCrLf & _
+                           "FILEGROWTH = 5MB ) ; ")
 
-                Dim createDB As SqlCommand = New SqlCommand(queryString, myConn)
+            Dim createDB As SqlCommand = New SqlCommand(queryString, myConn)
 
 
 
-                myConn.Open()
-                createDB.ExecuteNonQuery()
-                MessageBox.Show("Database is created successfully", _
-                            "Setup Database", MessageBoxButtons.OK, _
-                             MessageBoxIcon.Information)
-            Else
-                MessageBox.Show("Database can only be created on the Server where there is a local instance of SQL Installed. Please verify that you are on the computer with SQL installed and tht the Service Name on creation was left as it default MSSQL$SQLEXPRESS", _
-                            "Setup Database", MessageBoxButtons.OK, _
-                             MessageBoxIcon.Information)
+            myConn.Open()
+            createDB.ExecuteNonQuery()
+            MessageBox.Show("Database is created successfully", _
+                        "Setup Database", MessageBoxButtons.OK, _
+                         MessageBoxIcon.Information)
+            'Else
+            MessageBox.Show("Database can only be created on the Server where there is a local instance of SQL Installed. Please verify that you are on the computer with SQL installed and tht the Service Name on creation was left as it default MSSQL$SQLEXPRESS", _
+                        "Setup Database", MessageBoxButtons.OK, _
+                         MessageBoxIcon.Information)
 
-            End If
+            'End If
 
 
         Catch ex As Exception
@@ -345,20 +345,20 @@ Public Class formNewDatabaseWizard
 
     End Sub
 
-    Public Function findLocalSQLService(serviceName As String) As Boolean
-        Try
-            Dim controller As New ServiceController(serviceName)
-
-            If controller.Status.Equals(ServiceControllerStatus.Running) Then
-                Return True ' Validates that this service is running (True)
-            Else
-                Return False ' The SQL service is not running (False)
-            End If
-
-        Catch ex As Exception
-            Return False ' Error returns (False)
-        End Try
-    End Function
+    ' Public Function findLocalSQLService(serviceName As String) As Boolean
+    '     Try
+    '         Dim controller As New ServiceController(serviceName)
+    '
+    '         If controller.Status.Equals(ServiceControllerStatus.Running) Then
+    '             Return True ' Validates that this service is running (True)
+    '         Else
+    '             Return False ' The SQL service is not running (False)
+    '         End If
+    '
+    '     Catch ex As Exception
+    '         Return False ' Error returns (False)
+    '     End Try
+    ' End Function
 
 
     Private Sub cmdModify_Click(sender As Object, e As EventArgs) Handles cmdModify.Click
@@ -388,6 +388,7 @@ Public Class formNewDatabaseWizard
         My.Settings.settingDbUserId = txtUid.Text
         My.Settings.settingsDbPassword = txtPassword.Text
 
+        lblWarning.Visible = False
 
         My.Settings.settingsIsActiveModify = cmdModify.Visible.ToString
         My.Settings.settingsIsActiveSetup = cmdSetupDatabase.Enabled.ToString
@@ -401,6 +402,8 @@ Public Class formNewDatabaseWizard
 
         My.Settings.Save()
 
+
+
         If SQL.HasConnection() = False Then
             Me.Show()
         End If
@@ -413,7 +416,7 @@ Public Class formNewDatabaseWizard
         Me.Close()
     End Sub
 
-    
+
     Private Sub dgvSQLServers_CellContentDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvSQLServers.CellContentDoubleClick
         txtServerIP.Text = dgvSQLServers.Item(e.ColumnIndex, e.RowIndex).Value
     End Sub

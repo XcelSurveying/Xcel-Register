@@ -56,6 +56,7 @@ Public Class Activation
         Try
             Dim mc As New ManagementClass("Win32_NetworkAdapterConfiguration")
             Dim mac As String = ""
+
             'Getting network adapters collection
             Dim moc As ManagementObjectCollection = mc.GetInstances
 

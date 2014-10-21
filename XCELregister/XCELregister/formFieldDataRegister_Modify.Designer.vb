@@ -45,6 +45,7 @@ Partial Class formFieldDataRegister_Modify
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.cmdCancel = New System.Windows.Forms.Button()
         Me.lblFieldBookWarning = New System.Windows.Forms.Label()
         Me.Label12 = New System.Windows.Forms.Label()
         Me.lblDescriptionWarning = New System.Windows.Forms.Label()
@@ -55,7 +56,6 @@ Partial Class formFieldDataRegister_Modify
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.Timer2 = New System.Windows.Forms.Timer(Me.components)
         Me.Timer3 = New System.Windows.Forms.Timer(Me.components)
-        Me.cmdCancel = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -107,7 +107,7 @@ Partial Class formFieldDataRegister_Modify
         'txtJobDescription
         '
         Me.txtJobDescription.Location = New System.Drawing.Point(286, 52)
-        Me.txtJobDescription.MaxLength = 150
+        Me.txtJobDescription.MaxLength = 30
         Me.txtJobDescription.Multiline = True
         Me.txtJobDescription.Name = "txtJobDescription"
         Me.txtJobDescription.Size = New System.Drawing.Size(212, 57)
@@ -273,6 +273,15 @@ Partial Class formFieldDataRegister_Modify
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Enter Details"
         '
+        'cmdCancel
+        '
+        Me.cmdCancel.Location = New System.Drawing.Point(438, 441)
+        Me.cmdCancel.Name = "cmdCancel"
+        Me.cmdCancel.Size = New System.Drawing.Size(60, 30)
+        Me.cmdCancel.TabIndex = 12
+        Me.cmdCancel.Text = "Cancel"
+        Me.cmdCancel.UseVisualStyleBackColor = False
+        '
         'lblFieldBookWarning
         '
         Me.lblFieldBookWarning.AutoSize = True
@@ -348,15 +357,6 @@ Partial Class formFieldDataRegister_Modify
         '
         'Timer3
         '
-        '
-        'cmdCancel
-        '
-        Me.cmdCancel.Location = New System.Drawing.Point(438, 441)
-        Me.cmdCancel.Name = "cmdCancel"
-        Me.cmdCancel.Size = New System.Drawing.Size(60, 30)
-        Me.cmdCancel.TabIndex = 12
-        Me.cmdCancel.Text = "Cancel"
-        Me.cmdCancel.UseVisualStyleBackColor = False
         '
         'formFieldDataRegister_Modify
         '

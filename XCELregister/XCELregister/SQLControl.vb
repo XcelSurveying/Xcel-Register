@@ -46,23 +46,21 @@ Public Class SQLControl
             End If
 
         Catch ex As Exception
+            Return False
             SQLCon.Dispose()
             'MessageBox.Show(ex.ToString.Substring(0, 100))
             'Read's the error message string. 
-            Try
-                Select Case ex.ToString.Substring(0, 100)
-                    'Username is correct but No database found ---> database is setup and the tables are created.
-                    Case "System.Data.SqlClient.SqlException (0x80131904): Cannot open database ""register"" requested by the lo"
-                        MessageBox.Show("Can't connect to a the 'register' database. Please run the Database Setup.", "SQL Server Connection", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Select Case ex.ToString.Substring(0, 100)
+                'Username is correct but No database found ---> database is setup and the tables are created.
+                Case "System.Data.SqlClient.SqlException (0x80131904): Cannot open database ""register"" requested by the lo"
+                    MessageBox.Show("Can't connect to a the 'register' database. Please run the Database Setup.", "SQL Server Connection", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
-                    Case "A network-related or instance-specific error occurred while establishing a connection to SQL Server."
-                        MessageBox.Show("Can't connect to a the SQL Server. Please run the Database Setup and change the 'Database Server Path' to point to the correct server.", "SQL Server Connection", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                    Case Else
-                        'Shows error message
-                        MessageBox.Show(ex.Message, "SQL Server Connection", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                End Select
-            Catch ex1 As Exception
-            End Try
+                Case "A network-related or instance-specific error occurred while establishing a connection to SQL Server."
+                    MessageBox.Show("Can't connect to a the SQL Server. Please run the Database Setup and change the 'Database Server Path' to point to the correct server.", "SQL Server Connection", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                Case Else
+                    'Shows error message
+                    MessageBox.Show(ex.Message, "SQL Server Connection", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End Select
             formNewDatabaseWizard.Show()
             formNewDatabaseWizard.TopMost = True
         Finally

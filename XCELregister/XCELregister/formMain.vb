@@ -17,15 +17,27 @@ Public Class formMain
 
 
 
-
-        'PERFORM KEY CHECK BEFORE ANY ANYTHING ELSE
-        If activation.WaitForActivation() = True Then
-            Me.Enabled = True
-        Else
-            MessageBox.Show("Activation failed")
-            End
-        End If
-
+        '----- BYPASS ACTIVATION -----------------------------------
+        '                                                          '
+        '      'PERFORM KEY CHECK BEFORE ANY ANYTHING ELSE         '
+        '      If activation.WaitForActivation() = True Then       '
+        '          Me.Enabled = True                               '
+        '      Else                                                '
+        '          MessageBox.Show("Activation failed")            '
+        '          End                                             '
+        '      End If                                              '
+        '                                                          '
+        Me.cmdDeleteRow.Enabled = True                             '
+        Me.cmdModifySelectedRow.Enabled = True                     '
+        Me.cmdNewEntry.Enabled = True                              '
+        Me.rbAreaCalcChecklist.Enabled = True                      '
+        Me.rbFieldDataRegister.Enabled = True                      '
+        Me.rbSurveyReportRegister.Enabled = True                   '
+        Me.rbTqRfiRegister.Enabled = True                          '
+        '                                                          '
+        Me.Enabled = True                                          '
+        '                                                          '
+        ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
         If SQL.HasConnection = True Then 'has connected
             initilizeDataGridView() 'Set visual params for data grid view
